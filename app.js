@@ -1,17 +1,14 @@
 // require csvtojson module
-const CSVToJSON = require('csvtojson');
-
 const fs = require("fs");
-const path = require('path')
+const { parseCSV, getMonth} = require("path");
 
 const run = async (year, month) => {
-    const monthString = `${year}/${month}`
-    // convert users.csv file to JSON array
-    const nurses = await CSVToJSON().fromFile(`${monthString}.csv`)
+    const nurses = await parseCSV(`${year}/${month}.csv`)
     const holidays = nurses[1]
 
     const result = {}
-    result['month'] = monthString
+    result['year']  = year
+    result['month'] = month
     
     for (let i = 2; i < nurses.length; i++) {
         const nurse = nurses[i];
@@ -25,8 +22,7 @@ const run = async (year, month) => {
 const year = 2015
 
 fs.readdirSync(`./${year}/`).forEach(file => {
-    //Print file name
-    const month = path.basename(file, '.csv')
+    const month = getMonth(file)
     run(year, month)
 })
 
@@ -76,5 +72,3 @@ const getSavedDays = (nurse, holidays) => {
 
     return totalOnDays - totalRequireDays
 }
-
-// run()
