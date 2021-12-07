@@ -1,8 +1,9 @@
 
 const CSVToJSON = require('csvtojson');
+const path = require('path')
 
-exports.generateMonthlyReport = async (year, month) => {
-    const nurses = await CSVToJSON().fromFile(`./csv/${year}-${month}.csv`)
+exports.getMonthlyReport = async (year, month) => {
+    const nurses = await CSVToJSON().fromFile(path.resolve(__dirname, `../csv/${year}-${month}.csv`))
     const holidays = nurses[1]
 
     const result = {
