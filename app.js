@@ -21,9 +21,8 @@ async function getReportData () {
 }
 
 async function generateReport () {
-    const data = await getReportData()
-    // const years = [2014, 2015, 2016, 2017, 2018, 2019, 2020]
-    const years = [2014]
+    const data   = await getReportData()
+    const years  = [2014, 2015, 2016, 2017, 2018, 2019, 2020]
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
     const report = {}
@@ -43,7 +42,7 @@ async function generateReport () {
         if (yearReport) report[year] = yearReport
     }
 
-    fs.writeFileSync('report.json', JSON.stringify(report));
+    fs.writeFileSync('rawreport.json', JSON.stringify(report));
 }
 
 generateReport()

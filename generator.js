@@ -73,7 +73,9 @@ const getFulfilledDays = (nurse) => {
                     totalOnDays += 0.25
                 } else if (kind == '下') {
                     if (+day != 1 && nurse[day - 1] == '小') {
-                        totalOnDays += 1.5
+                        totalOnDays += 0.5
+                    } else {
+                        totalOnDays += 1
                     }
                 } else if ( isOnDay(kind) ) {
                     totalOnDays++
