@@ -1,74 +1,49 @@
 // require csvtojson module
 const fs = require("fs");
-const { parseCSV, getMonth} = require("path");
+const path = require('path')
+const { generateMonthlyReport } = require("./generator");
 
-const run = async (year, month) => {
-    const nurses = await parseCSV(`${year}/${month}.csv`)
-    const holidays = nurses[1]
+async function getReportData () {
+    const data = []
+    const files = fs.readdirSync(`./csv/`)
 
-    const result = {}
-    result['year']  = year
-    result['month'] = month
-    
-    for (let i = 2; i < nurses.length; i++) {
-        const nurse = nurses[i];
-        const savedDays = getSavedDays(nurse, holidays)
-        result[nurse['日期']] = savedDays
-    }
-
-    console.log(result);
-}
-
-const year = 2015
-
-fs.readdirSync(`./${year}/`).forEach(file => {
-    const month = getMonth(file)
-    run(year, month)
-})
-
-
-const getSavedDays = (nurse, holidays) => {
-    let totalRequireDays = 0
-    let totalOnDays      = 0
-
-    for (const day in nurse) {
-
-        if (Object.hasOwnProperty.call(nurse, day)) {
-
-            const kind = nurse[day];
-
-            if (!isNaN(day)) {
-
-                // 算是否应该算上班
-                if (
-                    holidays[day] != 'Y' 
-                &&  kind != '' 
-                &&  kind != '产'
-                &&  kind != '产'
-                &&  kind != '病假'
-                &&  kind != 'ICU'
-                ) {
-                    totalRequireDays++
-                }
-
-                // 算上一天半
-                if (
-                    kind !== '休'
-                &&  kind != '' 
-                &&  kind != '产'
-                &&  kind != '产'
-                &&  kind != '病假'
-                &&  kind != 'ICU'
-                ) {
-                    totalOnDays++
-                }
-
-                if (kind == '半') {
-                    totalOnDays += 0.5
-                }
-            }
+    for (let j = 0; j < files.length; j++) {
+        const file = files[j]
+        if (file != '.DS_Store') {
+            const filename = path.basename(files[j], '.csv')
+            const [year, month] = filename.split('-')
+            const monthlyResult = await generateMonthlyReport(year, month)
+            data.push(monthlyResult)
         }
     }
 
-    return totalOnDays - totalRequireDays
+    return data
 }
+
+async function generateReport () {
+    const data = await getReportData()
+    // const years = [2014, 2015, 2016, 2017, 2018, 2019, 2020]
+    const years = [2014]
+    const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+    const report = {}
+
+    for (let i = 0; i < years.length; i++) {
+        const year = years[i];
+        const yearReport = {}
+
+        const yearData = data.filter(item => +item.year == year)
+
+        for (let j = 0; j < months.length; j++) {
+            const month = months[j];
+            const monthReport = yearData.filter(item => +item.month == month)
+            if (monthReport && monthReport.length > 0) yearReport[month] = monthReport[0]
+        }
+
+        if (yearReport) report[year] = yearReport
+    }
+
+    fs.writeFileSync('report.json', JSON.stringify(report));
+}
+
+generateReport()
