@@ -4,7 +4,7 @@ const path = require('path')
 const { getMonthlyReport } = require("./monthly");
 
 // load config
-const {YEARS, MONTHS} = require('../config')
+const { YEARS, MONTHS } = require('../config')
 
 async function getRawReport () {
     const rawReport = []

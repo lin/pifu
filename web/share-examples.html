@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shareable URL Examples - Hospital Shift Analysis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        
+        .section h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .url-example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .url-example h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .url-example .url {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 8px 12px;
+            border-radius: 4px;
+            word-break: break-all;
+            margin: 8px 0;
+        }
+        
+        .url-example .description {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 8px 0;
+        }
+        
+        .url-example .params {
+            font-size: 0.85rem;
+            color: #495057;
+            margin-top: 8px;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-link a:hover {
+            background: #2980b9;
+        }
+        
+        .copy-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #219a52;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-share-alt"></i> Shareable URL Examples</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">
+            Use these URL patterns to share specific views of the Hospital Shift Analysis dashboard
+        </p>
+
+        <div class="section">
+            <h2><i class="fas fa-calendar-month"></i> Monthly Statistics URLs</h2>
+            
+            <div class="url-example">
+                <h3>View April 2014 Statistics</h3>
+                <div class="url">
+                    index.html?tab=monthly&year=2014&month=04
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=monthly&year=2014&month=04')">Copy</button>
+                </div>
+                <div class="description">Shows monthly statistics for all nurses in April 2014</div>
+                <div class="params">Parameters: tab=monthly, year=2014, month=04</div>
+            </div>
+
+            <div class="url-example">
+                <h3>View January 2020 Sorted by Saved Rest Days</h3>
+                <div class="url">
+                    index.html?tab=monthly&year=2020&month=01&sortBy=savedRestDays
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=monthly&year=2020&month=01&sortBy=savedRestDays')">Copy</button>
+                </div>
+                <div class="description">Shows January 2020 statistics sorted by saved rest days (highest first)</div>
+                <div class="params">Parameters: tab=monthly, year=2020, month=01, sortBy=savedRestDays</div>
+            </div>
+
+            <div class="url-example">
+                <h3>View December 2019 Sorted by Work Days</h3>
+                <div class="url">
+                    index.html?tab=monthly&year=2019&month=12&sortBy=workDays
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=monthly&year=2019&month=12&sortBy=workDays')">Copy</button>
+                </div>
+                <div class="description">Shows December 2019 statistics sorted by number of work days</div>
+                <div class="params">Parameters: tab=monthly, year=2019, month=12, sortBy=workDays</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-user-nurse"></i> Person Details URLs</h2>
+            
+            <div class="url-example">
+                <h3>View 马磊's Complete Record</h3>
+                <div class="url">
+                    index.html?tab=person&nurse=3&nurseName=马磊
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=person&nurse=3&nurseName=马磊')">Copy</button>
+                </div>
+                <div class="description">Shows complete career details for nurse 马磊 (ID: 3) across all years</div>
+                <div class="params">Parameters: tab=person, nurse=3, nurseName=马磊</div>
+            </div>
+
+            <div class="url-example">
+                <h3>View 付伟's 2018 Record</h3>
+                <div class="url">
+                    index.html?tab=person&nurse=4&nurseName=付伟&personYear=2018
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=person&nurse=4&nurseName=付伟&personYear=2018')">Copy</button>
+                </div>
+                <div class="description">Shows 付伟's detailed records for 2018 only with monthly breakdown and calendar</div>
+                <div class="params">Parameters: tab=person, nurse=4, nurseName=付伟, personYear=2018</div>
+            </div>
+
+            <div class="url-example">
+                <h3>View 赵蕊's 2016 Record</h3>
+                <div class="url">
+                    index.html?tab=person&nurse=1&nurseName=赵蕊&personYear=2016
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=person&nurse=1&nurseName=赵蕊&personYear=2016')">Copy</button>
+                </div>
+                <div class="description">Shows 赵蕊's detailed records for 2016 with calendar view</div>
+                <div class="params">Parameters: tab=person, nurse=1, nurseName=赵蕊, personYear=2016</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-chart-bar"></i> Overview URLs</h2>
+            
+            <div class="url-example">
+                <h3>View Overview Dashboard</h3>
+                <div class="url">
+                    index.html?tab=overview
+                    <button class="copy-btn" onclick="copyToClipboard('index.html?tab=overview')">Copy</button>
+                </div>
+                <div class="description">Shows the overview dashboard with top performers, trends, and statistics</div>
+                <div class="params">Parameters: tab=overview</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-info-circle"></i> URL Parameter Reference</h2>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Parameter</th>
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Values</th>
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>tab</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">monthly, person, overview</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Which tab to display</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>year</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">2014-2020</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Year for monthly view</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>month</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">01-12</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Month for monthly view (zero-padded)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>sortBy</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">workValue, savedRestDays, workDays, nurseName</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Sort criteria for monthly view</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>nurse</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">1-13</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Nurse ID for person view</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>nurseName</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">赵蕊, 尤嘉, 马磊, etc.</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Nurse name for person view</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><code>personYear</code></td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">2014-2020</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Year filter for person view</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-lightbulb"></i> Usage Tips</h2>
+            <ul style="line-height: 1.8;">
+                <li><strong>Shareable Links:</strong> Copy any URL from the address bar after making selections to share that exact view</li>
+                <li><strong>Bookmarks:</strong> Bookmark specific views for quick access to frequently used reports</li>
+                <li><strong>Team Sharing:</strong> Share monthly analysis URLs with team members for specific periods</li>
+                <li><strong>Performance Reviews:</strong> Use person detail URLs for individual nurse performance discussions</li>
+                <li><strong>URL Updates:</strong> The URL automatically updates as you navigate, making it easy to share current view</li>
+            </ul>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            const fullUrl = window.location.origin + window.location.pathname.replace('share-examples.html', '') + text;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(fullUrl).then(() => {
+                    // Show temporary success message
+                    const btn = event.target;
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    btn.style.background = '#27ae60';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.background = '#27ae60';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    prompt('Copy this URL:', fullUrl);
+                });
+            } else {
+                // Fallback for older browsers
+                prompt('Copy this URL:', fullUrl);
+            }
+        }
+    </script>
+</body>
+</html>

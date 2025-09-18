@@ -1,0 +1,233 @@
+{
+  "totalRecords": 25972,
+  "uniqueNurses": 13,
+  "totalWorkValue": 13943,
+  "dateRange": {
+    "start": "2014-03-31",
+    "end": "2020-01-30"
+  },
+  "yearlyBreakdown": {
+    "2014": {
+      "records": 2727,
+      "workValue": 1679.5,
+      "uniqueNurses": 10
+    },
+    "2015": {
+      "records": 3878,
+      "workValue": 2257.5,
+      "uniqueNurses": 12
+    },
+    "2016": {
+      "records": 4729,
+      "workValue": 2431.5,
+      "uniqueNurses": 13
+    },
+    "2017": {
+      "records": 4745,
+      "workValue": 2401,
+      "uniqueNurses": 13
+    },
+    "2018": {
+      "records": 4745,
+      "workValue": 2491,
+      "uniqueNurses": 13
+    },
+    "2019": {
+      "records": 4745,
+      "workValue": 2486,
+      "uniqueNurses": 13
+    },
+    "2020": {
+      "records": 403,
+      "workValue": 196.5,
+      "uniqueNurses": 13
+    }
+  },
+  "nurseStatistics": {
+    "1-赵蕊": {
+      "nurseId": 1,
+      "nurseName": "赵蕊",
+      "totalRecords": 2132,
+      "totalWorkValue": 912,
+      "workDays": 983,
+      "restDays": 1149,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "2-尤嘉": {
+      "nurseId": 2,
+      "nurseName": "尤嘉",
+      "totalRecords": 2132,
+      "totalWorkValue": 1215.5,
+      "workDays": 1219,
+      "restDays": 913,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "3-马磊": {
+      "nurseId": 3,
+      "nurseName": "马磊",
+      "totalRecords": 2132,
+      "totalWorkValue": 1314.5,
+      "workDays": 1321,
+      "restDays": 811,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "4-付伟": {
+      "nurseId": 4,
+      "nurseName": "付伟",
+      "totalRecords": 2132,
+      "totalWorkValue": 1288,
+      "workDays": 1293,
+      "restDays": 839,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "5-李如心": {
+      "nurseId": 5,
+      "nurseName": "李如心",
+      "totalRecords": 2132,
+      "totalWorkValue": 1037.5,
+      "workDays": 1094,
+      "restDays": 1038,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "6-张雪野": {
+      "nurseId": 6,
+      "nurseName": "张雪野",
+      "totalRecords": 2132,
+      "totalWorkValue": 948.5,
+      "workDays": 1024,
+      "restDays": 1108,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "7-付巍巍": {
+      "nurseId": 7,
+      "nurseName": "付巍巍",
+      "totalRecords": 2132,
+      "totalWorkValue": 1250.5,
+      "workDays": 1257,
+      "restDays": 875,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "8-邹婷": {
+      "nurseId": 8,
+      "nurseName": "邹婷",
+      "totalRecords": 2132,
+      "totalWorkValue": 1038,
+      "workDays": 1101,
+      "restDays": 1031,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "9-钱璐": {
+      "nurseId": 9,
+      "nurseName": "钱璐",
+      "totalRecords": 2132,
+      "totalWorkValue": 1161.5,
+      "workDays": 1167,
+      "restDays": 965,
+      "firstAppearance": "2014-03-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "10-王鑫": {
+      "nurseId": 10,
+      "nurseName": "王鑫",
+      "totalRecords": 2109,
+      "totalWorkValue": 1100.5,
+      "workDays": 1178,
+      "restDays": 931,
+      "firstAppearance": "2014-04-16",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 7
+    },
+    "11-徐莹": {
+      "nurseId": 11,
+      "nurseName": "徐莹",
+      "totalRecords": 1634,
+      "totalWorkValue": 967,
+      "workDays": 974,
+      "restDays": 660,
+      "firstAppearance": "2015-07-13",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 6
+    },
+    "12-陈平": {
+      "nurseId": 12,
+      "nurseName": "陈平",
+      "totalRecords": 1549,
+      "totalWorkValue": 812.5,
+      "workDays": 865,
+      "restDays": 684,
+      "firstAppearance": "2015-11-04",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 6
+    },
+    "13-荆小舟": {
+      "nurseId": 13,
+      "nurseName": "荆小舟",
+      "totalRecords": 1492,
+      "totalWorkValue": 897,
+      "workDays": 900,
+      "restDays": 592,
+      "firstAppearance": "2015-12-31",
+      "lastAppearance": "2020-01-30",
+      "yearsActiveCount": 5
+    }
+  },
+  "shiftTypeDistribution": {
+    "休": 8208,
+    "病假": 92,
+    "白": 7836,
+    "小": 1879,
+    "下": 1918,
+    "大": 1838,
+    "半": 187,
+    "白\r": 238,
+    "休\r": 281,
+    "大\r": 52,
+    "病假\r": 2,
+    "小\r": 59,
+    "下\r": 59,
+    "下 ": 19,
+    "Z\r": 1,
+    "ICU": 23,
+    "ICU\r": 1,
+    "神内": 30,
+    "神内\r": 1,
+    "产假": 1637,
+    "产假\r": 56,
+    "半\r": 6,
+    "夜": 39,
+    "婚假": 36,
+    " 大": 16,
+    " 大\r": 1,
+    "群力": 730,
+    "哺乳半": 679,
+    "哺乳半\r": 21,
+    "Y": 1,
+    "群力\r": 25,
+    "夜\r": 1
+  },
+  "workPatterns": {
+    "totalWorkDays": 14376,
+    "totalRestDays": 11596,
+    "nightShifts": 5674,
+    "dayShifts": 9941,
+    "weekendWork": 2832,
+    "holidayWork": 3028
+  }
+}

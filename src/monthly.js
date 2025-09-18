@@ -1,4 +1,3 @@
-
 const CSVToJSON = require('csvtojson');
 const path = require('path')
 
@@ -22,8 +21,6 @@ exports.getMonthlyReport = async (year, month) => {
             saved
         }
     }
-
-    result.raw = nurses
 
     return result
 }

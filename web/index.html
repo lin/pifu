@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医院排班分析仪表板</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-hospital"></i> 皮肤科病房护士排班分析 </h1>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-button active" onclick="showTab('monthly')">
+                <i class="fas fa-calendar-month"></i> 月度统计
+            </button>
+            <button class="tab-button" onclick="showTab('person')">
+                <i class="fas fa-user"></i> 个人详情
+            </button>
+            <button class="tab-button" onclick="showTab('overview')">
+                <i class="fas fa-chart-bar"></i> 总览
+            </button>
+        </nav>
+
+        <!-- Monthly Statistics Tab -->
+        <div id="monthly" class="tab-content active">
+            <div class="controls">
+                <div class="control-section">
+                    <label>选择年份:</label>
+                    <div class="button-group" id="yearButtons"></div>
+                </div>
+                <div class="control-section">
+                    <label>选择月份:</label>
+                    <div class="button-group" id="monthButtons"></div>
+                </div>
+            </div>
+
+            <div class="monthly-summary" id="monthlySummary"></div>
+            <div class="monthly-stats" id="monthlyStats"></div>
+        </div>
+
+        <!-- Person Details Tab -->
+        <div id="person" class="tab-content">
+            <div class="controls">
+                <div class="control-section">
+                    <label>选择护士:</label>
+                    <div class="button-group" id="personButtons"></div>
+                </div>
+                <div class="control-section">
+                    <label>按年份筛选:</label>
+                    <div class="button-group" id="personYearButtons">
+                        <button class="selection-btn active" data-value="" onclick="setPersonYear('')">所有年份</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-overview" id="personOverview"></div>
+            <div class="person-monthly" id="personMonthly"></div>
+            <div class="person-calendar" id="personCalendar"></div>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content">
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h3><i class="fas fa-trophy"></i> 优秀表现者</h3>
+                    <div id="topPerformers"></div>
+                </div>
+                <div class="overview-card">
+                    <h3><i class="fas fa-chart-pie"></i> 班次分布</h3>
+                    <div id="shiftDistribution"></div>
+                </div>
+                <div class="overview-card">
+                    <h3><i class="fas fa-calendar-week"></i> 年度趋势</h3>
+                    <div id="yearlyTrends"></div>
+                </div>
+                <div class="overview-card">
+                    <h3><i class="fas fa-moon"></i> 工作模式</h3>
+                    <div id="workPatterns"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>正在加载医院排班数据...</p>
+    </div>
+
+    <script src="analyzer.js"></script>
+</body>
+</html>

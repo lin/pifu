@@ -1,6 +1,4 @@
-const fs = require('fs');
-
-const {NURSES} = require('../config');
+const { NURSES } = require('../config');
 const { getYearlyReport } = require('./yearly');
 
 exports.getNursesReport = async (yearlyReport) => {

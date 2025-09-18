@@ -1,0 +1,3338 @@
+{
+  "year": 2014,
+  "month": 4,
+  "totalDays": 30,
+  "days": [
+    {
+      "day": 1,
+      "weekday": "星期二",
+      "isHoliday": false
+    },
+    {
+      "day": 2,
+      "weekday": "星期三",
+      "isHoliday": false
+    },
+    {
+      "day": 3,
+      "weekday": "星期四",
+      "isHoliday": false
+    },
+    {
+      "day": 4,
+      "weekday": "星期五",
+      "isHoliday": false
+    },
+    {
+      "day": 5,
+      "weekday": "星期六",
+      "isHoliday": true
+    },
+    {
+      "day": 6,
+      "weekday": "星期日",
+      "isHoliday": true
+    },
+    {
+      "day": 7,
+      "weekday": "星期一",
+      "isHoliday": true
+    },
+    {
+      "day": 8,
+      "weekday": "星期二",
+      "isHoliday": false
+    },
+    {
+      "day": 9,
+      "weekday": "星期三",
+      "isHoliday": false
+    },
+    {
+      "day": 10,
+      "weekday": "星期四",
+      "isHoliday": false
+    },
+    {
+      "day": 11,
+      "weekday": "星期五",
+      "isHoliday": false
+    },
+    {
+      "day": 12,
+      "weekday": "星期六",
+      "isHoliday": true
+    },
+    {
+      "day": 13,
+      "weekday": "星期日",
+      "isHoliday": true
+    },
+    {
+      "day": 14,
+      "weekday": "星期一",
+      "isHoliday": false
+    },
+    {
+      "day": 15,
+      "weekday": "星期二",
+      "isHoliday": false
+    },
+    {
+      "day": 16,
+      "weekday": "星期三",
+      "isHoliday": false
+    },
+    {
+      "day": 17,
+      "weekday": "星期四",
+      "isHoliday": false
+    },
+    {
+      "day": 18,
+      "weekday": "星期五",
+      "isHoliday": false
+    },
+    {
+      "day": 19,
+      "weekday": "星期六",
+      "isHoliday": true
+    },
+    {
+      "day": 20,
+      "weekday": "星期日",
+      "isHoliday": true
+    },
+    {
+      "day": 21,
+      "weekday": "星期一",
+      "isHoliday": false
+    },
+    {
+      "day": 22,
+      "weekday": "星期二",
+      "isHoliday": false
+    },
+    {
+      "day": 23,
+      "weekday": "星期三",
+      "isHoliday": false
+    },
+    {
+      "day": 24,
+      "weekday": "星期四",
+      "isHoliday": false
+    },
+    {
+      "day": 25,
+      "weekday": "星期五",
+      "isHoliday": false
+    },
+    {
+      "day": 26,
+      "weekday": "星期六",
+      "isHoliday": true
+    },
+    {
+      "day": 27,
+      "weekday": "星期日",
+      "isHoliday": true
+    },
+    {
+      "day": 28,
+      "weekday": "星期一",
+      "isHoliday": false
+    },
+    {
+      "day": 29,
+      "weekday": "星期二",
+      "isHoliday": false
+    },
+    {
+      "day": 30,
+      "weekday": "星期三\r",
+      "isHoliday": false
+    }
+  ],
+  "nurses": [
+    {
+      "id": 1,
+      "name": "赵蕊",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "半",
+          "shiftType": "work",
+          "shiftCategory": "half_day_shift",
+          "workValue": 0.5,
+          "description": "Half day shift"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 22,
+        "totalRestDays": 8,
+        "dayShifts": 13,
+        "nightShifts": 9,
+        "halfDays": 1,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 21.5
+      }
+    },
+    {
+      "id": 2,
+      "name": "尤嘉",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 11,
+        "totalRestDays": 19,
+        "dayShifts": 11,
+        "nightShifts": 0,
+        "halfDays": 0,
+        "sickDays": 3,
+        "maternityDays": 0,
+        "workValue": 11
+      }
+    },
+    {
+      "id": 3,
+      "name": "马磊",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 22,
+        "totalRestDays": 8,
+        "dayShifts": 3,
+        "nightShifts": 19,
+        "halfDays": 0,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 22
+      }
+    },
+    {
+      "id": 4,
+      "name": "付伟",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 25,
+        "totalRestDays": 5,
+        "dayShifts": 6,
+        "nightShifts": 19,
+        "halfDays": 0,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 25
+      }
+    },
+    {
+      "id": 5,
+      "name": "李如心",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 13,
+        "totalRestDays": 17,
+        "dayShifts": 1,
+        "nightShifts": 12,
+        "halfDays": 0,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 13
+      }
+    },
+    {
+      "id": 6,
+      "name": "张雪野",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "病假",
+          "shiftType": "rest",
+          "shiftCategory": "sick_leave",
+          "workValue": 0,
+          "description": "Sick leave"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 0,
+        "totalRestDays": 30,
+        "dayShifts": 0,
+        "nightShifts": 0,
+        "halfDays": 0,
+        "sickDays": 30,
+        "maternityDays": 0,
+        "workValue": 0
+      }
+    },
+    {
+      "id": 7,
+      "name": "付巍巍",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 24,
+        "totalRestDays": 6,
+        "dayShifts": 14,
+        "nightShifts": 10,
+        "halfDays": 0,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 24
+      }
+    },
+    {
+      "id": 8,
+      "name": "邹婷",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 24,
+        "totalRestDays": 6,
+        "dayShifts": 12,
+        "nightShifts": 12,
+        "halfDays": 0,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 24
+      }
+    },
+    {
+      "id": 9,
+      "name": "钱璐",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "大",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_big",
+          "workValue": 1,
+          "description": "Night shift (big)"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "下",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_day",
+          "workValue": 1,
+          "description": "Night shift day (rest after night)"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "小",
+          "shiftType": "work",
+          "shiftCategory": "night_shift_small",
+          "workValue": 1,
+          "description": "Night shift (small)"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "休",
+          "shiftType": "rest",
+          "shiftCategory": "rest",
+          "workValue": 0,
+          "description": "Rest day"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 10,
+        "totalRestDays": 20,
+        "dayShifts": 4,
+        "nightShifts": 6,
+        "halfDays": 0,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 10
+      }
+    },
+    {
+      "id": 10,
+      "name": "王鑫",
+      "shifts": [
+        {
+          "day": 1,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 2,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 3,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 4,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 5,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 6,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 7,
+          "weekday": "星期一",
+          "isHoliday": true,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 8,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 9,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 10,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 11,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 12,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 13,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 14,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 15,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 16,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "",
+          "shiftType": "unknown",
+          "shiftCategory": "empty",
+          "workValue": 0,
+          "description": "No data"
+        },
+        {
+          "day": 17,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 18,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 19,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "半",
+          "shiftType": "work",
+          "shiftCategory": "half_day_shift",
+          "workValue": 0.5,
+          "description": "Half day shift"
+        },
+        {
+          "day": 20,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "半",
+          "shiftType": "work",
+          "shiftCategory": "half_day_shift",
+          "workValue": 0.5,
+          "description": "Half day shift"
+        },
+        {
+          "day": 21,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 22,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 23,
+          "weekday": "星期三",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 24,
+          "weekday": "星期四",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 25,
+          "weekday": "星期五",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 26,
+          "weekday": "星期六",
+          "isHoliday": true,
+          "shiftCode": "半",
+          "shiftType": "work",
+          "shiftCategory": "half_day_shift",
+          "workValue": 0.5,
+          "description": "Half day shift"
+        },
+        {
+          "day": 27,
+          "weekday": "星期日",
+          "isHoliday": true,
+          "shiftCode": "半",
+          "shiftType": "work",
+          "shiftCategory": "half_day_shift",
+          "workValue": 0.5,
+          "description": "Half day shift"
+        },
+        {
+          "day": 28,
+          "weekday": "星期一",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 29,
+          "weekday": "星期二",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        },
+        {
+          "day": 30,
+          "weekday": "星期三\r",
+          "isHoliday": false,
+          "shiftCode": "白",
+          "shiftType": "work",
+          "shiftCategory": "day_shift",
+          "workValue": 1,
+          "description": "Day shift"
+        }
+      ],
+      "statistics": {
+        "totalWorkDays": 14,
+        "totalRestDays": 0,
+        "dayShifts": 14,
+        "nightShifts": 0,
+        "halfDays": 4,
+        "sickDays": 0,
+        "maternityDays": 0,
+        "workValue": 12
+      }
+    }
+  ],
+  "summary": {
+    "totalNurses": 10,
+    "totalWorkingDays": 21,
+    "totalHolidays": 9,
+    "averageWorkDays": "16.50",
+    "averageRestDays": "11.90",
+    "totalShifts": {
+      "dayShifts": 78,
+      "nightShifts": 87,
+      "restDays": 119,
+      "sickDays": 33,
+      "maternityDays": 0
+    },
+    "nurseRankings": {
+      "mostWorkDays": "付伟",
+      "leastWorkDays": "张雪野",
+      "mostSickDays": "张雪野"
+    }
+  }
+}
