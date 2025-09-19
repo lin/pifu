@@ -8,6 +8,7 @@ class DataProcessor {
         this.personData = {};
         this.monthlySummaryData = {}; // 每个护士每个月的汇总数据
         this.initialSavedRestDays = {}; // 初始存假天数
+        this.holidayAdjustments = {}; // 冬夏假期调整数据
     }
 
     /**
@@ -15,6 +16,7 @@ class DataProcessor {
      */
     async processData() {
         await this.loadInitialSavedRestDays();
+        await this.loadHolidayAdjustments();
         this.adjustNightShiftDayValues();
         this.adjustSupportWorkValues();
         this.processMonthlyData();
@@ -511,6 +513,58 @@ class DataProcessor {
             
             return totalSavedRestDays;
         }
+    }
+
+    /**
+     * 获取护士的调整后累计存假天数（考虑冬夏假期调整）
+     * @param {string} nurseKey - 护士键值
+     * @returns {number} 调整后的累计存假天数
+     */
+    getAdjustedCumulativeSavedRestDays(nurseKey) {
+        const nurseSummary = this.getNurseMonthlySummary(nurseKey);
+        if (!nurseSummary) return 0;
+
+        // 获取基础累计存假天数
+        const baseCumulativeSavedRestDays = this.getCumulativeSavedRestDays(nurseKey);
+        
+        // 添加90天给所有人
+        let adjustedSavedRestDays = baseCumulativeSavedRestDays + 90;
+        
+        // 减去冬夏假期调整天数
+        const holidayAdjustments = this.getHolidayAdjustments(nurseSummary.nurseName);
+        adjustedSavedRestDays -= holidayAdjustments;
+        
+        return adjustedSavedRestDays;
+    }
+
+    /**
+     * 加载冬夏假期调整数据
+     */
+    async loadHolidayAdjustments() {
+        try {
+            const response = await fetch('no_winter_summer_holidays.json');
+            const data = await response.json();
+            
+            // 按护士姓名分组并累加调整天数
+            data.forEach(record => {
+                if (!this.holidayAdjustments[record.name]) {
+                    this.holidayAdjustments[record.name] = 0;
+                }
+                this.holidayAdjustments[record.name] += record.removeHolidayDays;
+            });
+        } catch (error) {
+            console.error('Error loading holiday adjustments:', error);
+            this.holidayAdjustments = {};
+        }
+    }
+
+    /**
+     * 获取护士的冬夏假期调整天数
+     * @param {string} nurseName - 护士姓名
+     * @returns {number} 需要减去的假期天数
+     */
+    getHolidayAdjustments(nurseName) {
+        return this.holidayAdjustments[nurseName] || 0;
     }
 
     /**

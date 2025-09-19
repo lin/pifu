@@ -99,9 +99,22 @@
         <!-- Overview Tab -->
         <div id="overview" class="tab-content active">
             <div class="overview-sections">
+                <!-- 总体统计 -->
+                <!-- <div class="overview-section">
+                    <h3><i class="fas fa-chart-pie"></i> 总体统计</h3>
+                    <div class="overview-stats" id="overviewStats"></div>
+                </div> -->
+                
                 <!-- 存假天数排名表 -->
                 <div class="overview-section">
                     <h3><i class="fas fa-calendar-minus"></i> 护士存假天数排名</h3>
+                    <div class="calculation-explanation">
+                        <p><strong>计算说明：</strong></p>
+                        <ul>
+                            <li><strong>基础存假天数：</strong>原始计算结果（不考虑冬夏假期调整）</li>
+                            <li><strong>调整后存假天数：</strong>基础存假天数 + 90天 - 冬夏假期调整天数</li>
+                        </ul>
+                    </div>
                     <div class="ranking-table" id="savedDaysRankingTable"></div>
                 </div>
                 
