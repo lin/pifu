@@ -11,14 +11,60 @@ class UIController {
      * 初始化UI
      */
     initializeUI() {
+        this.setupTabEventListeners();
         this.populateYearButtons();
         this.populatePersonButtons();
         this.setDefaultSelections();
         // 在设置默认年份后再填充月份按钮，这样可以正确应用禁用状态
         this.populateMonthButtons();
+        
+        // Load URL parameters after all UI is ready
+        setTimeout(() => {
+            this.loadFromURLParams();
+        }, 100);
+        
         this.loadMonthlyStats();
         this.loadPersonDetails();
         this.loadOverviewData();
+    }
+
+    /**
+     * 设置标签页事件监听器
+     */
+    setupTabEventListeners() {
+        document.querySelectorAll('.tab-button').forEach(tabButton => {
+            tabButton.addEventListener('click', (e) => {
+                const tabName = e.target.dataset.tab || e.target.closest('[data-tab]').dataset.tab;
+                if (tabName) {
+                    this.switchTab(tabName);
+                }
+            });
+        });
+    }
+
+    /**
+     * 切换标签页
+     */
+    switchTab(tabName) {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Hide all tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Set active tab
+        const tabButton = document.querySelector(`[data-tab="${tabName}"]`);
+        const tabContent = document.getElementById(tabName);
+        
+        if (tabButton && tabContent) {
+            tabButton.classList.add('active');
+            tabContent.classList.add('active');
+            this.updateURL();
+        }
     }
 
     /**
@@ -123,11 +169,12 @@ class UIController {
             if (['01', '02', '03'].includes(currentMonth)) {
                 // 如果当前选择的是无效月份，切换到4月
                 this.setSelectedMonth('04');
-                return; // setSelectedMonth 会调用 loadMonthlyStats
+                return; // setSelectedMonth 会调用 loadMonthlyStats 和 updateURL
             }
         }
         
         this.loadMonthlyStats();
+        this.updateURL();
     }
 
     /**
@@ -137,6 +184,7 @@ class UIController {
         document.querySelectorAll('#monthButtons .selection-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`#monthButtons [data-value="${month}"]`).classList.add('active');
         this.loadMonthlyStats();
+        this.updateURL();
     }
 
     /**
@@ -146,6 +194,7 @@ class UIController {
         document.querySelectorAll('#personButtons .selection-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`#personButtons [data-value="${personKey}"]`).classList.add('active');
         this.loadPersonDetails();
+        this.updateURL();
     }
 
 
@@ -431,5 +480,142 @@ class UIController {
         const data = nurseStats.map(nurse => nurse.totalRestDays);
 
         this.displayManager.createOverviewBarChart('restDaysBarChart', '有效休息日对比', labels, data, '#3b82f6');
+    }
+
+    /**
+     * 从URL参数加载状态
+     * @returns {boolean} 是否成功从URL参数加载
+     */
+    loadFromURLParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tab = urlParams.get('tab');
+        
+        if (!tab) return false;
+        
+        // Set active tab
+        this.setActiveTab(tab);
+        
+        switch (tab) {
+            case 'monthly':
+                return this.loadMonthlyParams(urlParams);
+            case 'person':
+                return this.loadPersonParams(urlParams);
+            case 'overview':
+                return true; // Overview doesn't need additional params
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * 加载月度统计页面的URL参数
+     */
+    loadMonthlyParams(urlParams) {
+        const year = urlParams.get('year');
+        const month = urlParams.get('month');
+        let loaded = false;
+        
+        if (year) {
+            const yearButton = document.querySelector(`#yearButtons [data-value="${year}"]`);
+            if (yearButton) {
+                this.setSelectedYear(year);
+                loaded = true;
+            }
+        }
+        
+        if (month) {
+            // Month buttons are already populated, find and select
+            const monthButton = document.querySelector(`#monthButtons [data-value="${month}"]`);
+            if (monthButton && !monthButton.disabled) {
+                this.setSelectedMonth(month);
+                loaded = true;
+            }
+        }
+        
+        return loaded;
+    }
+
+    /**
+     * 加载个人页面的URL参数
+     */
+    loadPersonParams(urlParams) {
+        const nurse = urlParams.get('nurse');
+        
+        if (nurse) {
+            // Find the nurse button by nurse ID
+            const personButtons = document.querySelectorAll('#personButtons .selection-btn');
+            for (const button of personButtons) {
+                const nurseKey = button.getAttribute('data-value');
+                if (nurseKey && nurseKey.startsWith(nurse + '-')) {
+                    this.setSelectedPerson(nurseKey);
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * 设置活动标签页
+     */
+    setActiveTab(tabName) {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Hide all tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Set active tab
+        const tabButton = document.querySelector(`[data-tab="${tabName}"]`);
+        const tabContent = document.getElementById(tabName);
+        
+        if (tabButton && tabContent) {
+            tabButton.classList.add('active');
+            tabContent.classList.add('active');
+        }
+    }
+
+    /**
+     * 更新URL参数
+     */
+    updateURL() {
+        const urlParams = new URLSearchParams();
+        
+        // Get current active tab
+        const activeTab = document.querySelector('.tab-button.active');
+        if (!activeTab) return;
+        
+        const tabName = activeTab.dataset.tab;
+        urlParams.set('tab', tabName);
+        
+        switch (tabName) {
+            case 'monthly':
+                const selectedYear = this.getSelectedYear();
+                const selectedMonth = this.getSelectedMonth();
+                if (selectedYear) urlParams.set('year', selectedYear);
+                if (selectedMonth) urlParams.set('month', selectedMonth);
+                break;
+                
+            case 'person':
+                const selectedPerson = this.getSelectedPerson();
+                if (selectedPerson) {
+                    const nurseId = selectedPerson.split('-')[0];
+                    urlParams.set('nurse', nurseId);
+                }
+                break;
+                
+            case 'overview':
+                // No additional params needed for overview
+                break;
+        }
+        
+        // Update URL without page reload
+        const newURL = window.location.pathname + '?' + urlParams.toString();
+        window.history.pushState({}, '', newURL);
     }
 }
