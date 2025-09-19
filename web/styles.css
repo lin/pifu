@@ -1173,3 +1173,516 @@ body {
 .overview-section .chart-container canvas {
     max-height: 500px;
 }
+
+/* Desktop responsive labels - show full labels, hide mobile labels */
+.calendar-day .label-full {
+    display: inline;
+}
+
+.calendar-day .label-mobile {
+    display: none;
+}
+
+/* ===========================================
+   MOBILE RESPONSIVE DESIGN
+   =========================================== */
+
+/* Mobile-first approach with media queries */
+@media screen and (max-width: 768px) {
+    /* Container and Layout */
+    .container {
+        max-width: 100%;
+        padding: 4px;
+        margin: 0;
+    }
+
+    /* Header adjustments */
+    .header {
+        padding: 20px 16px;
+        margin-bottom: 16px;
+        border-radius: 12px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+
+    .header h1 i {
+        font-size: 1.4rem;
+        margin-right: 8px;
+    }
+
+    .header-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .stat-card {
+        padding: 16px 12px;
+        border-radius: 8px;
+    }
+
+    .stat-card i {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .stat-card span {
+        font-size: 1.4rem;
+    }
+
+    .stat-card small {
+        font-size: 0.8rem;
+    }
+
+    /* Tab navigation */
+    .tabs {
+        margin-bottom: 16px;
+        padding: 4px;
+        border-radius: 12px;
+    }
+
+    .tab-button {
+        padding: 12px 8px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+
+    .tab-button i {
+        margin-right: 6px;
+        font-size: 0.9rem;
+    }
+
+    /* Tab content */
+    .tab-content {
+        padding: 16px 12px;
+        border-radius: 12px;
+        min-height: 400px;
+    }
+
+    /* Controls */
+    .controls {
+        margin-bottom: 20px;
+    }
+
+    .control-section {
+        margin-bottom: 16px;
+    }
+
+    .control-section label {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .button-group {
+        gap: 6px;
+    }
+
+    .selection-btn {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        min-height: 44px; /* Touch-friendly */
+    }
+
+    /* Year buttons */
+    .control-section:first-child .selection-btn {
+        min-width: 50px;
+        padding: 10px 8px;
+    }
+
+    /* Month buttons */
+    .control-section:nth-child(2) .selection-btn {
+        min-width: 40px;
+        padding: 10px 6px;
+    }
+
+    /* Person buttons */
+    #personButtons .selection-btn {
+        min-width: 70px;
+        padding: 10px 8px;
+    }
+
+    /* Monthly Summary */
+    .monthly-summary {
+        padding: 16px 12px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+    }
+
+    .monthly-summary h3 {
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+    }
+
+    .monthly-summary .summary-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .summary-stat {
+        padding: 12px 8px;
+        border-radius: 8px;
+    }
+
+    .summary-stat .value {
+        font-size: 1.4rem;
+    }
+
+    .summary-stat.key-summary .value {
+        font-size: 1.6rem;
+    }
+
+    .summary-stat .label {
+        font-size: 0.8rem;
+    }
+
+    /* Tables */
+    .stats-table {
+        font-size: 0.8rem;
+    }
+
+    .stats-table th,
+    .stats-table td {
+        padding: 8px 4px;
+    }
+
+    .ranking-table {
+        font-size: 0.8rem;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 8px 6px;
+    }
+
+    /* Charts - Full width for mobile */
+    .chart-container {
+        padding: 8px 4px; /* Reduced padding for more chart space */
+        margin: 12px 0;
+        width: 100%; /* Full width */
+    }
+
+    .chart-container canvas {
+        max-height: 300px; /* Smaller on mobile */
+        width: 100% !important; /* Force full width */
+    }
+
+    .overview-section .chart-container {
+        padding: 8px 4px; /* Reduced padding for overview charts */
+        width: 100%; /* Full width */
+    }
+
+    .overview-section .chart-container canvas {
+        max-height: 300px;
+        width: 100% !important; /* Force full width */
+    }
+
+    /* Person charts grid - full width */
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%; /* Full width grid */
+    }
+
+    .chart-group {
+        margin-bottom: 20px;
+        padding-left: 3px;
+        padding-right: 3px;
+        width: 100%; /* Full width chart groups */
+    }
+
+    .chart-group-title {
+        font-size: 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 12px;
+    }
+
+    .chart-group .chart-container {
+        width: 100%; /* Ensure chart containers are full width */
+        margin: 8px 0; /* Reduced margin */
+        padding: 6px 2px; /* Minimal padding */
+    }
+
+    /* Person charts section full width */
+    .person-charts {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Overview sections full width */
+    .overview-sections {
+        width: 100%;
+        padding: 0;
+    }
+
+    .overview-section {
+        width: 100%;
+    }
+
+    .overview-section {
+        padding: 16px 12px;
+        border-radius: 12px;
+    }
+
+    .overview-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    /* Calendar Mobile Redesign */
+    .calendar-container {
+        margin: 16px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .calendar-header {
+        padding: 16px 12px;
+    }
+
+    .calendar-header h4 {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+    }
+
+    .calendar-header div {
+        font-size: 0.8rem;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        background: #e2e8f0;
+    }
+
+    .calendar-day {
+        background: white;
+        min-height: 80px; /* Reduced height for mobile */
+        padding: 6px 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        border: none;
+        transition: all 0.2s ease;
+    }
+
+    .calendar-day.header {
+        background: #f8fafc;
+        min-height: 36px;
+        font-weight: 600;
+        color: #475569;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        border-bottom: 1px solid #e2e8f0;
+        box-shadow: none;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+
+    .calendar-day .day-number {
+        font-weight: 600;
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+        color: #0f172a;
+        align-self: flex-start;
+    }
+
+    .calendar-day .shift-type {
+        font-size: 0.9rem;
+        color: #64748b;
+        font-weight: 500;
+        padding: 2px 4px;
+        background: #f1f5f9;
+        border-radius: 3px;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        font-size: 0.7rem;
+        max-width: 20px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .calendar-day .work-value {
+        font-size: 0.6rem;
+        color: #475569;
+        font-weight: 500;
+        padding: 1px 3px;
+        background: rgba(99, 102, 241, 0.1);
+        border-radius: 2px;
+        margin-top: 1px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .calendar-day .rest-value {
+        font-size: 0.6rem;
+        color: #475569;
+        font-weight: 500;
+        padding: 1px 3px;
+        background: rgba(168, 85, 247, 0.1);
+        border-radius: 2px;
+        margin-top: 1px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .calendar-day .legal-holiday {
+        font-size: 0.55rem;
+        color: #dc2626;
+        font-weight: 600;
+        padding: 1px 2px;
+        background: rgba(220, 38, 38, 0.15);
+        border-radius: 2px;
+        margin-top: 1px;
+        text-align: center;
+        border: 1px solid rgba(220, 38, 38, 0.3);
+        line-height: 1.1;
+    }
+
+    /* Responsive labels for mobile calendar */
+    .calendar-day .label-full {
+        display: none; /* Hide full labels on mobile */
+    }
+
+    .calendar-day .label-mobile {
+        display: inline; /* Show short mobile labels on mobile */
+    }
+
+    /* Effective value colors - mobile optimized */
+    .calendar-day.effective-positive {
+        background-color: rgba(16, 185, 129, 0.12) !important;
+        border-left: 2px solid #10b981;
+    }
+
+    .calendar-day.effective-negative {
+        background-color: #FFFBEB !important;
+        border-left: 2px solid #f59e0b;
+    }
+
+    .calendar-day.effective-zero {
+        border-left: 2px solid #6366f1;
+    }
+
+    /* Person monthly calendars */
+    .person-monthly-calendars {
+        gap: 16px;
+    }
+
+    .person-monthly-calendars .calendar-container {
+        margin: 12px 0;
+    }
+
+    /* Touch interactions */
+    .selection-btn:active {
+        transform: scale(0.98);
+    }
+
+    .tab-button:active {
+        transform: scale(0.98);
+    }
+
+    /* Scrollable areas */
+    .monthly-stats {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .stats-table {
+        font-size: 0.8rem;
+    }
+
+    .ranking-table {
+        min-width: 300px;
+    }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 2px;
+    }
+
+    .header {
+        padding: 16px 12px;
+        margin-bottom: 12px;
+    }
+
+    .header h1 {
+        font-size: 1.4rem;
+    }
+
+    .header-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .tab-content {
+        padding: 12px 8px;
+    }
+
+    .calendar-day {
+        min-height: 70px;
+        padding: 4px 2px;
+    }
+
+    .calendar-day .shift-type {
+        font-size: 0.6rem;
+        max-width: 18px;
+        padding: 1px 2px;
+    }
+
+    .calendar-day .work-value,
+    .calendar-day .rest-value {
+        font-size: 0.55rem;
+        padding: 1px 2px;
+    }
+
+    .calendar-day .legal-holiday {
+        font-size: 0.5rem;
+        padding: 1px;
+    }
+
+    .chart-container canvas {
+        max-height: 250px;
+    }
+
+    .overview-section .chart-container canvas {
+        max-height: 250px;
+    }
+}
+
+/* Landscape mobile orientation */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .calendar-day {
+        min-height: 60px;
+    }
+
+    .calendar-day .shift-type {
+        font-size: 0.6rem;
+        max-width: 16px;
+    }
+
+    .chart-container canvas {
+        max-height: 200px;
+    }
+
+    .overview-section .chart-container canvas {
+        max-height: 200px;
+    }
+}

@@ -297,8 +297,12 @@ class DisplayManager {
                     <div class="${dayClass}" title="${dayData.description}">
                         <div class="day-number">${day}</div>
                         <div class="shift-type">${dayData.shiftCode}</div>
-                        <div class="work-value">工作量：${dayData.workValue}天</div>
-                        <div class="rest-value">休息量：${displayRestValue}天</div>
+                        <div class="work-value">
+                            <span class="label-full">工作量：</span><span class="label-mobile">工作：</span>${dayData.workValue}天
+                        </div>
+                        <div class="rest-value">
+                            <span class="label-full">休息量：</span><span class="label-mobile">休息：</span>${displayRestValue}天
+                        </div>
                         ${legalHolidayRow}
                     </div>
                 `;
