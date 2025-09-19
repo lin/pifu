@@ -16,7 +16,8 @@ class HospitalShiftConverter {
             '下': { workValue: 1, workType: 'night_shift_day', description: 'Night shift day (rest but counted as work)' },
             '公休日': { workValue: 0, workType: 'legal_holiday', description: 'Legal holiday' },
             '群力': { workValue: 0, workType: 'group_work', description: 'Group work (work day with 0 value)' },
-            '哺乳半': { workValue: 0.5, workType: 'nursing_half', description: 'Nursing half shift (0.5 work value)' }
+            '哺乳半': { workValue: 0.5, workType: 'nursing_half', description: 'Nursing half shift (0.5 work value)' },
+            '神内': { workValue: 0, workType: 'neurology_work', description: 'Neurology work (work day with 0 value)' }
         };
 
         // Weekday mappings

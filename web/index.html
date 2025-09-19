@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,13 +18,13 @@
         </header>
 
         <nav class="tabs">
-            <button class="tab-button active" onclick="showTab('monthly')">
+            <button class="tab-button active" data-tab="monthly">
                 <i class="fas fa-calendar-month"></i> 月度统计
             </button>
-            <button class="tab-button" onclick="showTab('person')">
+            <button class="tab-button" data-tab="person">
                 <i class="fas fa-user"></i> 个人详情
             </button>
-            <button class="tab-button" onclick="showTab('overview')">
+            <button class="tab-button" data-tab="overview">
                 <i class="fas fa-chart-bar"></i> 总览
             </button>
         </nav>
@@ -52,37 +53,100 @@
                     <label>选择护士:</label>
                     <div class="button-group" id="personButtons"></div>
                 </div>
-                <div class="control-section">
-                    <label>按年份筛选:</label>
-                    <div class="button-group" id="personYearButtons">
-                        <button class="selection-btn active" data-value="" onclick="setPersonYear('')">所有年份</button>
-                    </div>
-                </div>
             </div>
 
             <div class="person-overview" id="personOverview"></div>
+            
+            <!-- Charts Section -->
+            <div class="person-charts" id="personCharts">
+                <h3><i class="fas fa-chart-line"></i> 数据趋势图表</h3>
+                
+                <!-- 存假天数图表组 -->
+                <div class="chart-group">
+                    <h4 class="chart-group-title"><i class="fas fa-calendar-minus"></i> 存假天数分析</h4>
+                    <div class="chart-container">
+                        <h5>月度存假天数</h5>
+                        <canvas id="monthlySavedRestChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h5>累计存假天数</h5>
+                        <canvas id="accumulatedSavedRestChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 有效工作日图表组 -->
+                <div class="chart-group">
+                    <h4 class="chart-group-title"><i class="fas fa-briefcase"></i> 有效工作日分析</h4>
+                    <div class="chart-container">
+                        <h5>月度有效工作日</h5>
+                        <canvas id="monthlyWorkedDaysChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h5>累计有效工作日</h5>
+                        <canvas id="accumulatedWorkedDaysChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 有效休息日图表组 -->
+                <div class="chart-group">
+                    <h4 class="chart-group-title"><i class="fas fa-bed"></i> 有效休息日分析</h4>
+                    <div class="chart-container">
+                        <h5>月度有效休息日</h5>
+                        <canvas id="monthlyRestDaysChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h5>累计有效休息日</h5>
+                        <canvas id="accumulatedRestDaysChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
             <div class="person-monthly" id="personMonthly"></div>
-            <div class="person-calendar" id="personCalendar"></div>
         </div>
 
         <!-- Overview Tab -->
         <div id="overview" class="tab-content">
-            <div class="overview-grid">
-                <div class="overview-card">
-                    <h3><i class="fas fa-trophy"></i> 优秀表现者</h3>
-                    <div id="topPerformers"></div>
+            <div class="overview-sections">
+                <!-- 存假天数排名表 -->
+                <div class="overview-section">
+                    <h3><i class="fas fa-calendar-minus"></i> 护士存假天数排名</h3>
+                    <div class="ranking-table" id="savedDaysRankingTable"></div>
                 </div>
-                <div class="overview-card">
-                    <h3><i class="fas fa-chart-pie"></i> 班次分布</h3>
-                    <div id="shiftDistribution"></div>
+                
+                <!-- 存假天数对比图表 -->
+                <div class="overview-section">
+                    <h3><i class="fas fa-chart-bar"></i> 存假天数对比</h3>
+                    <div class="chart-container">
+                        <canvas id="savedDaysBarChart"></canvas>
+                    </div>
                 </div>
-                <div class="overview-card">
-                    <h3><i class="fas fa-calendar-week"></i> 年度趋势</h3>
-                    <div id="yearlyTrends"></div>
+                
+                <!-- 有效工作日排名表 -->
+                <div class="overview-section">
+                    <h3><i class="fas fa-briefcase"></i> 护士有效工作日排名</h3>
+                    <div class="ranking-table" id="workedDaysRankingTable"></div>
                 </div>
-                <div class="overview-card">
-                    <h3><i class="fas fa-moon"></i> 工作模式</h3>
-                    <div id="workPatterns"></div>
+                
+                <!-- 有效工作日对比图表 -->
+                <div class="overview-section">
+                    <h3><i class="fas fa-chart-bar"></i> 有效工作日对比</h3>
+                    <div class="chart-container">
+                        <canvas id="workedDaysBarChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 有效休息日排名表 -->
+                <div class="overview-section">
+                    <h3><i class="fas fa-bed"></i> 护士有效休息日排名</h3>
+                    <div class="ranking-table" id="restDaysRankingTable"></div>
+                </div>
+                
+                <!-- 有效休息日对比图表 -->
+                <div class="overview-section">
+                    <h3><i class="fas fa-chart-bar"></i> 有效休息日对比</h3>
+                    <div class="chart-container">
+                        <canvas id="restDaysBarChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,6 +157,10 @@
         <p>正在加载医院排班数据...</p>
     </div>
 
-    <script src="analyzer.js"></script>
+    <!-- 模块化JavaScript文件 -->
+    <script src="js/DataProcessor.js"></script>
+    <script src="js/DisplayManager.js"></script>
+    <script src="js/UIController.js"></script>
+    <script src="js/HospitalShiftAnalyzer.js"></script>
 </body>
 </html>
