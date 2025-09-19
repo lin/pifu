@@ -18,7 +18,7 @@ class HospitalShiftAnalyzer {
         try {
             await this.loadDatabase();
             this.initializeModules();
-            this.processData();
+            await this.processData();
             this.initializeUI();
             this.setupTabNavigation();
             this.hideLoading();
@@ -66,8 +66,8 @@ class HospitalShiftAnalyzer {
     /**
      * 处理数据
      */
-    processData() {
-        this.dataProcessor.processData();
+    async processData() {
+        await this.dataProcessor.processData();
     }
 
     /**

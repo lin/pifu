@@ -301,7 +301,15 @@ class UIController {
         const allNurses = this.dataProcessor.getAllNurses();
         const nurseStats = allNurses.map(nurse => {
             const totalSummary = this.dataProcessor.getNurseTotalSummary(nurse.nurseKey);
-            return totalSummary;
+            if (!totalSummary) return null;
+            
+            // 使用包含初始值的累计存假天数
+            const cumulativeSavedRestDays = this.dataProcessor.getCumulativeSavedRestDays(nurse.nurseKey);
+            
+            return {
+                ...totalSummary,
+                totalSavedRestDays: cumulativeSavedRestDays
+            };
         }).filter(summary => summary !== null)
           .sort((a, b) => b.totalSavedRestDays - a.totalSavedRestDays);
 
@@ -339,7 +347,15 @@ class UIController {
         const allNurses = this.dataProcessor.getAllNurses();
         const nurseStats = allNurses.map(nurse => {
             const totalSummary = this.dataProcessor.getNurseTotalSummary(nurse.nurseKey);
-            return totalSummary;
+            if (!totalSummary) return null;
+            
+            // 使用包含初始值的累计存假天数
+            const cumulativeSavedRestDays = this.dataProcessor.getCumulativeSavedRestDays(nurse.nurseKey);
+            
+            return {
+                ...totalSummary,
+                totalSavedRestDays: cumulativeSavedRestDays
+            };
         }).filter(summary => summary !== null)
           .sort((a, b) => b.totalSavedRestDays - a.totalSavedRestDays);
 
@@ -388,8 +404,9 @@ class UIController {
             const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurse.nurseKey);
             if (!nurseSummary || !nurseSummary.months) return;
             
-            // 计算累计存假天数
-            let cumulativeSavedRest = 0;
+            // 计算累计存假天数（包含初始值）
+            const initialValue = this.dataProcessor.getInitialSavedRestDays(nurseSummary.nurseName);
+            let cumulativeSavedRest = initialValue;
             const cumulativeData = sortedMonths.map(monthKey => {
                 const monthData = nurseSummary.months[monthKey];
                 if (monthData) {

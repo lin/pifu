@@ -18,19 +18,19 @@
         </header>
 
         <nav class="tabs">
-            <button class="tab-button active" data-tab="monthly">
+            <button class="tab-button active" data-tab="overview">
+                <i class="fas fa-chart-bar"></i> 总览
+            </button>
+            <button class="tab-button" data-tab="monthly">
                 <i class="fas fa-calendar-month"></i> 月度统计
             </button>
             <button class="tab-button" data-tab="person">
                 <i class="fas fa-user"></i> 个人详情
             </button>
-            <button class="tab-button" data-tab="overview">
-                <i class="fas fa-chart-bar"></i> 总览
-            </button>
         </nav>
 
         <!-- Monthly Statistics Tab -->
-        <div id="monthly" class="tab-content active">
+        <div id="monthly" class="tab-content">
             <div class="controls">
                 <div class="control-section">
                     <label>选择年份:</label>
@@ -97,7 +97,7 @@
         </div>
 
         <!-- Overview Tab -->
-        <div id="overview" class="tab-content">
+        <div id="overview" class="tab-content active">
             <div class="overview-sections">
                 <!-- 存假天数排名表 -->
                 <div class="overview-section">

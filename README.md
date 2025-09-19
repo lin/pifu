@@ -5,3 +5,9 @@
 1. 哺乳休，0.5
 1. 下（正常），1
 1. 下（前一天 小），0.5
+
+每一天
+
+1. workValue
+1. restValue
+1. isLegalHoliday ? +1 : -1

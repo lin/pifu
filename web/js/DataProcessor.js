@@ -7,17 +7,43 @@ class DataProcessor {
         this.monthlyData = {};
         this.personData = {};
         this.monthlySummaryData = {}; // 每个护士每个月的汇总数据
+        this.initialSavedRestDays = {}; // 初始存假天数
     }
 
     /**
      * 处理所有数据
      */
-    processData() {
+    async processData() {
+        await this.loadInitialSavedRestDays();
         this.adjustNightShiftDayValues();
         this.adjustSupportWorkValues();
         this.processMonthlyData();
         this.processPersonData();
         this.generateMonthlySummaryData();
+    }
+
+    /**
+     * 加载初始存假天数数据
+     */
+    async loadInitialSavedRestDays() {
+        try {
+            const response = await fetch('initial_saved_rest_days.json');
+            if (!response.ok) {
+                console.warn('Failed to load initial saved rest days data, using default values');
+                return;
+            }
+            const initialData = await response.json();
+            
+            // 将数据转换为以护士姓名为键的对象
+            initialData.forEach(nurse => {
+                this.initialSavedRestDays[nurse.name] = nurse.saved_rest_days;
+            });
+            
+            console.log('Loaded initial saved rest days:', this.initialSavedRestDays);
+            console.log('Initial saved rest days loaded for nurses:', Object.keys(this.initialSavedRestDays));
+        } catch (error) {
+            console.warn('Error loading initial saved rest days data:', error);
+        }
     }
 
     /**
@@ -428,6 +454,63 @@ class DataProcessor {
             nurseId: this.monthlySummaryData[nurseKey].nurseId,
             nurseName: this.monthlySummaryData[nurseKey].nurseName
         }));
+    }
+
+    /**
+     * 获取护士的初始存假天数
+     * @param {string} nurseName - 护士姓名
+     * @returns {number} 初始存假天数，如果没有数据则返回0
+     */
+    getInitialSavedRestDays(nurseName) {
+        return this.initialSavedRestDays[nurseName] || 0;
+    }
+
+    /**
+     * 获取护士的累计存假天数（包含初始值）
+     * @param {string} nurseKey - 护士键值
+     * @param {string} monthKey - 月份键值（可选，如果不提供则返回总累计）
+     * @returns {number} 累计存假天数
+     */
+    getCumulativeSavedRestDays(nurseKey, monthKey = null) {
+        const nurseSummary = this.getNurseMonthlySummary(nurseKey);
+        if (!nurseSummary) return 0;
+
+        const initialValue = this.getInitialSavedRestDays(nurseSummary.nurseName);
+        
+        if (monthKey) {
+            // 返回到指定月份的累计值
+            const sortedMonths = Object.values(nurseSummary.months)
+                .sort((a, b) => {
+                    if (a.year !== b.year) return a.year - b.year;
+                    return a.month - b.month;
+                });
+            
+            let cumulative = initialValue;
+            for (const monthData of sortedMonths) {
+                if (monthData.monthKey === monthKey) {
+                    break;
+                }
+                cumulative += monthData.savedRestDays;
+            }
+            return cumulative;
+        } else {
+            // 返回总累计值
+            let totalSavedRestDays = initialValue;
+            Object.values(nurseSummary.months).forEach(monthData => {
+                totalSavedRestDays += monthData.savedRestDays;
+            });
+            
+            // Debug logging
+            if (nurseSummary.nurseName === '马磊' || nurseSummary.nurseName === '付伟') {
+                console.log(`Cumulative calculation for ${nurseSummary.nurseName}:`, {
+                    initialValue,
+                    monthlyTotal: totalSavedRestDays - initialValue,
+                    total: totalSavedRestDays
+                });
+            }
+            
+            return totalSavedRestDays;
+        }
     }
 
     /**

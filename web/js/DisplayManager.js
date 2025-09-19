@@ -120,11 +120,14 @@ class DisplayManager {
             return;
         }
 
+        // 使用包含初始值的累计存假天数
+        const cumulativeSavedRestDays = this.dataProcessor.getCumulativeSavedRestDays(nurseKey);
+
         const overviewHTML = `
             <h2><i class="fas fa-user-nurse"></i> ${totalSummary.nurseName} (编号: ${totalSummary.nurseId})</h2>
             <div class="person-stats">
                 <div class="person-stat key-summary">
-                    <span class="value">${totalSummary.totalSavedRestDays >= 0 ? `存了 ${totalSummary.totalSavedRestDays} 天` : `欠假 ${Math.abs(totalSummary.totalSavedRestDays)} 天`}</span>
+                    <span class="value">${cumulativeSavedRestDays >= 0 ? `存了 ${cumulativeSavedRestDays} 天` : `欠假 ${Math.abs(cumulativeSavedRestDays)} 天`}</span>
                     <span class="label">总存假</span>
                 </div>
                 <div class="person-stat key-summary">
@@ -336,7 +339,8 @@ class DisplayManager {
         const labels = sortedMonths.map(m => `${m.year}-${String(m.month).padStart(2, '0')}`);
         
         // 累计数据
-        let accumulatedSavedRest = 0;
+        const initialValue = this.dataProcessor.getInitialSavedRestDays(nurseSummary.nurseName);
+        let accumulatedSavedRest = initialValue;
         
         const accumulatedSavedRestData = [];
         const monthlySavedRestData = [];
@@ -352,7 +356,7 @@ class DisplayManager {
             const effectiveRestDays = monthData.totalDays - monthData.workedDays - monthData.holidayDays;
             monthlyRestDaysData.push(effectiveRestDays);
             
-            // 累计存假数据
+            // 累计存假数据（包含初始值）
             accumulatedSavedRest += monthData.savedRestDays;
             accumulatedSavedRestData.push(accumulatedSavedRest);
         });
