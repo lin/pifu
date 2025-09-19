@@ -363,7 +363,6 @@ class UIController {
             <table>
                 <thead>
                     <tr>
-                        <th>排名</th>
                         <th>护士姓名</th>
                         <th>初始存假天数</th>
                         <th>基础存假天数</th>
@@ -378,19 +377,18 @@ class UIController {
                         const extraHolidayDays = 90 - holidayAdjustments;
                         return `
                         <tr>
-                            <td class="rank">#${index + 1}</td>
                             <td class="nurse-name">${nurse.nurseName}</td>
                             <td class="value ${initialSavedRestDays >= 0 ? 'positive' : 'negative'}">
                                 ${initialSavedRestDays >= 0 ? `${initialSavedRestDays} 天` : `${initialSavedRestDays} 天`}
                             </td>
                             <td class="value ${nurse.totalSavedRestDays >= 0 ? 'positive' : 'negative'}">
-                                ${nurse.totalSavedRestDays >= 0 ? `存了 ${nurse.totalSavedRestDays} 天` : `欠假 ${Math.abs(nurse.totalSavedRestDays)} 天`}
+                                ${nurse.totalSavedRestDays >= 0 ? `存 ${nurse.totalSavedRestDays} 天` : `欠 ${Math.abs(nurse.totalSavedRestDays)} 天`}
                             </td>
                             <td class="value ${extraHolidayDays >= 0 ? 'positive' : 'negative'}">
                                 ${extraHolidayDays >= 0 ? `+${extraHolidayDays} 天` : `${extraHolidayDays} 天`}
                             </td>
                             <td class="value ${nurse.adjustedTotalSavedRestDays >= 0 ? 'positive' : 'negative'}">
-                                ${nurse.adjustedTotalSavedRestDays >= 0 ? `存了 ${nurse.adjustedTotalSavedRestDays} 天` : `欠假 ${Math.abs(nurse.adjustedTotalSavedRestDays)} 天`}
+                                ${nurse.adjustedTotalSavedRestDays >= 0 ? `存 ${nurse.adjustedTotalSavedRestDays} 天` : `欠 ${Math.abs(nurse.adjustedTotalSavedRestDays)} 天`}
                             </td>
                         </tr>
                         `;

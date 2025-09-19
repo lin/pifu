@@ -21,15 +21,6 @@
         "cause": "未入职"
     },
     {
-        "name": "徐莹",
-        "year": 2016,
-        "noHolidayKind": "winter",
-        "removeHolidayDays": 10,
-        "cause": "未入职"
-    },
-
-
-    {
         "name": "王鑫",
         "year": 2014,
         "noHolidayKind": "summer",

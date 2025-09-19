@@ -1658,6 +1658,7 @@ body {
 
     .ranking-table {
         min-width: 300px;
+        font-size: 0.7rem;
     }
 }
 
@@ -1781,6 +1782,18 @@ body {
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     font-size: 13px;
     color: #475569;
+}
+
+.calculation-explanation a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.calculation-explanation a:hover {
+    border-bottom-color: #3b82f6;
 }
 
 /* Overview stats styling */

@@ -1,4 +1,4 @@
-const { NURSES } = require('../config');
+const { NURSES } = require('../legacy/config');
 const { getYearlyReport } = require('./yearly');
 
 exports.getNursesReport = async (yearlyReport) => {

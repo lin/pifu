@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排班问题</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .page-container {
+            margin: auto;
+            width: 960px;
+        }
+
+        .nurse-container {
+            margin: 40px 30px;
+        }
+
+        .nurse-name {
+            margin: 10px 0;
+        }
+
+        .year-container {
+            margin: 15px 0;
+        }
+
+        .year-name {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        fetch("./report.json")
+        .then(res => res.json())
+        .then(report => {
+            let html = '<div class="page-container">'
+            for (const nurse in report) {
+                if (Object.hasOwnProperty.call(report, nurse)) {
+                    const nurseReport = report[nurse];
+                    html += `<div class='nurse-container'>`
+                    html += `<h2 class='nurse-name'> ${nurse} - 所有：${nurseReport.total} </h2>`
+                        
+                    for (const year in nurseReport) {
+                        if (Object.hasOwnProperty.call(nurseReport, year)) {
+
+                            if (!isNaN(year)) {
+                                const yearReport = nurseReport[year];
+                                html += `<div class='year-container'>`
+                                html += `<h3 class='year-name'> ${year} - 总计：${yearReport.total} </h3>`
+                                
+                                for (const month in yearReport) {
+                                    if (Object.hasOwnProperty.call(yearReport, month)) {
+                                        const monthReport = yearReport[month];
+                                        
+                                        if (!isNaN(month)) {
+                                            html += `<span> ${month}月: ${monthReport} 天； </span>`
+                                        }
+                                    }
+                                }
+
+                                html += `</div>`
+                            }
+                        }
+                    }
+
+                    html += `</div>`
+                }
+            }
+            html += '</div>'
+            document.body.innerHTML = html
+        });
+    </script>
+    
+</body>
+</html>

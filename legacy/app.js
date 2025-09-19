@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const { getNursesReport } = require("./src/report");
+const { getNursesReport } = require("../src/report");
 const { getYearlyReport } = require("./src/yearly");
 
 async function generateJSONFiles () {
