@@ -287,6 +287,7 @@ class UIController {
     loadOverviewData() {
         this.displaySavedDaysRanking();
         this.displaySavedDaysChart();
+        this.displayAllNursesCumulativeSavedDaysChart();
         this.displayWorkedDaysRanking();
         this.displayWorkedDaysChart();
         this.displayRestDaysRanking();
@@ -346,6 +347,204 @@ class UIController {
         const data = nurseStats.map(nurse => nurse.totalSavedRestDays);
 
         this.displayManager.createOverviewBarChart('savedDaysBarChart', '存假天数对比', labels, data, '#dc2626');
+    }
+
+    /**
+     * 显示所有护士累计存假天数趋势图表
+     */
+    displayAllNursesCumulativeSavedDaysChart() {
+        // 只显示选定的5个护士
+        const selectedNurseNames = ['马磊', '付伟', '尤嘉', '李如心', '赵蕊'];
+        const allNurses = this.dataProcessor.getAllNurses();
+        const selectedNurses = allNurses.filter(nurse => 
+            selectedNurseNames.includes(nurse.nurseName)
+        );
+        
+        // 获取所有月份数据
+        const allMonths = new Set();
+        selectedNurses.forEach(nurse => {
+            const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurse.nurseKey);
+            if (nurseSummary && nurseSummary.months) {
+                Object.keys(nurseSummary.months).forEach(monthKey => {
+                    allMonths.add(monthKey);
+                });
+            }
+        });
+        
+        // 按时间顺序排序月份
+        const sortedMonths = Array.from(allMonths).sort();
+        
+        // 为每个护士创建数据集
+        const datasets = [];
+        const colors = [
+            '#dc2626', // Red - 马磊
+            '#059669', // Green - 付伟  
+            '#7c3aed', // Purple - 尤嘉
+            '#ea580c', // Orange - 李如心
+            '#0ea5e9'  // Blue - 赵蕊
+        ];
+        
+        selectedNurses.forEach((nurse, index) => {
+            const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurse.nurseKey);
+            if (!nurseSummary || !nurseSummary.months) return;
+            
+            // 计算累计存假天数
+            let cumulativeSavedRest = 0;
+            const cumulativeData = sortedMonths.map(monthKey => {
+                const monthData = nurseSummary.months[monthKey];
+                if (monthData) {
+                    cumulativeSavedRest += monthData.savedRestDays;
+                }
+                return cumulativeSavedRest;
+            });
+            
+            const color = colors[index % colors.length];
+            datasets.push({
+                label: nurseSummary.nurseName,
+                data: cumulativeData,
+                borderColor: color,
+                backgroundColor: color + '20',
+                borderWidth: 3,
+                fill: false,
+                tension: 0.4,
+                pointBackgroundColor: 'transparent',
+                pointBorderColor: 'transparent',
+                pointBorderWidth: 0,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            });
+        });
+        
+        // 格式化月份标签
+        const monthLabels = sortedMonths.map(monthKey => {
+            const [year, month] = monthKey.split('-');
+            return `${year}-${month}`;
+        });
+        
+        // 创建图表
+        const ctx = document.getElementById('allNursesCumulativeSavedDaysChart');
+        if (!ctx) return;
+        
+        // 设置固定高度为666px
+        ctx.style.height = '666px !important';
+        ctx.style.maxHeight = '666px !important';
+        ctx.style.minHeight = '666px !important';
+        ctx.height = 666;
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: monthLabels,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                aspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'start',
+                        labels: {
+                            usePointStyle: false,
+                            boxWidth: 20,
+                            boxHeight: 20,
+                            padding: 20,
+                            font: {
+                                size: 12,
+                                weight: '500'
+                            },
+                            color: '#334155',
+                            generateLabels: function(chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels;
+                                const labels = original.call(this, chart);
+                                // Add custom styling for better visibility
+                                labels.forEach(label => {
+                                    label.fillStyle = label.strokeStyle;
+                                    label.lineWidth = 3;
+                                });
+                                return labels;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderWidth: 1,
+                        displayColors: true,
+                        usePointStyle: true,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].label;
+                            },
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y} 天`;
+                            },
+                            labelColor: function(context) {
+                                return {
+                                    borderColor: context.dataset.borderColor,
+                                    backgroundColor: context.dataset.borderColor,
+                                    borderWidth: 3,
+                                    borderDash: [],
+                                    pointStyle: 'line'
+                                };
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: '月份',
+                            color: '#64748b',
+                            font: {
+                                size: 12,
+                                weight: 500
+                            }
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                size: 11
+                            },
+                            maxRotation: 45
+                        },
+                        grid: {
+                            color: '#e2e8f0',
+                            drawBorder: false
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '累计存假天数',
+                            color: '#64748b',
+                            font: {
+                                size: 12,
+                                weight: 500
+                            }
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            color: '#e2e8f0',
+                            drawBorder: false
+                        }
+                    }
+                }
+            }
+        });
     }
 
     /**

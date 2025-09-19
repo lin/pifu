@@ -29,8 +29,8 @@ class DisplayManager {
                     <tr>
                         <th>护士</th>
                         <th class="key-metric">存假</th>
-                        <th class="key-metric">上班天数</th>
-                        <th>法定工作日</th>
+                        <th class="key-metric">工作</th>
+                        <th>应工作</th>
                     </tr>
                 </thead>
                 <tbody>

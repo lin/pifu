@@ -1174,6 +1174,49 @@ body {
     max-height: 500px;
 }
 
+/* Specific height for cumulative saved days chart */
+#allNursesCumulativeSavedDaysChart {
+    height: 666px !important;
+    max-height: 666px !important;
+    min-height: 666px !important;
+}
+
+/* Enhanced legend styling for cumulative chart */
+#allNursesCumulativeSavedDaysChart + .chartjs-legend {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Ensure legend is visible and properly styled */
+.chartjs-legend {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.chartjs-legend li {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #334155;
+}
+
+.chartjs-legend li span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 2px solid transparent;
+}
+
 /* Desktop responsive labels - show full labels, hide mobile labels */
 .calendar-day .label-full {
     display: inline;
@@ -1379,6 +1422,12 @@ body {
     .overview-section .chart-container canvas {
         max-height: 300px;
         width: 100% !important; /* Force full width */
+    }
+
+    /* Special styling for the all nurses monthly chart */
+    #allNursesMonthlySavedDaysChart {
+        max-height: 300px !important;
+        width: 100% !important;
     }
 
     /* Person charts grid - full width */
@@ -1665,6 +1714,11 @@ body {
     .overview-section .chart-container canvas {
         max-height: 250px;
     }
+
+    /* All nurses monthly chart for extra small screens */
+    #allNursesMonthlySavedDaysChart {
+        max-height: 250px !important;
+    }
 }
 
 /* Landscape mobile orientation */
@@ -1684,5 +1738,10 @@ body {
 
     .overview-section .chart-container canvas {
         max-height: 200px;
+    }
+
+    /* All nurses monthly chart for landscape */
+    #allNursesMonthlySavedDaysChart {
+        max-height: 200px !important;
     }
 }
