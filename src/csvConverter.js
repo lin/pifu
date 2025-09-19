@@ -12,13 +12,27 @@ class HospitalShiftConverter {
             '白': { workValue: 1, workType: 'day_shift', description: 'Day shift' },
             '半': { workValue: 0.5, workType: 'day_shift_half', description: 'Day shift (half)' },
             '病假': { workValue: 0, workType: 'sick_leave', description: 'Sick leave' },
+            '婚假': { workValue: 0, workType: 'marriage_leave', description: 'Marriage leave' },
             '产假': { workValue: 0, workType: 'maternity_leave', description: 'Maternity leave' },
             '下': { workValue: 1, workType: 'night_shift_day', description: 'Night shift day (rest but counted as work)' },
             '公休日': { workValue: 0, workType: 'legal_holiday', description: 'Legal holiday' },
             '群力': { workValue: 0, workType: 'group_work', description: 'Group work (work day with 0 value)' },
-            '哺乳半': { workValue: 0.5, workType: 'nursing_half', description: 'Nursing half shift (0.5 work value)' },
+            '发热病房': { workValue: 0, workType: 'fever_ward', description: 'Fever ward work (work day with 0 value)' },
+            '隔离': { workValue: 0, workType: 'isolation_ward', description: 'Isolation ward work (work day with 0 value)' },
+            '眼二': { workValue: 0, workType: 'ophthalmology_2', description: 'Ophthalmology department 2 (work day with 0 value)' },
+            'ICU': { workValue: 0, workType: 'icu_work', description: 'ICU work (work day with 0 value)' },
+            '哺乳半': { workValue: 0.75, workType: 'nursing_half', description: 'Nursing half shift (0.75 work value)' },
+            '哺乳休': { workValue: 0.25, workType: 'nursing_rest', description: 'Nursing rest shift (0.25 work value)' },
             '神内': { workValue: 0, workType: 'neurology_work', description: 'Neurology work (work day with 0 value)' }
         };
+
+        // Define which work types are considered work days (even with 0 work value)
+        this.workDayTypes = new Set([
+            'night_shift_small', 'night_shift_big', 'night_shift_whole',
+            'day_shift', 'day_shift_half', 'night_shift_day',
+            'group_work', 'fever_ward', 'isolation_ward', 'ophthalmology_2', 
+            'icu_work', 'nursing_half', 'nursing_rest', 'neurology_work'
+        ]);
 
         // Weekday mappings
         this.weekdays = {
@@ -30,6 +44,16 @@ class HospitalShiftConverter {
             '星期六': { english: 'Saturday', number: 6 },
             '星期日': { english: 'Sunday', number: 0 }
         };
+    }
+
+    /**
+     * Determine if a shift type represents a work day
+     * @param {string} shiftCode - The shift code (e.g., '大', '休')
+     * @param {Object} shiftInfo - The shift information object
+     * @returns {boolean} True if it's a work day, false otherwise
+     */
+    isWorkDay(shiftCode, shiftInfo) {
+        return this.workDayTypes.has(shiftInfo.workType);
     }
 
     /**
@@ -83,10 +107,10 @@ class HospitalShiftConverter {
                     const day = parseInt(daysRow[dayIndex]);
                     if (!day || day < 1 || day > 31) continue;
 
-                    const shiftValue = row[dayIndex + 2] || ''; // +2 to skip ID and name columns
-                    if (!shiftValue.trim()) continue; // Skip empty cells
+                    const shiftValue = (row[dayIndex + 2] || '').trim(); // +2 to skip ID and name columns, trim whitespace
+                    if (!shiftValue) continue; // Skip empty cells
 
-                    const weekdayText = weekdaysRow[dayIndex] || '';
+                    const weekdayText = (weekdaysRow[dayIndex] || '').trim(); // Trim whitespace and carriage returns
                     const isHoliday = (holidaysRow[dayIndex] || '').trim() === 'Y';
                     
                     // Get shift information
@@ -102,17 +126,24 @@ class HospitalShiftConverter {
                         number: -1
                     };
 
-                    // Create full date
+                    // Create full date using timezone-neutral approach
                     const fullDate = new Date(year, month - 1, day);
-                    const dateString = fullDate.toISOString().split('T')[0];
+                    
+                    // Create date string without timezone conversion to avoid date shifts
+                    const dateString = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+                    // Use the original values since we're not doing timezone conversion
+                    const actualYear = year;
+                    const actualMonth = month;
+                    const actualDay = day;
 
                     // Create record
                     const record = {
                         fullDate: dateString,
                         dateObject: fullDate,
-                        year: year,
-                        month: month,
-                        day: day,
+                        year: actualYear,
+                        month: actualMonth,
+                        day: actualDay,
                         isHoliday: isHoliday,
                         nurseName: nurseName.trim(),
                         nurseId: nurseId,
@@ -123,7 +154,7 @@ class HospitalShiftConverter {
                         weekdayNumber: weekdayInfo.number,
                         weekdayText: weekdayText,
                         description: shiftInfo.description,
-                        isWorkDay: shiftInfo.workValue > 0,
+                        isWorkDay: this.isWorkDay(shiftValue, shiftInfo),
                         isRestDay: shiftInfo.workValue === 0,
                         isNightShift: shiftInfo.workType.includes('night'),
                         isDayShift: shiftInfo.workType.includes('day'),

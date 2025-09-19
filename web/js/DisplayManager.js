@@ -232,21 +232,36 @@ class DisplayManager {
         for (let day = 1; day <= daysInMonth; day++) {
             const dayData = monthData.days[day];
             if (dayData) {
+                // Calculate rest value based on work type
+                const restWorkTypes = new Set(['rest', 'sick_leave', 'marriage_leave', 'maternity_leave']);
+                const restValue = restWorkTypes.has(dayData.workType) ? 1 : 0;
+                
+                // Calculate effective value: workValue - restValue + (isLegalHoliday ? 1 : 0)
+                const effectiveValue = dayData.workValue - restValue + (dayData.isHoliday ? 1 : 0);
+                
+                // Determine background color class based on effective value
                 let dayClass = 'calendar-day';
-                if (dayData.isWorkDay) {
-                    dayClass += ' work';
-                } else if (dayData.workType === 'sick_leave') {
-                    dayClass += ' sick';
-                } else if (dayData.isHoliday) {
-                    dayClass += ' holiday';
+                if (effectiveValue > 0) {
+                    dayClass += ' effective-positive';  // Green
+                } else if (effectiveValue < 0) {
+                    dayClass += ' effective-negative';  // Yellow
                 } else {
-                    dayClass += ' rest';
+                    dayClass += ' effective-zero';      // Blue
                 }
-
+                
+                // Use the same rest value logic as effective value calculation
+                const displayRestValue = restValue;
+                
+                // Prepare legal holiday row
+                const legalHolidayRow = dayData.isHoliday ? '<div class="legal-holiday">法定休息日</div>' : '';
+                
                 calendarHTML += `
                     <div class="${dayClass}" title="${dayData.description}">
                         <div class="day-number">${day}</div>
                         <div class="shift-type">${dayData.shiftCode}</div>
+                        <div class="work-value">工作量：${dayData.workValue}天</div>
+                        <div class="rest-value">休息量：${displayRestValue}天</div>
+                        ${legalHolidayRow}
                     </div>
                 `;
             } else {
