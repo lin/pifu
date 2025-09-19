@@ -262,7 +262,10 @@ class DisplayManager {
             if (dayData) {
                 // Calculate rest value based on work type and holiday status
                 const alwaysRestTypes = new Set(['rest']);
-                const supportLeaveTypes = new Set(['sick_leave', 'marriage_leave', 'maternity_leave']);
+                const supportLeaveTypes = new Set(['sick_leave', 'marriage_leave', 'maternity_leave'
+                    ,'group_work', 'fever_ward', 'isolation_ward', 'ophthalmology_2',
+                    'icu_work', 'neurology_work'
+                ]);
                 
                 let restValue = 0;
                 if (alwaysRestTypes.has(dayData.workType)) {
