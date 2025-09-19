@@ -1018,6 +1018,14 @@ body {
     margin-top: 32px;
 }
 
+/* Person Monthly Calendars Styles */
+.person-monthly-calendars {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 24px;
+}
+
 .person-charts h3 {
     color: #1e293b;
     font-size: 1.25rem;

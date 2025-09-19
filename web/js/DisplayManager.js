@@ -155,7 +155,7 @@ class DisplayManager {
             return;
         }
         
-        let monthlyHTML = '<h3><i class="fas fa-calendar-month"></i> 月度明细</h3><div class="monthly-grid">';
+        let monthlyHTML = '<h3><i class="fas fa-calendar-month"></i> 月度明细</h3><div class="person-monthly-calendars">';
 
         // 按年月排序
         const sortedMonths = Object.values(nurseSummary.months)
@@ -164,23 +164,51 @@ class DisplayManager {
                 return a.month - b.month;
             });
 
+        // 为每个月生成日历
         sortedMonths.forEach(monthData => {
-            const savedRestText = monthData.savedRestDays >= 0 
-                ? `存了 ${monthData.savedRestDays} 天`
-                : `欠假 ${Math.abs(monthData.savedRestDays)} 天`;
+            // 获取该月该护士的完整月度数据
+            const monthlyData = this.dataProcessor.getMonthlyData(monthData.year, monthData.month);
+            if (monthlyData && monthlyData.nurses && monthlyData.nurses[nurseKey]) {
+                const nurse = monthlyData.nurses[nurseKey];
                 
-            monthlyHTML += `
-                <div class="month-card">
-                    <div class="month-header">
-                        <h4>${monthData.year}年${monthData.monthName}</h4>
-                        <div class="month-stats">
-                            <span>${savedRestText}</span>
-                            <span>上班: ${monthData.workedDays} 天</span>
-                            <span>工作日: ${monthData.legalWorkdays} 天</span>
-                        </div>
-                    </div>
-                </div>
-            `;
+                // 获取该护士当月的详细数据
+                const nurseRecords = this.dataProcessor.database.records.filter(record => 
+                    record.year === monthData.year && 
+                    record.month === monthData.month && 
+                    record.nurseId === nurse.nurseId
+                );
+                
+                // 构建月度数据结构（与displayMonthlyCalendar相同的结构）
+                const nurseMonthData = {
+                    workValue: nurse.workValue,
+                    workDays: nurse.workDays,
+                    days: {}
+                };
+                
+                nurseRecords.forEach(record => {
+                    nurseMonthData.days[record.day] = {
+                        date: record.fullDate,
+                        weekday: record.weekday,
+                        isHoliday: record.isHoliday,
+                        isWeekend: record.isWeekend,
+                        workValue: record.workValue,
+                        workType: record.workType,
+                        shiftCode: record.shiftCode,
+                        description: record.description,
+                        isWorkDay: record.isWorkDay
+                    };
+                });
+                
+                // 生成该护士该月的日历
+                const calendarHTML = this.generateMonthCalendar(
+                    monthData.year, 
+                    monthData.month, 
+                    nurseMonthData, 
+                    nurse
+                );
+                
+                monthlyHTML += calendarHTML;
+            }
         });
 
         monthlyHTML += '</div>';
@@ -232,9 +260,16 @@ class DisplayManager {
         for (let day = 1; day <= daysInMonth; day++) {
             const dayData = monthData.days[day];
             if (dayData) {
-                // Calculate rest value based on work type
-                const restWorkTypes = new Set(['rest', 'sick_leave', 'marriage_leave', 'maternity_leave']);
-                const restValue = restWorkTypes.has(dayData.workType) ? 1 : 0;
+                // Calculate rest value based on work type and holiday status
+                const alwaysRestTypes = new Set(['rest']);
+                const supportLeaveTypes = new Set(['sick_leave', 'marriage_leave', 'maternity_leave']);
+                
+                let restValue = 0;
+                if (alwaysRestTypes.has(dayData.workType)) {
+                    restValue = 1; // Always rest
+                } else if (supportLeaveTypes.has(dayData.workType)) {
+                    restValue = dayData.isHoliday ? 1 : 0; // Rest only on legal holidays
+                }
                 
                 // Calculate effective value: workValue - restValue + (isLegalHoliday ? 1 : 0)
                 const effectiveValue = dayData.workValue - restValue + (dayData.isHoliday ? 1 : 0);

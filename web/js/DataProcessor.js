@@ -69,14 +69,15 @@ class DataProcessor {
     }
 
     /**
-     * 调整支持性工作的工作价值
-     * 对于特定的支持工作类型，如果是法定假日则工作价值为0，否则为1
+     * 调整支持性工作和假期的工作价值
+     * 对于支持工作类型和各种假期，如果是法定假日则工作价值为0，否则为1
      */
     adjustSupportWorkValues() {
-        // 定义支持性工作类型
+        // 定义支持性工作类型（包括各种假期）
         const supportWorkTypes = new Set([
             'group_work', 'fever_ward', 'isolation_ward', 
-            'ophthalmology_2', 'icu_work', 'neurology_work'
+            'ophthalmology_2', 'icu_work', 'neurology_work',
+            'sick_leave', 'marriage_leave', 'maternity_leave'
         ]);
 
         // 遍历所有记录
@@ -350,6 +351,17 @@ class DataProcessor {
         });
 
         console.log('Generated monthly summary data for', Object.keys(this.monthlySummaryData).length, 'nurses');
+    }
+
+    /**
+     * 获取指定年月的月度数据
+     * @param {number} year - 年份
+     * @param {number} month - 月份
+     * @returns {Object} 该月的完整数据
+     */
+    getMonthlyData(year, month) {
+        const monthKey = `${year}-${String(month).padStart(2, '0')}`;
+        return this.monthlyData[monthKey] || null;
     }
 
     /**
