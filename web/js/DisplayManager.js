@@ -275,7 +275,7 @@ class DisplayManager {
                 }
                 
                 // Calculate effective value: workValue - restValue + (isLegalHoliday ? 1 : 0)
-                const effectiveValue = dayData.workValue - restValue + (dayData.isHoliday ? 1 : 0);
+                const effectiveValue = dayData.workValue - restValue + (dayData.isHoliday ? 1 : -1);
                 
                 // Determine background color class based on effective value
                 let dayClass = 'calendar-day';
