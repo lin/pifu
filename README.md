@@ -11,3 +11,8 @@
 1. workValue
 1. restValue
 1. isLegalHoliday ? +1 : -1
+
+寒暑假
+
+1. 寒假十天，暑假五天
+1. 

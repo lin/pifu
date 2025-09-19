@@ -1,0 +1,294 @@
+[
+    {
+        "name": "徐莹",
+        "year": 2014,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+    {
+        "name": "徐莹",
+        "year": 2015,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "未入职"
+    },
+    {
+        "name": "徐莹",
+        "year": 2015,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+    {
+        "name": "徐莹",
+        "year": 2016,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "未入职"
+    },
+
+
+    {
+        "name": "王鑫",
+        "year": 2014,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+
+    {
+        "name": "陈平",
+        "year": 2014,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+    {
+        "name": "陈平",
+        "year": 2015,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "未入职"
+    },
+    {
+        "name": "陈平",
+        "year": 2015,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+    {
+        "name": "陈平",
+        "year": 2016,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "未入职"
+    },
+
+    {
+        "name": "荆小舟",
+        "year": 2014,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+    {
+        "name": "荆小舟",
+        "year": 2015,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "未入职"
+    },
+    {
+        "name": "荆小舟",
+        "year": 2015,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+    {
+        "name": "荆小舟",
+        "year": 2016,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "未入职"
+    },
+    {
+        "name": "荆小舟",
+        "year": 2016,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "未入职"
+    },
+
+    {
+        "name": "张雪野",
+        "year": 2014,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2014年4月5月病假"
+    },
+    {
+        "name": "尤嘉",
+        "year": 2015,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2014年10月11月12月产假"
+    },  
+    {
+        "name": "尤嘉",
+        "year": 2015,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2015年1月2月3月产假"
+    },
+    {
+        "name": "赵蕊",
+        "year": 2015,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2015年3月休假（已经没有存假）"
+    },
+    {
+        "name": "张雪野",
+        "year": 2016,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2015年7月保胎假婚嫁（已经没有存假）"
+    },
+    {
+        "name": "钱璐",
+        "year": 2016,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2015年7月病假"
+    },
+    {
+        "name": "赵蕊",
+        "year": 2016,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2015年9月产假"
+    },
+    {
+        "name": "赵蕊",
+        "year": 2016,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2016年1月产假"
+    },
+    {
+        "name": "钱璐",
+        "year": 2016,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2016年1月产假"
+    },
+    {
+        "name": "张雪野",
+        "year": 2016,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2016年2月产假"
+    },
+    {
+        "name": "李如心",
+        "year": 2016,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2016年3月产假"
+    },
+    {
+        "name": "邹婷",
+        "year": 2016,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2016年2月产假"
+    },
+    {
+        "name": "李如心",
+        "year": 2017,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "产假"
+    },
+    {
+        "name": "张雪野",
+        "year": 2017,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "产假"
+    },
+    {
+        "name": "邹婷",
+        "year": 2017,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "产假"
+    },
+    {
+        "name": "陈平",
+        "year": 2017,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2017年3月产假"
+    },
+    {
+        "name": "王鑫",
+        "year": 2017,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2017年4月病假"
+    },
+    {
+        "name": "邹婷",
+        "year": 2017,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2017年4月产假"
+    },
+    {
+        "name": "陈平",
+        "year": 2018,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2017年7月产假"
+    },
+    {
+        "name": "王鑫",
+        "year": 2018,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2017年10月产假"
+    },
+    {
+        "name": "王鑫",
+        "year": 2018,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "产假"
+    },
+    {
+        "name": "赵蕊",
+        "year": 2018,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2018年5月保胎"
+    },
+    {
+        "name": "张雪野",
+        "year": 2018,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2018年5月产假"
+    },
+    {
+        "name": "赵蕊",
+        "year": 2019,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2019年1月产假"
+    },
+    {
+        "name": "张雪野",
+        "year": 2019,
+        "noHolidayKind": "summer",
+        "removeHolidayDays": 5,
+        "cause": "2019年6月产假"
+    },
+    {
+        "name": "张雪野",
+        "year": 2020,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2019年7月产假"
+    },
+    {
+        "name": "荆小舟",
+        "year": 2020,
+        "noHolidayKind": "winter",
+        "removeHolidayDays": 10,
+        "cause": "2019年9月保胎"
+    }
+]
