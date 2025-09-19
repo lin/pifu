@@ -33,7 +33,7 @@ class HospitalShiftAnalyzer {
      */
     async loadDatabase() {
         try {
-            const response = await fetch('../output/hospital_shifts_2014-04_to_2020-01_database.json');
+            const response = await fetch('./output/hospital_shifts_2014-04_to_2020-01_database.json');
             if (!response.ok) {
                 throw new Error('Failed to load database');
             }
