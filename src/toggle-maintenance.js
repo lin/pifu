@@ -13,7 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const MAINTENANCE_FILE = path.join(__dirname, 'maintenance.json');
+const MAINTENANCE_FILE = path.join(__dirname, '../data/config/maintenance.json');
 
 function loadMaintenanceConfig() {
     try {

@@ -12,7 +12,7 @@ class DataLoader {
      */
     async loadInitialSavedRestDays() {
         try {
-            const response = await fetch('initial_saved_rest_days.json');
+            const response = await fetch('data/config/initial_saved_rest_days.json');
             if (!response.ok) {
                 console.warn('Failed to load initial saved rest days data, using default values');
                 return;
@@ -34,7 +34,7 @@ class DataLoader {
      */
     async loadYearEndAdjustments() {
         try {
-            const response = await fetch('year_end_adjustments.json');
+            const response = await fetch('data/config/year_end_adjustments.json');
             this.yearEndAdjustments = await response.json();
         } catch (error) {
             console.error('Error loading year-end adjustments:', error);

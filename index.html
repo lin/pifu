@@ -103,21 +103,7 @@
                 <!-- 存假天数排名表 -->
                 <div class="overview-section">
                     <h3><i class="fas fa-user-nurse"></i> 护士存假天数排名</h3>
-                    <div class="calculation-explanation">
-                        <p><strong>计算说明：</strong></p>
-                        <ul>
-                            <li><strong>小夜，大夜，夜班，白班：</strong>等效于1个工作日</li>
-                            <li><strong>半白班：</strong>等效于0.5个工作日</li>
-                            <li><strong>下夜班：</strong>等效于1个工作日，如果前一天是 小夜班，那么等效于0.5个工作日</li>
-                            <li><strong>病假，婚假，产假：</strong>如果不是法定假日，那么等效于1个工作日</li> 
-                            <li><strong>休：</strong>如果不是法定假日，那么等效于负一个工作日，也就是欠一个班</li> 
-                            <li><strong>病假，婚假，产假，休：</strong>如果没有存假且连续一个月，那么后续的寒假或者暑假就被取消，具体哪些护士在哪个半年假期被取消，请看 <a href="year_end_adjustments.json" target="_blank">year_end_adjustments.json</a></li> 
-                            <li><strong>群力，眼二，ICU，神内：</strong>如果不是法定假日，那么等效于1个工作日</li>
-                            <li><strong>哺乳休：</strong>等效于0.6875个工作日，也就是1.5÷8个工作日</li>
-                            <li><strong>哺乳半：</strong>等效于0.1875个工作日，也就是0.5半天工作日，加上1.5÷8个工作日</li>
-                            <li><strong>年末集中调整：</strong>年末会对寒暑假，以及当年特殊的无法平摊到每日的情况，进行集中调整，根据 <a href="year_end_adjustments.json" target="_blank">year_end_adjustments.json</a> 文件中每个护士的具体情况计算</li>
-                        </ul>
-                    </div>
+                    <div id="calculationExplanationContainer"></div>
                     <div class="ranking-table" id="savedDaysRankingTable"></div>
                 </div>
                 
@@ -184,6 +170,7 @@
     </div>
 
     <!-- 模块化JavaScript文件 -->
+    <script src="js/CalculationExplanationLoader.js"></script>
     <script src="js/MaintenanceManager.js"></script>
     <!-- 数据处理器模块 -->
     <script src="js/DataLoader.js"></script>

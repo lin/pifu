@@ -1,0 +1,51 @@
+{
+  "title": "计算说明",
+  "icon": "fas fa-calculator",
+  "rules": [
+    {
+      "type": "小夜，大夜，夜班，白班",
+      "value": "等效于1个工作日"
+    },
+    {
+      "type": "半白班",
+      "value": "等效于0.5个工作日"
+    },
+    {
+      "type": "下夜班",
+      "value": "等效于1个工作日，如果前一天是 小夜班，那么等效于0.5个工作日"
+    },
+    {
+      "type": "病假，婚假，产假",
+      "value": "如果不是法定假日，那么等效于1个工作日"
+    },
+    {
+      "type": "休",
+      "value": "如果不是法定假日，那么等效于负一个工作日，也就是欠一个班"
+    },
+    {
+      "type": "病假，婚假，产假，休",
+      "value": "如果没有存假且连续一个月，那么后续的寒假或者暑假就被取消，具体哪些护士在哪个半年假期被取消，请看",
+      "link": {
+        "text": "year_end_adjustments.json",
+        "url": "data/config/year_end_adjustments.json"
+      }
+    },
+    {
+      "type": "群力，眼二，ICU，神内",
+      "value": "如果不是法定假日，那么等效于1个工作日"
+    },
+    {
+      "type": "哺乳半",
+      "value": "等效于0.1875个工作日，也就是0.5半天工作日，加上1.5÷8个工作日"
+    },
+    {
+      "type": "年末集中调整",
+      "value": "年末会对寒暑假，以及当年特殊的无法平摊到每日的情况，进行集中调整，根据",
+      "link": {
+        "text": "year_end_adjustments.json",
+        "url": "data/config/year_end_adjustments.json"
+      },
+      "additionalText": "文件中每个护士的具体情况计算"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ class MaintenanceManager {
      */
     async loadMaintenanceConfig() {
         try {
-            const response = await fetch('maintenance.json');
+            const response = await fetch('data/config/maintenance.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

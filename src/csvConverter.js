@@ -337,7 +337,7 @@ if (require.main === module) {
     const csvFile = process.argv[2];
     if (!csvFile) {
         console.log('Usage: node csvConverter.js <csv-file-path>');
-        console.log('Example: node csvConverter.js csv/2014-04.csv');
+        console.log('Example: node csvConverter.js data/raw/csv/2014-04.csv');
         process.exit(1);
     }
 

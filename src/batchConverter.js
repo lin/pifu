@@ -5,8 +5,8 @@ const path = require('path');
 class BatchShiftConverter {
     constructor() {
         this.converter = new HospitalShiftConverter();
-        this.csvDir = path.join(__dirname, '..', 'csv');
-        this.outputDir = path.join(__dirname, '..', 'output');
+        this.csvDir = path.join(__dirname, '..', 'data/raw/csv');
+        this.outputDir = path.join(__dirname, '..', 'data/processed');
     }
 
     /**
