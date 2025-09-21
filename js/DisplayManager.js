@@ -478,7 +478,7 @@ class DisplayManager {
         if (!ctx) return;
 
         // Set canvas height explicitly
-        ctx.style.height = '500px';
+        ctx.style.height = '600px';
         ctx.height = 500;
 
         // 判断是否为累计图表
@@ -540,6 +540,7 @@ class DisplayManager {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                resizeDelay: 0,
                 interaction: {
                     intersect: false,
                     mode: 'index'
@@ -613,6 +614,18 @@ class DisplayManager {
             }
         });
 
+        // 添加resize事件监听器以防止图表高度增长
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const canvas = entry.target;
+                if (canvas.style.height !== '600px') {
+                    canvas.style.height = '600px';
+                    chart.resize();
+                }
+            }
+        });
+        resizeObserver.observe(ctx);
+
         // 存储图表实例以便后续销毁
         if (!this.chartInstances) {
             this.chartInstances = {};
@@ -647,7 +660,7 @@ class DisplayManager {
         }
 
         // Set canvas height explicitly
-        ctx.style.height = '500px';
+        ctx.style.height = '600px';
         ctx.height = 500;
 
         const chart = new Chart(ctx, {
