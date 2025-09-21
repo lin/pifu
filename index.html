@@ -111,10 +111,9 @@
                     <div class="calculation-explanation">
                         <p><strong>计算说明：</strong></p>
                         <ul>
-                            <li><strong>基础存假天数：</strong>原始计算结果（不考虑冬夏假期调整）</li>
-                            <li><strong>额外寒暑假假期：</strong>90天 - 冬夏假期调整天数</li>
-                            <li><strong>调整后存假天数：</strong>基础存假天数 + 90天 - 冬夏假期调整天数</li>
-                            <li>冬夏假期调整天数根据 <a href="no_winter_summer_holidays.json" target="_blank">no_winter_summer_holidays.json</a> 文件中每个护士的具体情况计算</li>
+                            <li><strong>基础存假天数：</strong>原始计算结果（不考虑冬夏假期等年末调整）</li>
+                            <li><strong>寒暑假：</strong>每年15天</li>
+                            <li>年末集中调整天数根据 <a href="year_end_adjustments.json" target="_blank">year_end_adjustments.json</a> 文件中每个护士的具体情况计算</li>
                         </ul>
                     </div>
                     <div class="ranking-table" id="savedDaysRankingTable"></div>
@@ -128,41 +127,59 @@
                     </div>
                 </div>
                 
-                <!-- 两极和中位护士累计存假天数趋势图 -->
+                <!-- 累计存假天数趋势对比图表组 -->
                 <div class="overview-section">
-                    <h3><i class="fas fa-chart-line"></i> 两极和中位护士累计存假天数趋势</h3>
-                    <div class="chart-container">
-                        <canvas id="allNursesCumulativeSavedDaysChart"></canvas>
+                    <h3><i class="fas fa-chart-line"></i> 累计存假天数趋势对比</h3>
+                    
+                    <!-- 第1组：马磊 vs 张雪野 -->
+                    <div class="chart-group">
+                        <h4 class="chart-group-title">第1组：马磊 vs 张雪野</h4>
+                        <div class="chart-container">
+                            <canvas id="cumulativeChart1"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 第2组：付伟 vs 赵蕊 -->
+                    <div class="chart-group">
+                        <h4 class="chart-group-title">第2组：付伟 vs 赵蕊</h4>
+                        <div class="chart-container">
+                            <canvas id="cumulativeChart2"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 第3组：徐莹 vs 荆小舟 -->
+                    <div class="chart-group">
+                        <h4 class="chart-group-title">第3组：徐莹 vs 荆小舟</h4>
+                        <div class="chart-container">
+                            <canvas id="cumulativeChart3"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 第4组：付巍巍 vs 邹婷 -->
+                    <div class="chart-group">
+                        <h4 class="chart-group-title">第4组：付巍巍 vs 邹婷</h4>
+                        <div class="chart-container">
+                            <canvas id="cumulativeChart4"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 第5组：尤嘉 vs 王鑫 -->
+                    <div class="chart-group">
+                        <h4 class="chart-group-title">第5组：尤嘉 vs 王鑫</h4>
+                        <div class="chart-container">
+                            <canvas id="cumulativeChart5"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 第6组：钱璐 陈平 vs 李如心 -->
+                    <div class="chart-group">
+                        <h4 class="chart-group-title">第6组：钱璐 陈平 vs 李如心</h4>
+                        <div class="chart-container">
+                            <canvas id="cumulativeChart6"></canvas>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 有效工作日排名表 -->
-                <div class="overview-section">
-                    <h3><i class="fas fa-briefcase"></i> 护士有效工作日排名</h3>
-                    <div class="ranking-table" id="workedDaysRankingTable"></div>
-                </div>
-                
-                <!-- 有效工作日对比图表 -->
-                <div class="overview-section">
-                    <h3><i class="fas fa-chart-bar"></i> 有效工作日对比</h3>
-                    <div class="chart-container">
-                        <canvas id="workedDaysBarChart"></canvas>
-                    </div>
-                </div>
-                
-                <!-- 有效休息日排名表 -->
-                <div class="overview-section">
-                    <h3><i class="fas fa-bed"></i> 护士有效休息日排名</h3>
-                    <div class="ranking-table" id="restDaysRankingTable"></div>
-                </div>
-                
-                <!-- 有效休息日对比图表 -->
-                <div class="overview-section">
-                    <h3><i class="fas fa-chart-bar"></i> 有效休息日对比</h3>
-                    <div class="chart-container">
-                        <canvas id="restDaysBarChart"></canvas>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

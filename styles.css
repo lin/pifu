@@ -1078,7 +1078,7 @@ body {
 }
 
 .chart-container canvas {
-    max-height: 500px;
+    /* max-height: 500px; */
 }
 
 /* Overview Tab Styles */
@@ -1171,7 +1171,7 @@ body {
 }
 
 .overview-section .chart-container canvas {
-    max-height: 500px;
+    /* max-height: 500px; */
 }
 
 /* Specific height for cumulative saved days chart */

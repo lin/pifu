@@ -9,6 +9,7 @@ class DataProcessor {
         this.monthlySummaryData = {}; // 每个护士每个月的汇总数据
         this.initialSavedRestDays = {}; // 初始存假天数
         this.holidayAdjustments = {}; // 冬夏假期调整数据
+        this.yearEndAdjustments = []; // 年末调整数据
     }
 
     /**
@@ -17,6 +18,7 @@ class DataProcessor {
     async processData() {
         await this.loadInitialSavedRestDays();
         await this.loadHolidayAdjustments();
+        await this.loadYearEndAdjustments();
         this.adjustNightShiftDayValues();
         this.adjustSupportWorkValues();
         this.processMonthlyData();
@@ -311,10 +313,34 @@ class DataProcessor {
             };
         });
 
-        // Convert sets to counts for JSON serialization
+        // Apply year-end adjustments for December months
         Object.values(personStats).forEach(person => {
             person.yearsActiveCount = person.yearsActive.size;
             delete person.yearsActive;
+
+            // Apply year-end adjustments for each year
+            Object.keys(person.years).forEach(year => {
+                const yearData = person.years[year];
+                const decemberMonth = yearData.months[12]; // December is month 12
+                
+                if (decemberMonth) {
+                    // Add 15 days work value for winter and summer holidays
+                    decemberMonth.workValue += 15;
+                    decemberMonth.workDays += 15;
+                    
+                    // Apply year-end adjustments from JSON file
+                    const yearInt = parseInt(year);
+                    const nurseAdjustments = this.yearEndAdjustments.filter(
+                        adj => adj.name === person.nurseName && adj.year === yearInt
+                    );
+                    
+                    nurseAdjustments.forEach(adjustment => {
+                        // Remove the specified holiday days from total effective work days
+                        decemberMonth.workValue -= adjustment.removeHolidayDays;
+                        decemberMonth.workDays -= adjustment.removeHolidayDays;
+                    });
+                }
+            });
         });
 
         this.personData = personStats;
@@ -348,8 +374,27 @@ class DataProcessor {
                 const nurseHolidays = monthData.nurseHolidays && monthData.nurseHolidays[nurseKey] 
                     ? monthData.nurseHolidays[nurseKey] : 0;
                 
-                const monthlyLegalWorkdays = nurseData.totalDays - nurseHolidays;  // 法定工作日
-                const monthlyWorkedDays = nurseData.workValue;                     // 上班天数(工作价值总和)
+                let monthlyLegalWorkdays = nurseData.totalDays - nurseHolidays;  // 法定工作日
+                let monthlyWorkedDays = nurseData.workValue;                     // 上班天数(工作价值总和)
+                
+                // Apply year-end adjustments for December months
+                if (parseInt(month) === 12) {
+                    // Add 15 days work value for winter and summer holidays
+                    monthlyWorkedDays += 15;
+                    
+                    // Apply year-end adjustments from JSON file
+                    const nurseName = nurseData.nurseName;
+                    const yearInt = parseInt(year);
+                    const nurseAdjustments = this.yearEndAdjustments.filter(
+                        adj => adj.name === nurseName && adj.year === yearInt
+                    );
+                    
+                    nurseAdjustments.forEach(adjustment => {
+                        // Remove the specified holiday days from total effective work days
+                        monthlyWorkedDays -= adjustment.removeHolidayDays;
+                    });
+                }
+                
                 const monthlySavedRestDays = monthlyWorkedDays - monthlyLegalWorkdays; // 存假
 
                 // 存储该月数据
@@ -540,7 +585,7 @@ class DataProcessor {
      */
     async loadHolidayAdjustments() {
         try {
-            const response = await fetch('no_winter_summer_holidays.json');
+            const response = await fetch('year_end_adjustments.json');
             const data = await response.json();
             
             // 按护士姓名分组并累加调整天数
@@ -553,6 +598,19 @@ class DataProcessor {
         } catch (error) {
             console.error('Error loading holiday adjustments:', error);
             this.holidayAdjustments = {};
+        }
+    }
+
+    /**
+     * 加载年末调整数据
+     */
+    async loadYearEndAdjustments() {
+        try {
+            const response = await fetch('year_end_adjustments.json');
+            this.yearEndAdjustments = await response.json();
+        } catch (error) {
+            console.error('Error loading year-end adjustments:', error);
+            this.yearEndAdjustments = [];
         }
     }
 

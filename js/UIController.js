@@ -364,21 +364,21 @@ class UIController {
                 adjustedTotalSavedRestDays: adjustedCumulativeSavedRestDays
             };
         }).filter(summary => summary !== null)
-          .sort((a, b) => b.adjustedTotalSavedRestDays - a.adjustedTotalSavedRestDays);
+          .sort((a, b) => b.totalSavedRestDays - a.totalSavedRestDays);
 
-        // 计算调整后存假天数的平均值（包含所有护士）
+        // 计算基础存假天数的平均值（包含所有护士）- 基于以法定工作日标准
         const allNursesAverage = nurseStats.length > 0 
-            ? nurseStats.reduce((sum, nurse) => sum + nurse.adjustedTotalSavedRestDays, 0) / nurseStats.length 
+            ? nurseStats.reduce((sum, nurse) => sum + nurse.totalSavedRestDays, 0) / nurseStats.length 
             : 0;
         
-        // 计算调整后存假天数的平均值（排除指定护士）
+        // 计算基础存假天数的平均值（排除指定护士）
         const excludedNurses = ['张雪野', '王鑫', '陈平'];
         const filteredNurseStats = nurseStats.filter(nurse => !excludedNurses.includes(nurse.nurseName));
-        const averageAdjustedTotal = filteredNurseStats.length > 0 
-            ? filteredNurseStats.reduce((sum, nurse) => sum + nurse.adjustedTotalSavedRestDays, 0) / filteredNurseStats.length 
+        const averageTotal = filteredNurseStats.length > 0 
+            ? filteredNurseStats.reduce((sum, nurse) => sum + nurse.totalSavedRestDays, 0) / filteredNurseStats.length 
             : 0;
 
-        console.log('averageAdjustedTotal', averageAdjustedTotal);
+        console.log('averageTotal', averageTotal);
         
 
         const html = `
@@ -388,21 +388,14 @@ class UIController {
                         <th>护士</th>
                         <th>初始存假</th>
                         <th>以法定工作日标准</th>
-                        <th>集中修正（寒暑假）</th>
-                        <th>以法定工作日标准（修正后）</th>
                         <th>同事之间（包括离职烂账）</th>
-                        <th>同事之间（除去离职烂账）</th>
                     </tr>
                 </thead>
                 <tbody>
                     ${nurseStats.map((nurse, index) => {
                         const initialSavedRestDays = this.roundToHalf(this.dataProcessor.getInitialSavedRestDays(nurse.nurseName));
-                        const extraHolidayDays = this.roundToHalf(90 - this.dataProcessor.getHolidayAdjustments(nurse.nurseName));
                         const totalSavedRestDays = this.roundToHalf(nurse.totalSavedRestDays);
-                        const adjustedTotalSavedRestDays = this.roundToHalf(nurse.adjustedTotalSavedRestDays);
-                        const relativeToAllNurses = this.roundToHalf(nurse.adjustedTotalSavedRestDays - allNursesAverage);
-                        const isExcludedNurse = excludedNurses.includes(nurse.nurseName);
-                        const relativeSavedRestDays = isExcludedNurse ? null : this.roundToHalf(nurse.adjustedTotalSavedRestDays - averageAdjustedTotal);
+                        const relativeToAllNurses = this.roundToHalf(nurse.totalSavedRestDays - allNursesAverage);
                         return `
                         <tr>
                             <td class="nurse-name">${nurse.nurseName}</td>
@@ -412,17 +405,8 @@ class UIController {
                             <td class="value ${totalSavedRestDays >= 0 ? 'positive' : 'negative'}">
                                 ${totalSavedRestDays >= 0 ? `存 ${totalSavedRestDays} 天` : `欠 ${Math.abs(totalSavedRestDays)} 天`}
                             </td>
-                            <td class="value ${extraHolidayDays >= 0 ? 'positive' : 'negative'}">
-                                ${extraHolidayDays >= 0 ? `+${extraHolidayDays} 天` : `${extraHolidayDays} 天`}
-                            </td>
-                            <td class="value ${adjustedTotalSavedRestDays >= 0 ? 'positive' : 'negative'}">
-                                ${adjustedTotalSavedRestDays >= 0 ? `存 ${adjustedTotalSavedRestDays} 天` : `欠 ${Math.abs(adjustedTotalSavedRestDays)} 天`}
-                            </td>
                             <td class="value ${relativeToAllNurses >= 0 ? 'positive' : 'negative'}">
                                 ${relativeToAllNurses >= 0 ? `替同事多上 ${relativeToAllNurses} 天` : `欠同事 ${Math.abs(relativeToAllNurses)} 天`}
-                            </td>
-                            <td class="value ${isExcludedNurse ? 'neutral' : (relativeSavedRestDays >= 0 ? 'positive' : 'negative')}">
-                                ${isExcludedNurse ? '已离职' : (relativeSavedRestDays >= 0 ? `替同事多上 ${relativeSavedRestDays} 天` : `欠同事 ${Math.abs(relativeSavedRestDays)} 天`)}
                             </td>
                         </tr>
                         `;
@@ -459,15 +443,35 @@ class UIController {
     }
 
     /**
-     * 显示所有护士累计存假天数趋势图表
+     * 显示6组护士累计存假天数趋势对比图表
      */
     displayAllNursesCumulativeSavedDaysChart() {
-        // 只显示选定的5个护士
-        const selectedNurseNames = ['马磊', '付伟', '尤嘉', '李如心', '赵蕊'];
+        // 定义6组护士对比
+        const nursePairs = [
+            { names: ['马磊', '张雪野'], chartId: 'cumulativeChart1' },
+            { names: ['付伟', '赵蕊'], chartId: 'cumulativeChart2' },
+            { names: ['徐莹', '荆小舟'], chartId: 'cumulativeChart3' },
+            { names: ['付巍巍', '邹婷'], chartId: 'cumulativeChart4' },
+            { names: ['尤嘉', '王鑫'], chartId: 'cumulativeChart5' },
+            { names: ['钱璐', '陈平', '李如心'], chartId: 'cumulativeChart6' }
+        ];
+        
+        // 为每组创建图表
+        nursePairs.forEach((pair, pairIndex) => {
+            this.createNursePairChart(pair.names, pair.chartId, pairIndex);
+        });
+    }
+    
+    /**
+     * 创建护士对比图表
+     */
+    createNursePairChart(nurseNames, chartId, pairIndex) {
         const allNurses = this.dataProcessor.getAllNurses();
         const selectedNurses = allNurses.filter(nurse => 
-            selectedNurseNames.includes(nurse.nurseName)
+            nurseNames.includes(nurse.nurseName)
         );
+        
+        if (selectedNurses.length === 0) return;
         
         // 获取所有月份数据
         const allMonths = new Set();
@@ -486,11 +490,12 @@ class UIController {
         // 为每个护士创建数据集
         const datasets = [];
         const colors = [
-            '#dc2626', // Red - 马磊
-            '#059669', // Green - 付伟  
-            '#7c3aed', // Purple - 尤嘉
-            '#ea580c', // Orange - 李如心
-            '#0ea5e9'  // Blue - 赵蕊
+            '#dc2626', // Red
+            '#059669', // Green  
+            '#7c3aed', // Purple
+            '#ea580c', // Orange
+            '#0ea5e9', // Blue
+            '#dc2626'  // Red (for 3rd nurse in group 6)
         ];
         
         selectedNurses.forEach((nurse, index) => {
@@ -532,14 +537,29 @@ class UIController {
         });
         
         // 创建图表
-        const ctx = document.getElementById('allNursesCumulativeSavedDaysChart');
+        const ctx = document.getElementById(chartId);
         if (!ctx) return;
         
-        // 设置固定高度为666px
-        ctx.style.height = '666px !important';
-        ctx.style.maxHeight = '666px !important';
-        ctx.style.minHeight = '666px !important';
-        ctx.height = 666;
+        // 计算动态高度：根据最大值和最小值的差异，每个差异值对应2px
+        let maxValue = -Infinity;
+        let minValue = Infinity;
+        
+        datasets.forEach(dataset => {
+            dataset.data.forEach(value => {
+                if (value > maxValue) maxValue = value;
+                if (value < minValue) minValue = value;
+            });
+        });
+        
+        const valueRange = maxValue - minValue;
+        
+        const dynamicHeight = Math.max(300, Math.min(2000, valueRange * 3)); // 最小300px，最大800px，基础200px + 每差异值2px
+
+        // 设置动态高度
+        ctx.style.height = `${dynamicHeight}px !important`;
+        ctx.style.maxHeight = `${dynamicHeight}px !important`;
+        ctx.style.minHeight = `${dynamicHeight}px !important`;
+        ctx.height = dynamicHeight;
         
         new Chart(ctx, {
             type: 'line',
@@ -564,9 +584,9 @@ class UIController {
                             usePointStyle: false,
                             boxWidth: 20,
                             boxHeight: 20,
-                            padding: 20,
+                            padding: 15,
                             font: {
-                                size: 12,
+                                size: 11,
                                 weight: '500'
                             },
                             color: '#334155',
@@ -615,14 +635,14 @@ class UIController {
                             text: '月份',
                             color: '#64748b',
                             font: {
-                                size: 12,
+                                size: 11,
                                 weight: 500
                             }
                         },
                         ticks: {
                             color: '#64748b',
                             font: {
-                                size: 11
+                                size: 10
                             },
                             maxRotation: 45
                         },
@@ -637,14 +657,14 @@ class UIController {
                             text: '累计存假天数',
                             color: '#64748b',
                             font: {
-                                size: 12,
+                                size: 11,
                                 weight: 500
                             }
                         },
                         ticks: {
                             color: '#64748b',
                             font: {
-                                size: 11
+                                size: 10
                             }
                         },
                         grid: {
