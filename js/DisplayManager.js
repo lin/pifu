@@ -509,8 +509,8 @@ class DisplayManager {
             pointBackgroundColor: referenceLine ? gradientColors.pointColors : color,
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
-            pointRadius: isAccumulated ? 5 : 4,
-            pointHoverRadius: 7
+            pointRadius: isAccumulated ? 0 : 4,
+            pointHoverRadius: isAccumulated ? 0 : 7
         }];
 
         // 添加参考线数据集

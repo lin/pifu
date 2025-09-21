@@ -8,6 +8,13 @@ class UIController {
     }
 
     /**
+     * 将数字四舍五入到最近的0.5
+     */
+    roundToHalf(value) {
+        return Math.round(value * 2) / 2;
+    }
+
+    /**
      * 初始化UI
      */
     initializeUI() {
@@ -359,36 +366,63 @@ class UIController {
         }).filter(summary => summary !== null)
           .sort((a, b) => b.adjustedTotalSavedRestDays - a.adjustedTotalSavedRestDays);
 
+        // 计算调整后存假天数的平均值（包含所有护士）
+        const allNursesAverage = nurseStats.length > 0 
+            ? nurseStats.reduce((sum, nurse) => sum + nurse.adjustedTotalSavedRestDays, 0) / nurseStats.length 
+            : 0;
+        
+        // 计算调整后存假天数的平均值（排除指定护士）
+        const excludedNurses = ['张雪野', '王鑫', '陈平'];
+        const filteredNurseStats = nurseStats.filter(nurse => !excludedNurses.includes(nurse.nurseName));
+        const averageAdjustedTotal = filteredNurseStats.length > 0 
+            ? filteredNurseStats.reduce((sum, nurse) => sum + nurse.adjustedTotalSavedRestDays, 0) / filteredNurseStats.length 
+            : 0;
+
+        console.log('averageAdjustedTotal', averageAdjustedTotal);
+        
+
         const html = `
             <table>
                 <thead>
                     <tr>
-                        <th>护士姓名</th>
-                        <th>初始存假天数</th>
-                        <th>基础存假天数</th>
-                        <th>额外寒暑假假期</th>
-                        <th>调整后存假天数</th>
+                        <th>护士</th>
+                        <th>初始存假</th>
+                        <th>以法定工作日标准</th>
+                        <th>集中修正（寒暑假）</th>
+                        <th>以法定工作日标准（修正后）</th>
+                        <th>同事之间（包括离职烂账）</th>
+                        <th>同事之间（除去离职烂账）</th>
                     </tr>
                 </thead>
                 <tbody>
                     ${nurseStats.map((nurse, index) => {
-                        const initialSavedRestDays = this.dataProcessor.getInitialSavedRestDays(nurse.nurseName);
-                        const holidayAdjustments = this.dataProcessor.getHolidayAdjustments(nurse.nurseName);
-                        const extraHolidayDays = 90 - holidayAdjustments;
+                        const initialSavedRestDays = this.roundToHalf(this.dataProcessor.getInitialSavedRestDays(nurse.nurseName));
+                        const extraHolidayDays = this.roundToHalf(90 - this.dataProcessor.getHolidayAdjustments(nurse.nurseName));
+                        const totalSavedRestDays = this.roundToHalf(nurse.totalSavedRestDays);
+                        const adjustedTotalSavedRestDays = this.roundToHalf(nurse.adjustedTotalSavedRestDays);
+                        const relativeToAllNurses = this.roundToHalf(nurse.adjustedTotalSavedRestDays - allNursesAverage);
+                        const isExcludedNurse = excludedNurses.includes(nurse.nurseName);
+                        const relativeSavedRestDays = isExcludedNurse ? null : this.roundToHalf(nurse.adjustedTotalSavedRestDays - averageAdjustedTotal);
                         return `
                         <tr>
                             <td class="nurse-name">${nurse.nurseName}</td>
                             <td class="value ${initialSavedRestDays >= 0 ? 'positive' : 'negative'}">
                                 ${initialSavedRestDays >= 0 ? `${initialSavedRestDays} 天` : `${initialSavedRestDays} 天`}
                             </td>
-                            <td class="value ${nurse.totalSavedRestDays >= 0 ? 'positive' : 'negative'}">
-                                ${nurse.totalSavedRestDays >= 0 ? `存 ${nurse.totalSavedRestDays} 天` : `欠 ${Math.abs(nurse.totalSavedRestDays)} 天`}
+                            <td class="value ${totalSavedRestDays >= 0 ? 'positive' : 'negative'}">
+                                ${totalSavedRestDays >= 0 ? `存 ${totalSavedRestDays} 天` : `欠 ${Math.abs(totalSavedRestDays)} 天`}
                             </td>
                             <td class="value ${extraHolidayDays >= 0 ? 'positive' : 'negative'}">
                                 ${extraHolidayDays >= 0 ? `+${extraHolidayDays} 天` : `${extraHolidayDays} 天`}
                             </td>
-                            <td class="value ${nurse.adjustedTotalSavedRestDays >= 0 ? 'positive' : 'negative'}">
-                                ${nurse.adjustedTotalSavedRestDays >= 0 ? `存 ${nurse.adjustedTotalSavedRestDays} 天` : `欠 ${Math.abs(nurse.adjustedTotalSavedRestDays)} 天`}
+                            <td class="value ${adjustedTotalSavedRestDays >= 0 ? 'positive' : 'negative'}">
+                                ${adjustedTotalSavedRestDays >= 0 ? `存 ${adjustedTotalSavedRestDays} 天` : `欠 ${Math.abs(adjustedTotalSavedRestDays)} 天`}
+                            </td>
+                            <td class="value ${relativeToAllNurses >= 0 ? 'positive' : 'negative'}">
+                                ${relativeToAllNurses >= 0 ? `替同事多上 ${relativeToAllNurses} 天` : `欠同事 ${Math.abs(relativeToAllNurses)} 天`}
+                            </td>
+                            <td class="value ${isExcludedNurse ? 'neutral' : (relativeSavedRestDays >= 0 ? 'positive' : 'negative')}">
+                                ${isExcludedNurse ? '已离职' : (relativeSavedRestDays >= 0 ? `替同事多上 ${relativeSavedRestDays} 天` : `欠同事 ${Math.abs(relativeSavedRestDays)} 天`)}
                             </td>
                         </tr>
                         `;

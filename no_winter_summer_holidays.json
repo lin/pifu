@@ -281,5 +281,13 @@
         "noHolidayKind": "winter",
         "removeHolidayDays": 10,
         "cause": "2019年9月保胎"
+    },
+
+    {
+        "name": "钱璐",
+        "year": 2016,
+        "noHolidayKind": "breastfeeding",
+        "removeHolidayDays": -23.5,
+        "cause": "2019年9月保胎"
     }
 ]

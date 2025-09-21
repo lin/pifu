@@ -21,8 +21,8 @@ class HospitalShiftConverter {
             '隔离': { workValue: 0, workType: 'isolation_ward', description: 'Isolation ward work (work day with 0 value)' },
             '眼二': { workValue: 0, workType: 'ophthalmology_2', description: 'Ophthalmology department 2 (work day with 0 value)' },
             'ICU': { workValue: 0, workType: 'icu_work', description: 'ICU work (work day with 0 value)' },
-            '哺乳半': { workValue: 0.75, workType: 'nursing_half', description: 'Nursing half shift (0.75 work value)' },
-            '哺乳休': { workValue: 0.25, workType: 'nursing_rest', description: 'Nursing rest shift (0.25 work value)' },
+            '哺乳半': { workValue: 1-0.3125 /* 2.5/8 */, workType: 'nursing_half', description: 'Nursing half shift (0.75 work value)' },
+            '哺乳休': { workValue: 0.1875 /* 1.5/8 */, workType: 'nursing_rest', description: 'Nursing rest shift (0.25 work value)' },
             '神内': { workValue: 0, workType: 'neurology_work', description: 'Neurology work (work day with 0 value)' }
         };
 

@@ -1841,3 +1841,283 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
+
+/* ========================================
+   MAINTENANCE MODE STYLES
+   ======================================== */
+
+.maintenance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.maintenance-content {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    animation: maintenanceFadeIn 0.6s ease-out;
+}
+
+@keyframes maintenanceFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.maintenance-icon {
+    font-size: 4rem;
+    color: #667eea;
+    margin-bottom: 20px;
+    animation: maintenancePulse 2s ease-in-out infinite;
+}
+
+@keyframes maintenancePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.maintenance-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    letter-spacing: -0.025em;
+}
+
+.maintenance-message {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.maintenance-time {
+    font-size: 1.1rem;
+    color: #f59e0b;
+    font-weight: 600;
+    margin-bottom: 15px;
+    background: #fef3c7;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.maintenance-contact {
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.maintenance-refresh-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.maintenance-refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.maintenance-refresh-btn:active {
+    transform: translateY(0);
+}
+
+.maintenance-refresh-btn i {
+    font-size: 1rem;
+    animation: maintenanceSpin 1s linear infinite;
+}
+
+@keyframes maintenanceSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.maintenance-last-updated {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Password bypass section */
+.maintenance-password-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f8fafc;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+}
+
+.maintenance-password-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.maintenance-password-title i {
+    color: #667eea;
+}
+
+.maintenance-password-hint {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.maintenance-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.maintenance-password-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.maintenance-password-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.maintenance-password-input::placeholder {
+    color: #9ca3af;
+}
+
+.maintenance-password-submit {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.maintenance-password-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.maintenance-password-submit:active {
+    transform: translateY(0);
+}
+
+.maintenance-password-submit i {
+    font-size: 0.9rem;
+}
+
+.maintenance-password-error {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.maintenance-password-error.error {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.maintenance-password-error.success {
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+/* Responsive design for maintenance mode */
+@media (max-width: 768px) {
+    .maintenance-content {
+        padding: 40px 20px;
+        margin: 20px;
+    }
+    
+    .maintenance-title {
+        font-size: 2rem;
+    }
+    
+    .maintenance-message {
+        font-size: 1.1rem;
+    }
+    
+    .maintenance-icon {
+        font-size: 3rem;
+    }
+    
+    .maintenance-password-section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .maintenance-password-form {
+        gap: 12px;
+    }
+    
+    .maintenance-password-input {
+        max-width: 100%;
+    }
+}

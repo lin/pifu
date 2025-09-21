@@ -1,7 +1,7 @@
 {
   "totalRecords": 25972,
   "uniqueNurses": 13,
-  "totalWorkValue": 14576.5,
+  "totalWorkValue": 14509.75,
   "dateRange": {
     "start": "2014-04-01",
     "end": "2020-01-31"
@@ -19,27 +19,27 @@
     },
     "2016": {
       "records": 4729,
-      "workValue": 2568,
+      "workValue": 2532.125,
       "uniqueNurses": 13
     },
     "2017": {
       "records": 4745,
-      "workValue": 2513,
+      "workValue": 2501.75,
       "uniqueNurses": 13
     },
     "2018": {
       "records": 4745,
-      "workValue": 2600.25,
+      "workValue": 2591.1875,
       "uniqueNurses": 13
     },
     "2019": {
       "records": 4745,
-      "workValue": 2603.75,
+      "workValue": 2594.4375,
       "uniqueNurses": 13
     },
     "2020": {
       "records": 403,
-      "workValue": 204,
+      "workValue": 202.75,
       "uniqueNurses": 13
     }
   },
@@ -48,7 +48,7 @@
       "nurseId": 1,
       "nurseName": "赵蕊",
       "totalRecords": 2132,
-      "totalWorkValue": 985.75,
+      "totalWorkValue": 977.8125,
       "workDays": 1149,
       "restDays": 983,
       "firstAppearance": "2014-04-01",
@@ -92,7 +92,7 @@
       "nurseId": 5,
       "nurseName": "李如心",
       "totalRecords": 2132,
-      "totalWorkValue": 1098.75,
+      "totalWorkValue": 1092.1875,
       "workDays": 1223,
       "restDays": 909,
       "firstAppearance": "2014-04-01",
@@ -103,7 +103,7 @@
       "nurseId": 6,
       "nurseName": "张雪野",
       "totalRecords": 2132,
-      "totalWorkValue": 1017.5,
+      "totalWorkValue": 1008.25,
       "workDays": 1083,
       "restDays": 1049,
       "firstAppearance": "2014-04-01",
@@ -125,7 +125,7 @@
       "nurseId": 8,
       "nurseName": "邹婷",
       "totalRecords": 2132,
-      "totalWorkValue": 1094.25,
+      "totalWorkValue": 1088.3125,
       "workDays": 1258,
       "restDays": 874,
       "firstAppearance": "2014-04-01",
@@ -136,9 +136,9 @@
       "nurseId": 9,
       "nurseName": "钱璐",
       "totalRecords": 2132,
-      "totalWorkValue": 1212.5,
-      "workDays": 1218,
-      "restDays": 914,
+      "totalWorkValue": 1189.5,
+      "workDays": 1195,
+      "restDays": 937,
       "firstAppearance": "2014-04-01",
       "lastAppearance": "2020-01-31",
       "yearsActiveCount": 7
@@ -147,7 +147,7 @@
       "nurseId": 10,
       "nurseName": "王鑫",
       "totalRecords": 2109,
-      "totalWorkValue": 1164,
+      "totalWorkValue": 1156.125,
       "workDays": 1267,
       "restDays": 842,
       "firstAppearance": "2014-04-17",
@@ -169,7 +169,7 @@
       "nurseId": 12,
       "nurseName": "陈平",
       "totalRecords": 1549,
-      "totalWorkValue": 862.25,
+      "totalWorkValue": 856.0625,
       "workDays": 892,
       "restDays": 657,
       "firstAppearance": "2015-11-05",
@@ -189,9 +189,9 @@
     }
   },
   "shiftTypeDistribution": {
-    "休": 8489,
+    "休": 8483,
     "病假": 94,
-    "白": 8074,
+    "白": 8051,
     "小": 1938,
     "下": 1996,
     "大": 1907,
@@ -199,7 +199,7 @@
     "Z": 1,
     "ICU": 24,
     "神内": 31,
-    "产假": 1693,
+    "产假": 1722,
     "夜": 40,
     "婚假": 36,
     "群力": 755,
@@ -207,10 +207,10 @@
     "Y": 1
   },
   "workPatterns": {
-    "totalWorkDays": 15658,
-    "totalRestDays": 10314,
+    "totalWorkDays": 15635,
+    "totalRestDays": 10337,
     "nightShifts": 5881,
-    "dayShifts": 10263,
+    "dayShifts": 10240,
     "weekendWork": 3179,
     "holidayWork": 3396
   }

@@ -89,7 +89,6 @@ class DataProcessor {
                     prevRecord.shiftCode === '小' && 
                     currRecord.shiftCode === '下') {
                     
-                    console.log(`调整 ${nurseKey} 在 ${currRecord.year}-${currRecord.month}-${currRecord.day} 的'下'班工作价值从 ${currRecord.workValue} 改为 0.5`);
                     currRecord.workValue = 0.5;
                 }
             }
@@ -114,7 +113,6 @@ class DataProcessor {
                 const newWorkValue = record.isHoliday ? 0 : 1;
                 
                 if (record.workValue !== newWorkValue) {
-                    console.log(`调整 ${record.nurseName} 在 ${record.year}-${record.month}-${record.day} 的'${record.shiftCode}'工作价值从 ${record.workValue} 改为 ${newWorkValue} (${record.isHoliday ? '法定假日' : '工作日'})`);
                     record.workValue = newWorkValue;
                 }
             }
