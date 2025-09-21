@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>医院排班分析仪表板</title>
+    <title>皮肤科病房护士排班分析</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <i class="fas fa-chart-bar"></i> 总览
             </button>
             <button class="tab-button" data-tab="monthly">
-                <i class="fas fa-calendar-month"></i> 月度统计
+                <i class="fas fa-calendar"></i> 月度统计
             </button>
             <button class="tab-button" data-tab="person">
                 <i class="fas fa-user"></i> 个人详情
@@ -99,21 +99,23 @@
         <!-- Overview Tab -->
         <div id="overview" class="tab-content active">
             <div class="overview-sections">
-                <!-- 总体统计 -->
-                <!-- <div class="overview-section">
-                    <h3><i class="fas fa-chart-pie"></i> 总体统计</h3>
-                    <div class="overview-stats" id="overviewStats"></div>
-                </div> -->
                 
                 <!-- 存假天数排名表 -->
                 <div class="overview-section">
-                    <h3><i class="fas fa-calendar-minus"></i> 护士存假天数排名</h3>
+                    <h3><i class="fas fa-user-nurse"></i> 护士存假天数排名</h3>
                     <div class="calculation-explanation">
                         <p><strong>计算说明：</strong></p>
                         <ul>
-                            <li><strong>基础存假天数：</strong>原始计算结果（不考虑冬夏假期等年末调整）</li>
-                            <li><strong>寒暑假：</strong>每年15天</li>
-                            <li>年末集中调整天数根据 <a href="year_end_adjustments.json" target="_blank">year_end_adjustments.json</a> 文件中每个护士的具体情况计算</li>
+                            <li><strong>小夜，大夜，夜班，白班：</strong>等效于1个工作日</li>
+                            <li><strong>半白班：</strong>等效于0.5个工作日</li>
+                            <li><strong>下夜班：</strong>等效于1个工作日，如果前一天是 小夜班，那么等效于0.5个工作日</li>
+                            <li><strong>病假，婚假，产假：</strong>如果不是法定假日，那么等效于1个工作日</li> 
+                            <li><strong>休：</strong>如果不是法定假日，那么等效于负一个工作日，也就是欠一个班</li> 
+                            <li><strong>病假，婚假，产假，休：</strong>如果没有存假且连续一个月，那么后续的寒假或者暑假就被取消，具体哪些护士在哪个半年假期被取消，请看 <a href="year_end_adjustments.json" target="_blank">year_end_adjustments.json</a></li> 
+                            <li><strong>群力，眼二，ICU，神内：</strong>如果不是法定假日，那么等效于1个工作日</li>
+                            <li><strong>哺乳休：</strong>等效于0.6875个工作日，也就是1.5÷8个工作日</li>
+                            <li><strong>哺乳半：</strong>等效于0.1875个工作日，也就是0.5半天工作日，加上1.5÷8个工作日</li>
+                            <li><strong>年末集中调整：</strong>年末会对寒暑假，以及当年特殊的无法平摊到每日的情况，进行集中调整，根据 <a href="year_end_adjustments.json" target="_blank">year_end_adjustments.json</a> 文件中每个护士的具体情况计算</li>
                         </ul>
                     </div>
                     <div class="ranking-table" id="savedDaysRankingTable"></div>
@@ -188,11 +190,19 @@
     <script src="js/DataAdjuster.js"></script>
     <script src="js/MonthlyProcessor.js"></script>
     <script src="js/SummaryGenerator.js"></script>
-    <script src="js/DataQueries.js"></script>
     <script src="js/DataProcessor.js"></script>
-    <!-- 其他模块 -->
-    <script src="js/DisplayManager.js"></script>
+    <!-- UI管理模块 -->
+        <script src="js/TabManager.js"></script>
+        <script src="js/SelectionManager.js"></script>
+        <script src="js/MonthlyDisplayManager.js"></script>
+        <script src="js/CalendarDisplayManager.js"></script>
+        <script src="js/PersonDisplayManager.js"></script>
+        <script src="js/ChartDisplayManager.js"></script>
+        <script src="js/RankingDisplayManager.js"></script>
+        <script src="js/DisplayManager.js"></script>
+        <script src="js/ChartManager.js"></script>
     <script src="js/UIController.js"></script>
+    <!-- 其他模块 -->
     <script src="js/HospitalShiftAnalyzer.js"></script>
 </body>
 </html>

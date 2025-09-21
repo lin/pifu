@@ -1,59 +1,30 @@
 /**
- * 显示管理器 - 负责渲染和显示数据
+ * 显示管理器 - 负责协调各个专门的显示管理器
  */
 class DisplayManager {
     constructor(dataProcessor) {
         this.dataProcessor = dataProcessor;
+        
+        // 初始化各个专门的显示管理器
+        this.monthlyDisplayManager = new MonthlyDisplayManager(dataProcessor);
+        this.calendarDisplayManager = new CalendarDisplayManager(dataProcessor);
+        this.personDisplayManager = new PersonDisplayManager(dataProcessor, this.calendarDisplayManager);
+        this.chartDisplayManager = new ChartDisplayManager();
+        this.rankingDisplayManager = new RankingDisplayManager(dataProcessor);
     }
 
     /**
      * 显示月度汇总
      */
     displayMonthlySummary(monthData) {
-        const summaryHTML = `<h3>${monthData.year}年${monthData.month}月 汇总</h3>`;
-        document.getElementById('monthlySummary').innerHTML = summaryHTML;
+        this.monthlyDisplayManager.displayMonthlySummary(monthData);
     }
 
     /**
      * 显示月度统计表格
      */
     displayMonthlyTable(monthData) {
-        let nurses = Object.values(monthData.nurses);
-
-        // Sort nurses by name for consistent display
-        nurses.sort((a, b) => a.nurseName.localeCompare(b.nurseName));
-
-        const tableHTML = `
-            <table class="stats-table">
-                <thead>
-                    <tr>
-                        <th>护士</th>
-                        <th class="key-metric">存假</th>
-                        <th class="key-metric">工作</th>
-                        <th>应工作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${nurses.map(nurse => {
-                        const savedRestText = nurse.savedRestDays >= 0 
-                            ? `存了 ${nurse.savedRestDays} 天`
-                            : `欠假 ${Math.abs(nurse.savedRestDays)} 天`;
-                        const isNegative = nurse.savedRestDays < 0;
-                        
-                        return `
-                        <tr>
-                            <td class="nurse-name">${nurse.nurseName}</td>
-                            <td class="key-metric saved-rest" ${isNegative ? 'data-negative="true"' : ''}>${savedRestText}</td>
-                            <td class="key-metric work-value">${nurse.workValue} 天</td>
-                            <td class="legal-days">${nurse.legalWorkdayCount} 天</td>
-                        </tr>
-                        `;
-                    }).join('')}
-                </tbody>
-            </table>
-        `;
-
-        document.getElementById('monthlyStats').innerHTML = tableHTML;
+        this.monthlyDisplayManager.displayMonthlyTable(monthData);
         
         // 添加月度日历显示
         this.displayMonthlyCalendar(monthData);
@@ -63,85 +34,14 @@ class DisplayManager {
      * 显示月度日历
      */
     displayMonthlyCalendar(monthData) {
-        const nurses = Object.values(monthData.nurses).sort((a, b) => a.nurseName.localeCompare(b.nurseName));
-        
-        let calendarHTML = '<div class="monthly-calendars"><h3><i class="fas fa-calendar"></i> 月度日历视图</h3>';
-        
-        nurses.forEach(nurse => {
-            // 获取该护士当月的详细数据
-            const nurseRecords = this.dataProcessor.database.records.filter(record => 
-                record.year === monthData.year && 
-                record.month === monthData.month && 
-                record.nurseId === nurse.nurseId
-            );
-            
-            // 构建月度数据结构
-            const nurseMonthData = {
-                workValue: nurse.workValue,
-                workDays: nurse.workDays,
-                days: {}
-            };
-            
-            nurseRecords.forEach(record => {
-                nurseMonthData.days[record.day] = {
-                    date: record.fullDate,
-                    weekday: record.weekday,
-                    isHoliday: record.isHoliday,
-                    isWeekend: record.isWeekend,
-                    workValue: record.workValue,
-                    workType: record.workType,
-                    shiftCode: record.shiftCode,
-                    description: record.description,
-                    isWorkDay: record.isWorkDay
-                };
-            });
-            
-            calendarHTML += `<div class="nurse-calendar">
-                ${this.generateMonthCalendar(monthData.year, monthData.month, nurseMonthData, nurse)}
-            </div>`;
-        });
-        
-        calendarHTML += '</div>';
-        
-        // 将日历添加到月度统计容器中
-        const monthlyStatsContainer = document.getElementById('monthlyStats');
-        monthlyStatsContainer.innerHTML += calendarHTML;
+        this.calendarDisplayManager.displayMonthlyCalendar(monthData);
     }
 
     /**
      * 显示个人概览
      */
     displayPersonOverview(nurseKey) {
-        // 使用新的 monthlySummaryData 获取总计统计
-        const totalSummary = this.dataProcessor.getNurseTotalSummary(nurseKey);
-        
-        if (!totalSummary) {
-            document.getElementById('personOverview').innerHTML = '<p>没有找到该护士的统计数据</p>';
-            return;
-        }
-
-        // 使用包含初始值的累计存假天数
-        const cumulativeSavedRestDays = this.dataProcessor.getCumulativeSavedRestDays(nurseKey);
-
-        const overviewHTML = `
-            <h2><i class="fas fa-user-nurse"></i> ${totalSummary.nurseName} (编号: ${totalSummary.nurseId})</h2>
-            <div class="person-stats">
-                <div class="person-stat key-summary">
-                    <span class="value">${cumulativeSavedRestDays >= 0 ? `存了 ${cumulativeSavedRestDays} 天` : `欠假 ${Math.abs(cumulativeSavedRestDays)} 天`}</span>
-                    <span class="label">总存假</span>
-                </div>
-                <div class="person-stat key-summary">
-                    <span class="value">${totalSummary.totalWorkedDays} 天</span>
-                    <span class="label">总上班天数</span>
-                </div>
-                <div class="person-stat key-summary">
-                    <span class="value">${totalSummary.totalLegalWorkdays} 天</span>
-                    <span class="label">总法定工作日</span>
-                </div>
-            </div>
-        `;
-
-        document.getElementById('personOverview').innerHTML = overviewHTML;
+        this.personDisplayManager.displayPersonOverview(nurseKey);
         
         // 生成图表
         this.displayPersonCharts(nurseKey);
@@ -151,609 +51,48 @@ class DisplayManager {
      * 显示个人月度详情
      */
     displayPersonMonthly(nurseKey) {
-        const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurseKey);
-        
-        if (!nurseSummary || !nurseSummary.months) {
-            document.getElementById('personMonthly').innerHTML = '<p>没有找到该护士的月度数据</p>';
-            return;
-        }
-        
-        let monthlyHTML = '<h3><i class="fas fa-calendar-month"></i> 月度明细</h3><div class="person-monthly-calendars">';
-
-        // 按年月排序
-        const sortedMonths = Object.values(nurseSummary.months)
-            .sort((a, b) => {
-                if (a.year !== b.year) return a.year - b.year;
-                return a.month - b.month;
-            });
-
-        // 为每个月生成日历
-        sortedMonths.forEach(monthData => {
-            // 获取该月该护士的完整月度数据
-            const monthlyData = this.dataProcessor.getMonthlyData(monthData.year, monthData.month);
-            if (monthlyData && monthlyData.nurses && monthlyData.nurses[nurseKey]) {
-                const nurse = monthlyData.nurses[nurseKey];
-                
-                // 获取该护士当月的详细数据
-                const nurseRecords = this.dataProcessor.database.records.filter(record => 
-                    record.year === monthData.year && 
-                    record.month === monthData.month && 
-                    record.nurseId === nurse.nurseId
-                );
-                
-                // 构建月度数据结构（与displayMonthlyCalendar相同的结构）
-                const nurseMonthData = {
-                    workValue: nurse.workValue,
-                    workDays: nurse.workDays,
-                    days: {}
-                };
-                
-                nurseRecords.forEach(record => {
-                    nurseMonthData.days[record.day] = {
-                        date: record.fullDate,
-                        weekday: record.weekday,
-                        isHoliday: record.isHoliday,
-                        isWeekend: record.isWeekend,
-                        workValue: record.workValue,
-                        workType: record.workType,
-                        shiftCode: record.shiftCode,
-                        description: record.description,
-                        isWorkDay: record.isWorkDay
-                    };
-                });
-                
-                // 生成该护士该月的日历
-                const calendarHTML = this.generateMonthCalendar(
-                    monthData.year, 
-                    monthData.month, 
-                    nurseMonthData, 
-                    nurse
-                );
-                
-                monthlyHTML += calendarHTML;
-            }
-        });
-
-        monthlyHTML += '</div>';
-        document.getElementById('personMonthly').innerHTML = monthlyHTML;
+        this.personDisplayManager.displayPersonMonthly(nurseKey);
     }
 
     /**
-     * 生成月度日历
+     * 生成月度日历 - 委托给CalendarDisplayManager
      */
     generateMonthCalendar(year, month, monthData, nurse = null) {
-        const monthName = this.getMonthName(month);
-        const daysInMonth = new Date(year, month, 0).getDate();
-        const firstDay = new Date(year, month - 1, 1).getDay();
-        
-        // 构建标题内容
-        let titleContent = `${year}年${month}月`;
-        let subtitleContent = `上班天数: ${monthData.workValue} | 工作日天数: ${monthData.workDays}`;
-        
-        if (nurse) {
-            titleContent = `${nurse.nurseName} - ${year}年${month}月`;
-            const savedRestText = nurse.savedRestDays >= 0 
-                ? `存了 ${nurse.savedRestDays} 天`
-                : `欠假 ${Math.abs(nurse.savedRestDays)} 天`;
-            subtitleContent = `${savedRestText} | 上班天数: ${monthData.workValue} | 工作日天数: ${monthData.workDays}`;
-        }
-        
-        let calendarHTML = `
-            <div class="calendar-month">
-                <div class="calendar-header">
-                    <h4>${titleContent}</h4>
-                    <div>${subtitleContent}</div>
-                </div>
-                <div class="calendar-grid">
-                    <div class="calendar-day header">日</div>
-                    <div class="calendar-day header">一</div>
-                    <div class="calendar-day header">二</div>
-                    <div class="calendar-day header">三</div>
-                    <div class="calendar-day header">四</div>
-                    <div class="calendar-day header">五</div>
-                    <div class="calendar-day header">六</div>
-        `;
-
-        // Add empty cells for days before the first day of the month
-        for (let i = 0; i < firstDay; i++) {
-            calendarHTML += '<div class="calendar-day"></div>';
-        }
-
-        // Add days of the month
-        for (let day = 1; day <= daysInMonth; day++) {
-            const dayData = monthData.days[day];
-            if (dayData) {
-                // Calculate rest value based on work type and holiday status
-                const alwaysRestTypes = new Set(['rest']);
-                const supportLeaveTypes = new Set(['sick_leave', 'marriage_leave', 'maternity_leave'
-                    ,'group_work', 'fever_ward', 'isolation_ward', 'ophthalmology_2',
-                    'icu_work', 'neurology_work'
-                ]);
-                
-                let restValue = 0;
-                if (alwaysRestTypes.has(dayData.workType)) {
-                    restValue = 1; // Always rest
-                } else if (supportLeaveTypes.has(dayData.workType)) {
-                    restValue = dayData.isHoliday ? 1 : 0; // Rest only on legal holidays
-                }
-                
-                // Calculate effective value: workValue - restValue + (isLegalHoliday ? 1 : 0)
-                const effectiveValue = dayData.workValue - restValue + (dayData.isHoliday ? 1 : -1);
-                
-                // Determine background color class based on effective value
-                let dayClass = 'calendar-day';
-                if (effectiveValue > 0) {
-                    dayClass += ' effective-positive';  // Green
-                } else if (effectiveValue < 0) {
-                    dayClass += ' effective-negative';  // Yellow
-                } else {
-                    dayClass += ' effective-zero';      // Blue
-                }
-                
-                // Use the same rest value logic as effective value calculation
-                const displayRestValue = restValue;
-                
-                // Prepare legal holiday row
-                const legalHolidayRow = dayData.isHoliday ? '<div class="legal-holiday">法定休息日</div>' : '';
-                
-                calendarHTML += `
-                    <div class="${dayClass}" title="${dayData.description}">
-                        <div class="day-number">${day}</div>
-                        <div class="shift-type">${dayData.shiftCode}</div>
-                        <div class="work-value">
-                            <span class="label-full">工作量：</span><span class="label-mobile">工作：</span>${dayData.workValue}天
-                        </div>
-                        <div class="rest-value">
-                            <span class="label-full">休息量：</span><span class="label-mobile">休息：</span>${displayRestValue}天
-                        </div>
-                        ${legalHolidayRow}
-                    </div>
-                `;
-            } else {
-                calendarHTML += `<div class="calendar-day"><div class="day-number">${day}</div></div>`;
-            }
-        }
-
-        calendarHTML += '</div></div>';
-        return calendarHTML;
+        return this.calendarDisplayManager.generateMonthCalendar(year, month, monthData, nurse);
     }
 
     /**
      * 显示个人图表
      */
     displayPersonCharts(nurseKey) {
-        const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurseKey);
-        
-        if (!nurseSummary || !nurseSummary.months) {
-            return;
-        }
-
-        // 按时间排序的月度数据
-        const sortedMonths = Object.values(nurseSummary.months)
-            .sort((a, b) => {
-                if (a.year !== b.year) return a.year - b.year;
-                return a.month - b.month;
-            });
-
-        // 准备数据
-        const labels = sortedMonths.map(m => `${m.year}-${String(m.month).padStart(2, '0')}`);
-        
-        // 累计数据
-        const initialValue = this.dataProcessor.getInitialSavedRestDays(nurseSummary.nurseName);
-        let accumulatedSavedRest = initialValue;
-        
-        const accumulatedSavedRestData = [];
-        const monthlySavedRestData = [];
-        const monthlyWorkedDaysData = [];
-        const monthlyRestDaysData = [];
-
-        sortedMonths.forEach(monthData => {
-            // 月度数据
-            monthlySavedRestData.push(monthData.savedRestDays);
-            monthlyWorkedDaysData.push(monthData.workedDays);
-            
-            // 有效休息日 = 总天数 - 工作天数 - 法定假日
-            const effectiveRestDays = monthData.totalDays - monthData.workedDays - monthData.holidayDays;
-            monthlyRestDaysData.push(effectiveRestDays);
-            
-            // 累计存假数据（包含初始值）
-            accumulatedSavedRest += monthData.savedRestDays;
-            accumulatedSavedRestData.push(accumulatedSavedRest);
-        });
-
-        // 销毁现有图表
-        this.destroyExistingCharts();
-
-        // 创建图表 - 按组排序：月度图表优先，然后是累计图表
-        // 存假天数组 - 添加0天基线
-        this.createChart('monthlySavedRestChart', '月度存假天数', labels, monthlySavedRestData, '#dc2626', 
-            { value: 0, label: '零点基线', color: '#6b7280' });
-        this.createChart('accumulatedSavedRestChart', '累计存假天数', labels, accumulatedSavedRestData, '#dc2626');
-        
-        // 有效工作日组 - 添加20.8天基线
-        this.createChart('monthlyWorkedDaysChart', '月度有效工作日', labels, monthlyWorkedDaysData, '#059669',
-            { value: 20.8, label: '标准工作日基线', color: '#059669' });
-        
-        // 有效休息日组 - 添加9.58天基线
-        this.createChart('monthlyRestDaysChart', '月度有效休息日', labels, monthlyRestDaysData, '#3b82f6',
-            { value: 9.58, label: '标准休息日基线', color: '#3b82f6' });
+        this.chartDisplayManager.displayPersonCharts(nurseKey, this.dataProcessor);
     }
 
     /**
-     * 根据与参考线的偏差生成渐变颜色
-     */
-    generateGradientColors(data, referenceLine, baseColor) {
-        if (!referenceLine) {
-            return { 
-                pointColors: new Array(data.length).fill(baseColor),
-                borderColors: new Array(data.length).fill(baseColor),
-                gradient: null
-            };
-        }
-
-        const referenceValue = referenceLine.value;
-        const deviations = data.map(value => Math.abs(value - referenceValue));
-        const maxDeviation = Math.max(...deviations);
-        
-        const pointColors = [];
-        const borderColors = [];
-
-        data.forEach(value => {
-            const deviation = Math.abs(value - referenceValue);
-            const intensity = maxDeviation > 0 ? deviation / maxDeviation : 0;
-            
-            // 根据偏差方向和强度选择颜色
-            if (value > referenceValue) {
-                // 高于参考线 - 使用红色系渐变
-                const red = Math.round(220 + (35 * intensity)); // 220-255
-                const green = Math.round(38 - (20 * intensity)); // 38-18
-                const blue = Math.round(38 - (20 * intensity)); // 38-18
-                pointColors.push(`rgb(${red}, ${green}, ${blue})`);
-                borderColors.push(`rgba(${red}, ${green}, ${blue}, 0.8)`);
-            } else if (value < referenceValue) {
-                // 低于参考线 - 使用蓝色系渐变
-                const red = Math.round(59 - (30 * intensity)); // 59-29
-                const green = Math.round(130 - (50 * intensity)); // 130-80
-                const blue = Math.round(246 - (50 * intensity)); // 246-196
-                pointColors.push(`rgb(${red}, ${green}, ${blue})`);
-                borderColors.push(`rgba(${red}, ${green}, ${blue}, 0.8)`);
-            } else {
-                // 等于参考线 - 使用中性色
-                pointColors.push('#6b7280');
-                borderColors.push('rgba(107, 114, 128, 0.8)');
-            }
-        });
-
-        return { pointColors, borderColors, data, referenceValue, maxDeviation };
-    }
-
-    /**
-     * 创建Canvas渐变
-     */
-    createCanvasGradient(ctx, chartArea, gradientData) {
-        if (!gradientData || !gradientData.data) {
-            return null;
-        }
-
-        const { data, referenceValue, maxDeviation } = gradientData;
-        
-        // 创建水平渐变（从左到右）
-        const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
-        
-        // 为每个数据点添加渐变停止点
-        data.forEach((value, index) => {
-            const position = index / (data.length - 1); // 0 to 1
-            const deviation = Math.abs(value - referenceValue);
-            const intensity = maxDeviation > 0 ? deviation / maxDeviation : 0;
-            
-            let color;
-            if (value > referenceValue) {
-                // 高于参考线 - 红色系
-                const red = Math.round(220 + (35 * intensity));
-                const green = Math.round(38 - (20 * intensity));
-                const blue = Math.round(38 - (20 * intensity));
-                color = `rgba(${red}, ${green}, ${blue}, 0.8)`;
-            } else if (value < referenceValue) {
-                // 低于参考线 - 蓝色系
-                const red = Math.round(59 - (30 * intensity));
-                const green = Math.round(130 - (50 * intensity));
-                const blue = Math.round(246 - (50 * intensity));
-                color = `rgba(${red}, ${green}, ${blue}, 0.8)`;
-            } else {
-                // 等于参考线 - 中性色
-                color = 'rgba(107, 114, 128, 0.8)';
-            }
-            
-            gradient.addColorStop(position, color);
-        });
-
-        return gradient;
-    }
-
-    /**
-     * 创建图表
+     * 创建图表 - 委托给ChartDisplayManager
      */
     createChart(canvasId, label, labels, data, color, referenceLine = null) {
-        const ctx = document.getElementById(canvasId);
-        if (!ctx) return;
-
-        // Set canvas height explicitly
-        ctx.style.height = '600px';
-        ctx.height = 500;
-
-        // 判断是否为累计图表
-        const isAccumulated = canvasId.includes('accumulated');
-        
-        // 生成基于偏差的渐变颜色
-        const gradientColors = this.generateGradientColors(data, referenceLine, color);
-        
-        // 构建数据集数组，包含主数据和参考线
-        const self = this; // 保存this引用
-        const datasets = [{
-            label: label,
-            data: data,
-            borderColor: function(context) {
-                if (!referenceLine) return color;
-                
-                const chart = context.chart;
-                const {ctx, chartArea} = chart;
-                
-                if (!chartArea) return color;
-                
-                return self.createCanvasGradient(ctx, chartArea, gradientColors);
-            },
-            backgroundColor: color + (isAccumulated ? '15' : '08'),
-            borderWidth: isAccumulated ? 3 : 2,
-            fill: isAccumulated,
-            tension: 0.2,
-            pointBackgroundColor: referenceLine ? gradientColors.pointColors : color,
-            pointBorderColor: '#fff',
-            pointBorderWidth: 2,
-            pointRadius: isAccumulated ? 0 : 4,
-            pointHoverRadius: isAccumulated ? 0 : 7
-        }];
-
-        // 添加参考线数据集
-        if (referenceLine !== null) {
-            datasets.push({
-                label: referenceLine.label,
-                data: new Array(labels.length).fill(referenceLine.value),
-                borderColor: referenceLine.color || '#64748b',
-                backgroundColor: 'transparent',
-                borderWidth: 2,
-                borderDash: [5, 5],
-                fill: false,
-                tension: 0,
-                pointRadius: 0,
-                pointHoverRadius: 0,
-                pointBackgroundColor: 'transparent',
-                pointBorderColor: 'transparent'
-            });
-        }
-        
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: datasets
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                resizeDelay: 0,
-                interaction: {
-                    intersect: false,
-                    mode: 'index'
-                },
-                plugins: {
-                    legend: {
-                        display: referenceLine !== null,
-                        position: 'top',
-                        labels: {
-                            usePointStyle: true,
-                            padding: 20,
-                            font: {
-                                size: 12
-                            },
-                            color: '#64748b'
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: color,
-                        borderWidth: 1,
-                        displayColors: false,
-                        callbacks: {
-                            title: function(context) {
-                                return context[0].label;
-                            },
-                            label: function(context) {
-                                return `${label}: ${context.parsed.y} 天`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: '月份',
-                            color: '#64748b',
-                            font: {
-                                size: 12,
-                                weight: 'bold'
-                            }
-                        },
-                        grid: {
-                            color: '#f1f5f9'
-                        },
-                        ticks: {
-                            color: '#64748b'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '天数',
-                            color: '#64748b',
-                            font: {
-                                size: 12,
-                                weight: 'bold'
-                            }
-                        },
-                        grid: {
-                            color: '#f1f5f9'
-                        },
-                        ticks: {
-                            color: '#64748b'
-                        }
-                    }
-                }
-            }
-        });
-
-        // 添加resize事件监听器以防止图表高度增长
-        const resizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
-                const canvas = entry.target;
-                if (canvas.style.height !== '600px') {
-                    canvas.style.height = '600px';
-                    chart.resize();
-                }
-            }
-        });
-        resizeObserver.observe(ctx);
-
-        // 存储图表实例以便后续销毁
-        if (!this.chartInstances) {
-            this.chartInstances = {};
-        }
-        this.chartInstances[canvasId] = chart;
+        this.chartDisplayManager.createChart(canvasId, label, labels, data, color, referenceLine);
     }
 
     /**
-     * 销毁现有图表
-     */
-    destroyExistingCharts() {
-        if (this.chartInstances) {
-            Object.values(this.chartInstances).forEach(chart => {
-                if (chart) {
-                    chart.destroy();
-                }
-            });
-            this.chartInstances = {};
-        }
-    }
-
-    /**
-     * 创建总览页面的柱状图
+     * 创建总览页面的柱状图 - 委托给ChartDisplayManager
      */
     createOverviewBarChart(canvasId, label, labels, data, color) {
-        const ctx = document.getElementById(canvasId);
-        if (!ctx) return;
-
-        // 销毁现有图表
-        if (this.chartInstances && this.chartInstances[canvasId]) {
-            this.chartInstances[canvasId].destroy();
-        }
-
-        // Set canvas height explicitly
-        ctx.style.height = '600px';
-        ctx.height = 500;
-
-        const chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: label,
-                    data: data,
-                    backgroundColor: color + '40',
-                    borderColor: color,
-                    borderWidth: 2,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: color,
-                        borderWidth: 1,
-                        displayColors: false,
-                        callbacks: {
-                            title: function(context) {
-                                return context[0].label;
-                            },
-                            label: function(context) {
-                                return `${label}: ${context.parsed.y} 天`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: '护士',
-                            color: '#64748b',
-                            font: {
-                                size: 12,
-                                weight: 'bold'
-                            }
-                        },
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            color: '#64748b',
-                            maxRotation: 45,
-                            minRotation: 0
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '天数',
-                            color: '#64748b',
-                            font: {
-                                size: 12,
-                                weight: 'bold'
-                            }
-                        },
-                        grid: {
-                            color: '#f1f5f9'
-                        },
-                        ticks: {
-                            color: '#64748b'
-                        }
-                    }
-                }
-            }
-        });
-
-        // 存储图表实例
-        if (!this.chartInstances) {
-            this.chartInstances = {};
-        }
-        this.chartInstances[canvasId] = chart;
+        this.chartDisplayManager.createOverviewBarChart(canvasId, label, labels, data, color);
     }
 
     /**
-     * 获取月份名称
+     * 销毁现有图表 - 委托给ChartDisplayManager
      */
-    getMonthName(month) {
-        const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-        return months[month - 1] || month;
+    destroyExistingCharts() {
+        this.chartDisplayManager.destroyExistingCharts();
+    }
+
+    /**
+     * 显示存假天数排名表 - 委托给RankingDisplayManager
+     */
+    displaySavedDaysRanking() {
+        this.rankingDisplayManager.displaySavedDaysRanking();
     }
 }

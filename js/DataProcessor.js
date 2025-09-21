@@ -11,7 +11,6 @@ class DataProcessor {
         this.dataAdjuster = new DataAdjuster();
         this.monthlyProcessor = new MonthlyProcessor();
         this.summaryGenerator = new SummaryGenerator();
-        this.dataQueries = new DataQueries(this.dataLoader, this.summaryGenerator);
         
         // 保持向后兼容性的属性
         this.monthlyData = {};
@@ -89,7 +88,7 @@ class DataProcessor {
      * @returns {Object} 该月的完整数据
      */
     getMonthlyData(year, month) {
-        return this.dataQueries.getMonthlyData(this.monthlyProcessor, year, month);
+        return this.monthlyProcessor.getMonthlyData(year, month);
     }
 
     /**
@@ -98,7 +97,7 @@ class DataProcessor {
      * @returns {Object} 护士的所有月度数据
      */
     getNurseMonthlySummary(nurseKey) {
-        return this.dataQueries.getNurseMonthlySummary(nurseKey);
+        return this.summaryGenerator.getNurseMonthlySummary(nurseKey);
     }
 
     /**
@@ -108,7 +107,7 @@ class DataProcessor {
      * @returns {Object} 该护士该月的统计数据
      */
     getNurseMonthData(nurseKey, monthKey) {
-        return this.dataQueries.getNurseMonthData(nurseKey, monthKey);
+        return this.summaryGenerator.getNurseMonthData(nurseKey, monthKey);
     }
 
     /**
@@ -117,7 +116,7 @@ class DataProcessor {
      * @returns {Object} 护士的总计统计数据
      */
     getNurseTotalSummary(nurseKey) {
-        return this.dataQueries.getNurseTotalSummary(nurseKey);
+        return this.summaryGenerator.getNurseTotalSummary(nurseKey);
     }
 
     /**
@@ -125,7 +124,7 @@ class DataProcessor {
      * @returns {Array} 护士列表
      */
     getAllNurses() {
-        return this.dataQueries.getAllNurses();
+        return this.summaryGenerator.getAllNurses();
     }
 
     /**
@@ -134,7 +133,7 @@ class DataProcessor {
      * @returns {number} 初始存假天数，如果没有数据则返回0
      */
     getInitialSavedRestDays(nurseName) {
-        return this.dataQueries.getInitialSavedRestDays(nurseName);
+        return this.dataLoader.getInitialSavedRestDays(nurseName);
     }
 
     /**
@@ -144,7 +143,36 @@ class DataProcessor {
      * @returns {number} 累计存假天数
      */
     getCumulativeSavedRestDays(nurseKey, monthKey = null) {
-        return this.dataQueries.getCumulativeSavedRestDays(nurseKey, monthKey);
+        const nurseSummary = this.summaryGenerator.getNurseMonthlySummary(nurseKey);
+        if (!nurseSummary) return 0;
+
+        const initialValue = this.getInitialSavedRestDays(nurseSummary.nurseName);
+        
+        if (monthKey) {
+            // 返回到指定月份的累计值
+            const sortedMonths = Object.values(nurseSummary.months)
+                .sort((a, b) => {
+                    if (a.year !== b.year) return a.year - b.year;
+                    return a.month - b.month;
+                });
+            
+            let cumulative = initialValue;
+            for (const monthData of sortedMonths) {
+                if (monthData.monthKey === monthKey) {
+                    break;
+                }
+                cumulative += monthData.savedRestDays;
+            }
+            return cumulative;
+        } else {
+            // 返回总累计值
+            let totalSavedRestDays = initialValue;
+            Object.values(nurseSummary.months).forEach(monthData => {
+                totalSavedRestDays += monthData.savedRestDays;
+            });
+            
+            return totalSavedRestDays;
+        }
     }
 
     /**
