@@ -38,7 +38,6 @@ class HospitalShiftAnalyzer {
                 throw new Error('Failed to load database');
             }
             this.database = await response.json();
-            console.log('Database loaded:', this.database.statistics.totalRecords, 'records');
         } catch (error) {
             console.error('Error loading database:', error);
             throw error;

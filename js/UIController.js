@@ -292,55 +292,8 @@ class UIController {
      * 加载总览数据
      */
     loadOverviewData() {
-        // this.displayOverviewStats();
         this.displaySavedDaysRanking();
-        this.displaySavedDaysChart();
         this.displayAllNursesCumulativeSavedDaysChart();
-        this.displayWorkedDaysRanking();
-        this.displayWorkedDaysChart();
-        this.displayRestDaysRanking();
-        this.displayRestDaysChart();
-    }
-
-    /**
-     * 显示总览统计
-     */
-    displayOverviewStats() {
-        const allNurses = this.dataProcessor.getAllNurses();
-        let totalAdjustedSavedRestDays = 0;
-        let nurseCount = 0;
-        
-        allNurses.forEach(nurse => {
-            const totalSummary = this.dataProcessor.getNurseTotalSummary(nurse.nurseKey);
-            if (totalSummary) {
-                const adjustedCumulativeSavedRestDays = this.dataProcessor.getAdjustedCumulativeSavedRestDays(nurse.nurseKey);
-                totalAdjustedSavedRestDays += adjustedCumulativeSavedRestDays;
-                nurseCount++;
-            }
-        });
-        
-        const averageAdjustedSavedRestDays = nurseCount > 0 ? (totalAdjustedSavedRestDays / nurseCount).toFixed(1) : 0;
-        
-        const html = `
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value ${averageAdjustedSavedRestDays >= 0 ? 'positive' : 'negative'}">
-                        ${averageAdjustedSavedRestDays >= 0 ? `+${averageAdjustedSavedRestDays}` : averageAdjustedSavedRestDays}
-                    </div>
-                    <div class="stat-label">平均调整后存假天数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">${nurseCount}</div>
-                    <div class="stat-label">护士总数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">${totalAdjustedSavedRestDays >= 0 ? `+${totalAdjustedSavedRestDays.toFixed(1)}` : totalAdjustedSavedRestDays.toFixed(1)}</div>
-                    <div class="stat-label">总调整后存假天数</div>
-                </div>
-            </div>
-        `;
-        
-        document.getElementById('overviewStats').innerHTML = html;
     }
 
     /**
@@ -354,14 +307,10 @@ class UIController {
             
             // 使用包含初始值的累计存假天数（基础计算）
             const cumulativeSavedRestDays = this.dataProcessor.getCumulativeSavedRestDays(nurse.nurseKey);
-            
-            // 使用调整后的累计存假天数（考虑冬夏假期调整）
-            const adjustedCumulativeSavedRestDays = this.dataProcessor.getAdjustedCumulativeSavedRestDays(nurse.nurseKey);
-            
+
             return {
                 ...totalSummary,
                 totalSavedRestDays: cumulativeSavedRestDays,
-                adjustedTotalSavedRestDays: adjustedCumulativeSavedRestDays
             };
         }).filter(summary => summary !== null)
           .sort((a, b) => b.totalSavedRestDays - a.totalSavedRestDays);
@@ -377,8 +326,6 @@ class UIController {
         const averageTotal = filteredNurseStats.length > 0 
             ? filteredNurseStats.reduce((sum, nurse) => sum + nurse.totalSavedRestDays, 0) / filteredNurseStats.length 
             : 0;
-
-        console.log('averageTotal', averageTotal);
         
 
         const html = `
@@ -415,31 +362,6 @@ class UIController {
             </table>
         `;
         document.getElementById('savedDaysRankingTable').innerHTML = html;
-    }
-
-    /**
-     * 显示存假天数对比图表
-     */
-    displaySavedDaysChart() {
-        const allNurses = this.dataProcessor.getAllNurses();
-        const nurseStats = allNurses.map(nurse => {
-            const totalSummary = this.dataProcessor.getNurseTotalSummary(nurse.nurseKey);
-            if (!totalSummary) return null;
-            
-            // 使用调整后的累计存假天数
-            const adjustedCumulativeSavedRestDays = this.dataProcessor.getAdjustedCumulativeSavedRestDays(nurse.nurseKey);
-            
-            return {
-                ...totalSummary,
-                adjustedTotalSavedRestDays: adjustedCumulativeSavedRestDays
-            };
-        }).filter(summary => summary !== null)
-          .sort((a, b) => b.adjustedTotalSavedRestDays - a.adjustedTotalSavedRestDays);
-
-        const labels = nurseStats.map(nurse => nurse.nurseName);
-        const data = nurseStats.map(nurse => nurse.adjustedTotalSavedRestDays);
-
-        this.displayManager.createOverviewBarChart('savedDaysBarChart', '调整后存假天数对比', labels, data, '#dc2626');
     }
 
     /**
@@ -675,140 +597,6 @@ class UIController {
                 }
             }
         });
-    }
-
-    /**
-     * 显示有效工作日排名表
-     */
-    displayWorkedDaysRanking() {
-        const allNurses = this.dataProcessor.getAllNurses();
-        const nurseStats = allNurses.map(nurse => {
-            const totalSummary = this.dataProcessor.getNurseTotalSummary(nurse.nurseKey);
-            return totalSummary;
-        }).filter(summary => summary !== null)
-          .sort((a, b) => b.totalWorkedDays - a.totalWorkedDays);
-
-        const html = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>排名</th>
-                        <th>护士姓名</th>
-                        <th>护士编号</th>
-                        <th>总有效工作日</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${nurseStats.map((nurse, index) => `
-                        <tr>
-                            <td class="rank">#${index + 1}</td>
-                            <td class="nurse-name">${nurse.nurseName}</td>
-                            <td>${nurse.nurseId}</td>
-                            <td class="value positive">${nurse.totalWorkedDays} 天</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        `;
-        document.getElementById('workedDaysRankingTable').innerHTML = html;
-    }
-
-    /**
-     * 显示有效工作日对比图表
-     */
-    displayWorkedDaysChart() {
-        const allNurses = this.dataProcessor.getAllNurses();
-        const nurseStats = allNurses.map(nurse => {
-            const totalSummary = this.dataProcessor.getNurseTotalSummary(nurse.nurseKey);
-            return totalSummary;
-        }).filter(summary => summary !== null)
-          .sort((a, b) => b.totalWorkedDays - a.totalWorkedDays);
-
-        const labels = nurseStats.map(nurse => nurse.nurseName);
-        const data = nurseStats.map(nurse => nurse.totalWorkedDays);
-
-        this.displayManager.createOverviewBarChart('workedDaysBarChart', '有效工作日对比', labels, data, '#059669');
-    }
-
-    /**
-     * 显示有效休息日排名表
-     */
-    displayRestDaysRanking() {
-        const allNurses = this.dataProcessor.getAllNurses();
-        const nurseStats = allNurses.map(nurse => {
-            const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurse.nurseKey);
-            if (!nurseSummary || !nurseSummary.months) return null;
-
-            // 计算总有效休息日：每月的 (totalDays - workedDays - holidayDays) 之和
-            let totalRestDays = 0;
-            Object.values(nurseSummary.months).forEach(monthData => {
-                const monthRestDays = monthData.totalDays - monthData.workedDays - monthData.holidayDays;
-                totalRestDays += monthRestDays;
-            });
-
-            return {
-                nurseId: nurseSummary.nurseId,
-                nurseName: nurseSummary.nurseName,
-                totalRestDays: totalRestDays
-            };
-        }).filter(summary => summary !== null);
-        
-        nurseStats.sort((a, b) => b.totalRestDays - a.totalRestDays);
-
-        const html = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>排名</th>
-                        <th>护士姓名</th>
-                        <th>护士编号</th>
-                        <th>总有效休息日</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${nurseStats.map((nurse, index) => `
-                        <tr>
-                            <td class="rank">#${index + 1}</td>
-                            <td class="nurse-name">${nurse.nurseName}</td>
-                            <td>${nurse.nurseId}</td>
-                            <td class="value positive">${nurse.totalRestDays} 天</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        `;
-        document.getElementById('restDaysRankingTable').innerHTML = html;
-    }
-
-    /**
-     * 显示有效休息日对比图表
-     */
-    displayRestDaysChart() {
-        const allNurses = this.dataProcessor.getAllNurses();
-        const nurseStats = allNurses.map(nurse => {
-            const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurse.nurseKey);
-            if (!nurseSummary || !nurseSummary.months) return null;
-
-            // 计算总有效休息日：每月的 (totalDays - workedDays - holidayDays) 之和
-            let totalRestDays = 0;
-            Object.values(nurseSummary.months).forEach(monthData => {
-                const monthRestDays = monthData.totalDays - monthData.workedDays - monthData.holidayDays;
-                totalRestDays += monthRestDays;
-            });
-
-            return {
-                nurseId: nurseSummary.nurseId,
-                nurseName: nurseSummary.nurseName,
-                totalRestDays: totalRestDays
-            };
-        }).filter(summary => summary !== null);
-        
-        nurseStats.sort((a, b) => b.totalRestDays - a.totalRestDays);
-
-        const labels = nurseStats.map(nurse => nurse.nurseName);
-        const data = nurseStats.map(nurse => nurse.totalRestDays);
-
-        this.displayManager.createOverviewBarChart('restDaysBarChart', '有效休息日对比', labels, data, '#3b82f6');
     }
 
     /**

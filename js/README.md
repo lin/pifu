@@ -43,9 +43,7 @@ web/js/
 
 **关键方法**:
 - `processData()`: 处理所有数据
-- `processMonthlyData()`: 处理月度统计
-- `processPersonData()`: 处理个人数据
-- `generateMonthlySummaryData()`: 生成月度汇总数据
+- `processPersonData()`: 处理个人数据（简化版，仅生成护士列表）
 - `getNurseMonthlySummary()`: 获取护士月度汇总
 - `getNurseMonthData()`: 获取护士特定月份数据
 - `getNurseTotalSummary()`: 获取护士总计统计

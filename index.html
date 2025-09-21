@@ -119,14 +119,6 @@
                     <div class="ranking-table" id="savedDaysRankingTable"></div>
                 </div>
                 
-                <!-- 存假天数对比图表 -->
-                <div class="overview-section">
-                    <h3><i class="fas fa-chart-bar"></i> 存假天数对比</h3>
-                    <div class="chart-container">
-                        <canvas id="savedDaysBarChart"></canvas>
-                    </div>
-                </div>
-                
                 <!-- 累计存假天数趋势对比图表组 -->
                 <div class="overview-section">
                     <h3><i class="fas fa-chart-line"></i> 累计存假天数趋势对比</h3>
@@ -191,7 +183,14 @@
 
     <!-- 模块化JavaScript文件 -->
     <script src="js/MaintenanceManager.js"></script>
+    <!-- 数据处理器模块 -->
+    <script src="js/DataLoader.js"></script>
+    <script src="js/DataAdjuster.js"></script>
+    <script src="js/MonthlyProcessor.js"></script>
+    <script src="js/SummaryGenerator.js"></script>
+    <script src="js/DataQueries.js"></script>
     <script src="js/DataProcessor.js"></script>
+    <!-- 其他模块 -->
     <script src="js/DisplayManager.js"></script>
     <script src="js/UIController.js"></script>
     <script src="js/HospitalShiftAnalyzer.js"></script>
