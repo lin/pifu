@@ -146,7 +146,7 @@ class MaintenanceManager {
         maintenanceContent.appendChild(icon);
         maintenanceContent.appendChild(title);
         maintenanceContent.appendChild(message);
-        maintenanceContent.appendChild(returnTime);
+        // maintenanceContent.appendChild(returnTime);
         maintenanceContent.appendChild(contactInfo);
         maintenanceContent.appendChild(passwordSection);
         // maintenanceContent.appendChild(refreshButton);
