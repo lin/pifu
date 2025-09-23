@@ -69,6 +69,8 @@ class ChartManager {
             '#dc2626'  // Red (for 3rd nurse in group 6)
         ];
         
+        let nurseData = {}; // 存储每个护士的数据，用于计算差值
+        
         selectedNurses.forEach((nurse, index) => {
             const nurseSummary = this.dataProcessor.getNurseMonthlySummary(nurse.nurseKey);
             if (!nurseSummary || !nurseSummary.months) return;
@@ -83,6 +85,9 @@ class ChartManager {
                 }
                 return cumulativeSavedRest;
             });
+            
+            // 存储护士数据用于差值计算
+            nurseData[nurseSummary.nurseName] = cumulativeData;
             
             const color = colors[index % colors.length];
             datasets.push({
@@ -100,6 +105,29 @@ class ChartManager {
                 pointHoverRadius: 0
             });
         });
+        
+        // 为cumulativeChart1添加差值线（张雪野 - 马磊）
+        if (chartId === 'cumulativeChart1' && nurseData['张雪野'] && nurseData['马磊']) {
+            const differenceData = nurseData['张雪野'].map((zhangValue, index) => {
+                return nurseData['马磊'][index] - zhangValue;
+            });
+            
+            datasets.push({
+                label: '张雪野 - 马磊',
+                data: differenceData,
+                borderColor: '#ef4444',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5], // 虚线
+                fill: false,
+                tension: 0.4,
+                pointBackgroundColor: 'transparent',
+                pointBorderColor: 'transparent',
+                pointBorderWidth: 0,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            });
+        }
         
         // 格式化月份标签
         const monthLabels = sortedMonths.map(monthKey => {
