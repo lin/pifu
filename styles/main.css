@@ -41,6 +41,54 @@ body {
     font-size: 2rem;
 }
 
+/* Dataset Toggle */
+.dataset-toggle {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.toggle-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.toggle-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button:active {
+    transform: translateY(0);
+}
+
+.toggle-button i {
+    font-size: 1.1rem;
+}
+
+.toggle-button.post-pandemic {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.toggle-button.post-pandemic:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.6);
+}
+
 .header-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

@@ -1,12 +1,13 @@
-const HospitalShiftConverter = require('./csvConverter');
+const HospitalShiftConverter = require('./csv-converter');
 const fs = require('fs');
 const path = require('path');
 
 class BatchShiftConverter {
     constructor() {
         this.converter = new HospitalShiftConverter();
-        this.csvDir = path.join(__dirname, '..', 'data/raw/csv');
-        this.outputDir = path.join(__dirname, '..', 'data/processed');
+        this.csvDir = path.join(__dirname, '..', '..', '..', 'data/raw/csv');
+        this.pandemicDir = path.join(__dirname, '..', '..', '..', 'data/raw/csv/pandemic');
+        this.outputDir = path.join(__dirname, '..', '..', '..', 'data/processed');
     }
 
     /**
@@ -38,7 +39,7 @@ class BatchShiftConverter {
     }
 
     /**
-     * Check which files exist and which are missing
+     * Check which files exist and which are missing, including pandemic data
      * @param {Array} expectedFiles - List of expected filenames
      * @returns {Object} Object with existing and missing files
      */
@@ -47,9 +48,13 @@ class BatchShiftConverter {
         const missing = [];
 
         expectedFiles.forEach(filename => {
-            const filePath = path.join(this.csvDir, filename);
-            if (fs.existsSync(filePath)) {
-                existing.push(filename);
+            const regularPath = path.join(this.csvDir, filename);
+            const pandemicPath = path.join(this.pandemicDir, filename);
+            
+            if (fs.existsSync(regularPath)) {
+                existing.push({ filename, source: 'regular', path: regularPath });
+            } else if (fs.existsSync(pandemicPath)) {
+                existing.push({ filename, source: 'pandemic', path: pandemicPath });
             } else {
                 missing.push(filename);
             }
@@ -60,20 +65,20 @@ class BatchShiftConverter {
 
     /**
      * Convert a single CSV file and return the records
-     * @param {string} filename - CSV filename
+     * @param {Object} fileInfo - File information object with filename, source, and path
      * @returns {Array} Array of shift records
      */
-    convertSingleFile(filename) {
+    convertSingleFile(fileInfo) {
         try {
-            const filePath = path.join(this.csvDir, filename);
-            console.log(`Processing ${filename}...`);
+            const { filename, source, path: filePath } = fileInfo;
+            console.log(`Processing ${filename} (${source})...`);
             
             const records = this.converter.convertCsvToJson(filePath);
             console.log(`  ✓ Converted ${records.length} records`);
             
             return records;
         } catch (error) {
-            console.error(`  ✗ Error processing ${filename}: ${error.message}`);
+            console.error(`  ✗ Error processing ${fileInfo.filename}: ${error.message}`);
             return [];
         }
     }
@@ -113,29 +118,32 @@ class BatchShiftConverter {
         let totalProcessed = 0;
         let totalErrors = 0;
 
-        existing.forEach((filename, index) => {
+        existing.forEach((fileInfo, index) => {
             try {
-                const records = this.convertSingleFile(filename);
+                const records = this.convertSingleFile(fileInfo);
                 
                 if (records.length > 0) {
                     allRecords.push(...records);
                     fileStats.push({
-                        filename,
+                        filename: fileInfo.filename,
+                        source: fileInfo.source,
                         recordCount: records.length,
                         status: 'success'
                     });
                     totalProcessed++;
                 } else {
                     fileStats.push({
-                        filename,
+                        filename: fileInfo.filename,
+                        source: fileInfo.source,
                         recordCount: 0,
                         status: 'empty'
                     });
                 }
             } catch (error) {
-                console.error(`Error processing ${filename}: ${error.message}`);
+                console.error(`Error processing ${fileInfo.filename}: ${error.message}`);
                 fileStats.push({
-                    filename,
+                    filename: fileInfo.filename,
+                    source: fileInfo.source,
                     recordCount: 0,
                     status: 'error',
                     error: error.message
@@ -358,6 +366,47 @@ class BatchShiftConverter {
     }
 
     /**
+     * Convert data for both pre-pandemic and post-pandemic periods
+     * @param {string} prePandemicEnd - End date for pre-pandemic data (default: "2020-01")
+     * @param {string} postPandemicStart - Start date for post-pandemic data (default: "2020-02")
+     * @param {string} postPandemicEnd - End date for post-pandemic data (default: "2020-05")
+     * @returns {Object} Complete conversion results for both periods
+     */
+    convertPandemicBatch(prePandemicEnd = "2020-01", postPandemicStart = "2020-02", postPandemicEnd = "2020-05") {
+        try {
+            console.log(`\n🏥 Hospital Shift Pandemic Batch Converter`);
+            console.log(`📅 Processing pre-pandemic data: 2014-04 to ${prePandemicEnd}`);
+            console.log(`📅 Processing post-pandemic data: ${postPandemicStart} to ${postPandemicEnd}\n`);
+
+            // Convert pre-pandemic data
+            const prePandemicDatabase = this.convertDateRange("2014-04", prePandemicEnd);
+            const prePandemicFiles = this.saveCombinedDatabase(prePandemicDatabase, "2014-04", prePandemicEnd);
+
+            // Convert post-pandemic data
+            const postPandemicDatabase = this.convertDateRange(postPandemicStart, postPandemicEnd);
+            const postPandemicFiles = this.saveCombinedDatabase(postPandemicDatabase, postPandemicStart, postPandemicEnd);
+
+            console.log(`\n🎉 Pandemic batch conversion completed successfully!`);
+            console.log(`📁 Pre-pandemic files created: ${Object.keys(prePandemicFiles).length}`);
+            console.log(`📁 Post-pandemic files created: ${Object.keys(postPandemicFiles).length}`);
+            
+            return {
+                prePandemic: {
+                    ...prePandemicDatabase,
+                    outputFiles: prePandemicFiles
+                },
+                postPandemic: {
+                    ...postPandemicDatabase,
+                    outputFiles: postPandemicFiles
+                }
+            };
+        } catch (error) {
+            console.error(`❌ Pandemic batch conversion failed: ${error.message}`);
+            throw error;
+        }
+    }
+
+    /**
      * Main batch conversion function
      * @param {string} startDate - Start date (YYYY-MM)
      * @param {string} endDate - End date (YYYY-MM)
@@ -387,14 +436,25 @@ module.exports = BatchShiftConverter;
 
 // CLI usage
 if (require.main === module) {
-    const startDate = process.argv[2] || "2014-04";
-    const endDate = process.argv[3] || "2020-01";
-    
-    console.log(`Starting batch conversion from ${startDate} to ${endDate}...`);
-    
+    const mode = process.argv[2] || "pandemic";
     const batchConverter = new BatchShiftConverter();
+    
     try {
-        batchConverter.convertBatch(startDate, endDate);
+        if (mode === "pandemic") {
+            // Default pandemic batch conversion
+            batchConverter.convertPandemicBatch();
+        } else if (mode === "custom") {
+            // Custom date range conversion
+            const startDate = process.argv[3] || "2014-04";
+            const endDate = process.argv[4] || "2020-01";
+            console.log(`Starting custom batch conversion from ${startDate} to ${endDate}...`);
+            batchConverter.convertBatch(startDate, endDate);
+        } else {
+            console.log('Usage:');
+            console.log('  node batch-converter.js pandemic                    # Convert pandemic data (default)');
+            console.log('  node batch-converter.js custom [start] [end]       # Convert custom date range');
+            process.exit(1);
+        }
     } catch (error) {
         console.error('Batch conversion failed:', error.message);
         process.exit(1);

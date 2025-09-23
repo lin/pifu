@@ -1,0 +1,42 @@
+{
+  "conversionDate": "2025-09-23T08:21:37.275Z",
+  "requestedDateRange": {
+    "start": "2020-02",
+    "end": "2020-05"
+  },
+  "actualDateRange": {
+    "start": null,
+    "end": null
+  },
+  "filesProcessed": 4,
+  "filesSuccessful": 4,
+  "filesWithErrors": 0,
+  "filesEmpty": 0,
+  "fileDetails": [
+    {
+      "filename": "2020-02.csv",
+      "source": "pandemic",
+      "recordCount": 377,
+      "status": "success"
+    },
+    {
+      "filename": "2020-03.csv",
+      "source": "pandemic",
+      "recordCount": 403,
+      "status": "success"
+    },
+    {
+      "filename": "2020-04.csv",
+      "source": "pandemic",
+      "recordCount": 390,
+      "status": "success"
+    },
+    {
+      "filename": "2020-05.csv",
+      "source": "pandemic",
+      "recordCount": 403,
+      "status": "success"
+    }
+  ],
+  "converterVersion": "1.0.0"
+}

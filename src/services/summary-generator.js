@@ -7,6 +7,13 @@ class SummaryGenerator {
     }
 
     /**
+     * 重置汇总数据
+     */
+    reset() {
+        this.monthlySummaryData = {};
+    }
+
+    /**
      * 生成月度汇总数据 - 为每个护士的每个月计算关键统计
      * @param {Object} monthlyData - 月度数据
      * @param {Array} yearEndAdjustments - 年末调整数据

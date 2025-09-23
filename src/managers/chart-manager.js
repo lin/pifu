@@ -4,6 +4,7 @@
 class ChartManager {
     constructor(dataProcessor) {
         this.dataProcessor = dataProcessor;
+        this.chartInstances = {};
     }
 
     /**
@@ -17,6 +18,9 @@ class ChartManager {
      * 显示6组护士累计存假天数趋势对比图表
      */
     displayAllNursesCumulativeSavedDaysChart() {
+        // 销毁现有图表
+        this.destroyExistingCharts();
+        
         // 定义6组护士对比
         const nursePairs = [
             { names: ['马磊', '张雪野'], chartId: 'cumulativeChart1' },
@@ -31,6 +35,20 @@ class ChartManager {
         nursePairs.forEach((pair, pairIndex) => {
             this.createNursePairChart(pair.names, pair.chartId, pairIndex);
         });
+    }
+
+    /**
+     * 销毁现有图表
+     */
+    destroyExistingCharts() {
+        if (this.chartInstances) {
+            Object.values(this.chartInstances).forEach(chart => {
+                if (chart) {
+                    chart.destroy();
+                }
+            });
+            this.chartInstances = {};
+        }
     }
     
     /**
@@ -139,6 +157,11 @@ class ChartManager {
         const ctx = document.getElementById(chartId);
         if (!ctx) return;
         
+        // 销毁现有图表（如果存在）
+        if (this.chartInstances[chartId]) {
+            this.chartInstances[chartId].destroy();
+        }
+        
         // 计算动态高度：根据最大值和最小值的差异，每个差异值对应2px
         let maxValue = -Infinity;
         let minValue = Infinity;
@@ -160,7 +183,8 @@ class ChartManager {
         ctx.style.minHeight = `${dynamicHeight}px !important`;
         ctx.height = dynamicHeight;
         
-        new Chart(ctx, {
+        // 创建并存储图表实例
+        this.chartInstances[chartId] = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: monthLabels,

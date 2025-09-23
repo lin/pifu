@@ -21,6 +21,7 @@ class HospitalShiftAnalyzer {
             await this.processData();
             this.initializeUI();
             this.setupTabNavigation();
+            this.setupDatasetToggle();
             this.hideLoading();
         } catch (error) {
             console.error('Failed to initialize analyzer:', error);
@@ -29,26 +30,18 @@ class HospitalShiftAnalyzer {
     }
 
     /**
-     * 加载数据库
+     * 加载数据库 - 现在由DataProcessor处理
      */
     async loadDatabase() {
-        try {
-            const response = await fetch('./data/processed/hospital_shifts_2014-04_to_2020-01_database.json');
-            if (!response.ok) {
-                throw new Error('Failed to load database');
-            }
-            this.database = await response.json();
-        } catch (error) {
-            console.error('Error loading database:', error);
-            throw error;
-        }
+        // 数据库加载现在由DataProcessor的DataLoader处理
+        // 这里保留方法以保持向后兼容性
     }
 
     /**
      * 初始化各个模块
      */
     initializeModules() {
-        this.dataProcessor = new DataProcessor(this.database);
+        this.dataProcessor = new DataProcessor();
         this.displayManager = new DisplayManager(this.dataProcessor);
         this.uiController = new UIController(this.dataProcessor);
         
@@ -110,6 +103,50 @@ class HospitalShiftAnalyzer {
     }
 
     /**
+     * 设置数据集切换按钮
+     */
+    setupDatasetToggle() {
+        const toggleButton = document.getElementById('datasetToggle');
+        const datasetLabel = document.getElementById('datasetLabel');
+        
+        if (!toggleButton || !datasetLabel) {
+            console.error('Dataset toggle elements not found');
+            return;
+        }
+
+        // 更新按钮状态
+        this.updateToggleButton();
+
+        toggleButton.addEventListener('click', () => {
+            const currentIncludePandemic = this.getIncludePandemicData();
+            const newIncludePandemic = !currentIncludePandemic;
+            
+            this.setIncludePandemicData(newIncludePandemic);
+            this.updateToggleButton();
+        });
+    }
+
+    /**
+     * 更新切换按钮的显示状态
+     */
+    updateToggleButton() {
+        const toggleButton = document.getElementById('datasetToggle');
+        const datasetLabel = document.getElementById('datasetLabel');
+        
+        if (!toggleButton || !datasetLabel) return;
+
+        const includePandemic = this.getIncludePandemicData();
+        
+        if (includePandemic) {
+            toggleButton.classList.add('post-pandemic');
+            toggleButton.innerHTML = '<i class="fas fa-virus"></i><span id="datasetLabel">包含疫情数据 (2014-04 至 2020-05)</span>';
+        } else {
+            toggleButton.classList.remove('post-pandemic');
+            toggleButton.innerHTML = '<i class="fas fa-virus"></i><span id="datasetLabel">不包含疫情数据 (2014-04 至 2020-01)</span>';
+        }
+    }
+
+    /**
      * 隐藏加载界面
      */
     hideLoading() {
@@ -132,6 +169,31 @@ class HospitalShiftAnalyzer {
     }
 
     /**
+     * 切换是否包含疫情数据
+     * @param {boolean} includePandemic - true = include pandemic data, false = exclude pandemic data
+     */
+    setIncludePandemicData(includePandemic) {
+        this.dataProcessor.setIncludePandemicData(includePandemic);
+        
+        // 重新加载当前标签页的数据
+        if (this.currentTab === 'monthly') {
+            this.uiController.loadMonthlyStats();
+        } else if (this.currentTab === 'person') {
+            this.uiController.loadPersonDetails();
+        } else if (this.currentTab === 'overview') {
+            this.uiController.loadOverviewData();
+        }
+    }
+
+    /**
+     * 获取当前是否包含疫情数据
+     * @returns {boolean} 是否包含疫情数据
+     */
+    getIncludePandemicData() {
+        return this.dataProcessor.dataLoader.includePandemicData;
+    }
+
+    /**
      * 计算职业跨度（保留用于兼容性）
      */
     calculateCareerSpan(startDate, endDate) {
@@ -147,5 +209,5 @@ class HospitalShiftAnalyzer {
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
-    new HospitalShiftAnalyzer();
+    window.hospitalShiftAnalyzer = new HospitalShiftAnalyzer();
 });

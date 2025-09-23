@@ -3,9 +3,7 @@
  * 现在作为各个专门模块的协调器
  */
 class DataProcessor {
-    constructor(database) {
-        this.database = database;
-        
+    constructor() {
         // 初始化各个专门模块
         this.dataLoader = new DataLoader();
         this.dataAdjuster = new DataAdjuster();
@@ -13,6 +11,7 @@ class DataProcessor {
         this.summaryGenerator = new SummaryGenerator();
         
         // 保持向后兼容性的属性
+        this.database = null;
         this.monthlyData = {};
         this.personData = {};
         this.monthlySummaryData = {};
@@ -22,10 +21,29 @@ class DataProcessor {
      * 处理所有数据
      */
     async processData() {
-        // 加载配置数据
+        // 加载所有数据集和配置数据
+        await this.dataLoader.loadAllDatasets();
         await this.dataLoader.loadInitialSavedRestDays();
         await this.dataLoader.loadYearEndAdjustments();
         
+        // 处理当前数据集
+        this.processCurrentDataset();
+    }
+
+    /**
+     * 处理当前数据集
+     */
+    processCurrentDataset() {
+        this.database = this.dataLoader.getCurrentDataset();
+        if (!this.database) {
+            console.error('No current dataset available');
+            return;
+        }
+
+        // 重置处理器以避免数据累积
+        this.monthlyProcessor.reset();
+        this.summaryGenerator.reset();
+
         // 调整数据
         this.dataAdjuster.adjustNightShiftDayValues(this.database.records);
         this.dataAdjuster.adjustSupportWorkValues(this.database.records);
@@ -41,6 +59,15 @@ class DataProcessor {
         // 保持向后兼容性
         this.monthlyData = this.monthlyProcessor.getAllMonthlyData();
         this.monthlySummaryData = this.summaryGenerator.getAllMonthlySummaryData();
+    }
+
+    /**
+     * 切换是否包含疫情数据并重新处理
+     * @param {boolean} includePandemic - true = include pandemic data, false = exclude pandemic data
+     */
+    setIncludePandemicData(includePandemic) {
+        this.dataLoader.setIncludePandemicData(includePandemic);
+        this.processCurrentDataset();
     }
 
     /**

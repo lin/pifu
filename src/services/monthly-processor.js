@@ -7,6 +7,13 @@ class MonthlyProcessor {
     }
 
     /**
+     * 重置月度数据
+     */
+    reset() {
+        this.monthlyData = {};
+    }
+
+    /**
      * 处理月度统计数据
      * @param {Array} records - 数据库记录数组
      */

@@ -1,5 +1,5 @@
 {
-  "conversionDate": "2025-09-21T04:02:53.837Z",
+  "conversionDate": "2025-09-23T08:21:37.079Z",
   "requestedDateRange": {
     "start": "2014-04",
     "end": "2020-01"
@@ -15,351 +15,421 @@
   "fileDetails": [
     {
       "filename": "2014-04.csv",
+      "source": "regular",
       "recordCount": 284,
       "status": "success"
     },
     {
       "filename": "2014-05.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2014-06.csv",
+      "source": "regular",
       "recordCount": 300,
       "status": "success"
     },
     {
       "filename": "2014-07.csv",
+      "source": "regular",
       "recordCount": 303,
       "status": "success"
     },
     {
       "filename": "2014-08.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2014-09.csv",
+      "source": "regular",
       "recordCount": 300,
       "status": "success"
     },
     {
       "filename": "2014-10.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2014-11.csv",
+      "source": "regular",
       "recordCount": 300,
       "status": "success"
     },
     {
       "filename": "2014-12.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2015-01.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2015-02.csv",
+      "source": "regular",
       "recordCount": 280,
       "status": "success"
     },
     {
       "filename": "2015-03.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2015-04.csv",
+      "source": "regular",
       "recordCount": 300,
       "status": "success"
     },
     {
       "filename": "2015-05.csv",
+      "source": "regular",
       "recordCount": 310,
       "status": "success"
     },
     {
       "filename": "2015-06.csv",
+      "source": "regular",
       "recordCount": 300,
       "status": "success"
     },
     {
       "filename": "2015-07.csv",
+      "source": "regular",
       "recordCount": 328,
       "status": "success"
     },
     {
       "filename": "2015-08.csv",
+      "source": "regular",
       "recordCount": 341,
       "status": "success"
     },
     {
       "filename": "2015-09.csv",
+      "source": "regular",
       "recordCount": 330,
       "status": "success"
     },
     {
       "filename": "2015-10.csv",
+      "source": "regular",
       "recordCount": 341,
       "status": "success"
     },
     {
       "filename": "2015-11.csv",
+      "source": "regular",
       "recordCount": 356,
       "status": "success"
     },
     {
       "filename": "2015-12.csv",
+      "source": "regular",
       "recordCount": 372,
       "status": "success"
     },
     {
       "filename": "2016-01.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2016-02.csv",
+      "source": "regular",
       "recordCount": 377,
       "status": "success"
     },
     {
       "filename": "2016-03.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2016-04.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2016-05.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2016-06.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2016-07.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2016-08.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2016-09.csv",
+      "source": "regular",
       "recordCount": 361,
       "status": "success"
     },
     {
       "filename": "2016-10.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2016-11.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2016-12.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-01.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-02.csv",
+      "source": "regular",
       "recordCount": 364,
       "status": "success"
     },
     {
       "filename": "2017-03.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-04.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2017-05.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-06.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2017-07.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-08.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-09.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2017-10.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2017-11.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2017-12.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-01.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-02.csv",
+      "source": "regular",
       "recordCount": 364,
       "status": "success"
     },
     {
       "filename": "2018-03.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-04.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2018-05.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-06.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2018-07.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-08.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-09.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2018-10.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2018-11.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2018-12.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-01.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-02.csv",
+      "source": "regular",
       "recordCount": 364,
       "status": "success"
     },
     {
       "filename": "2019-03.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-04.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2019-05.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-06.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2019-07.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-08.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-09.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2019-10.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2019-11.csv",
+      "source": "regular",
       "recordCount": 390,
       "status": "success"
     },
     {
       "filename": "2019-12.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     },
     {
       "filename": "2020-01.csv",
+      "source": "regular",
       "recordCount": 403,
       "status": "success"
     }
