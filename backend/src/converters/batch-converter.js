@@ -369,10 +369,10 @@ class BatchShiftConverter {
      * Convert data for both pre-pandemic and post-pandemic periods
      * @param {string} prePandemicEnd - End date for pre-pandemic data (default: "2020-01")
      * @param {string} postPandemicStart - Start date for post-pandemic data (default: "2020-02")
-     * @param {string} postPandemicEnd - End date for post-pandemic data (default: "2020-05")
+     * @param {string} postPandemicEnd - End date for post-pandemic data (default: "2020-08")
      * @returns {Object} Complete conversion results for both periods
      */
-    convertPandemicBatch(prePandemicEnd = "2020-01", postPandemicStart = "2020-02", postPandemicEnd = "2020-05") {
+    convertPandemicBatch(prePandemicEnd = "2020-01", postPandemicStart = "2020-02", postPandemicEnd = "2020-08") {
         try {
             console.log(`\n🏥 Hospital Shift Pandemic Batch Converter`);
             console.log(`📅 Processing pre-pandemic data: 2014-04 to ${prePandemicEnd}`);

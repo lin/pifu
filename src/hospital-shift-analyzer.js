@@ -139,7 +139,7 @@ class HospitalShiftAnalyzer {
         
         if (includePandemic) {
             toggleButton.classList.add('post-pandemic');
-            toggleButton.innerHTML = '<i class="fas fa-virus"></i><span id="datasetLabel">包含疫情数据 (2014-04 至 2020-05)</span>';
+            toggleButton.innerHTML = '<i class="fas fa-virus"></i><span id="datasetLabel">包含疫情数据 (2014-04 至 2020-08)</span>';
         } else {
             toggleButton.classList.remove('post-pandemic');
             toggleButton.innerHTML = '<i class="fas fa-virus"></i><span id="datasetLabel">不包含疫情数据 (2014-04 至 2020-01)</span>';

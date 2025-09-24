@@ -86,7 +86,7 @@ class DataLoader {
      */
     async loadPostPandemicData() {
         try {
-            const response = await fetch('./data/processed/hospital_shifts_2020-02_to_2020-05_database.json');
+            const response = await fetch('./data/processed/hospital_shifts_2020-02_to_2020-08_database.json');
             if (!response.ok) {
                 throw new Error('Failed to load post-pandemic data');
             }
